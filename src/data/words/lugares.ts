@@ -1,0 +1,33 @@
+import type { Categoria } from '@/game/types'
+
+export const lugares: Categoria = {
+  id: 'lugares',
+  nombre: 'Lugares',
+  emoji: '🗺️',
+  grupos: [
+    { pista: 'Palomitas', palabras: ['Cine', 'Circo', 'Feria', 'Estadio'] },
+    { pista: 'Fila', palabras: ['Banco', 'Parque de diversiones', 'Farmacia'] },
+    { pista: 'Carrito', palabras: ['Supermercado', 'Aeropuerto', 'Centro comercial'] },
+    { pista: 'Silencio', palabras: ['Biblioteca', 'Iglesia', 'Hospital', 'Museo'] },
+    { pista: 'Toalla', palabras: ['Playa', 'Alberca', 'Gimnasio'] },
+    { pista: 'Fogata', palabras: ['Bosque', 'Montaña', 'Campamento'] },
+    { pista: 'Camello', palabras: ['Desierto', 'Oasis'] },
+    { pista: 'Princesa', palabras: ['Castillo', 'Palacio', 'Torre'] },
+    { pista: 'Boleta', palabras: ['Escuela', 'Universidad', 'Kínder'] },
+    { pista: 'Inyección', palabras: ['Consultorio', 'Clínica', 'Veterinaria'] },
+    { pista: 'Elefante', palabras: ['Zoológico', 'Safari', 'Selva'] },
+    { pista: 'Astronauta', palabras: ['Luna', 'Marte', 'Estación espacial'] },
+    { pista: 'Pez', palabras: ['Acuario', 'Océano', 'Río', 'Lago'] },
+    { pista: 'Propina', palabras: ['Restaurante', 'Cafetería', 'Taquería'] },
+    { pista: 'Vecinos', palabras: ['Departamento', 'Edificio', 'Colonia'] },
+    { pista: 'Paseo', palabras: ['Parque', 'Plaza', 'Malecón', 'Jardín'] },
+    { pista: 'Fantasma', palabras: ['Cementerio', 'Casa embrujada'] },
+    { pista: 'Turista', palabras: ['Pirámides', 'Torre Eiffel', 'Coliseo', 'Muralla China'] },
+    { pista: 'Paloma', palabras: ['Zócalo', 'Catedral', 'Alameda'] },
+    { pista: 'Jefe', palabras: ['Oficina', 'Fábrica', 'Bodega'] },
+    { pista: 'Piñata', palabras: ['Salón de fiestas', 'Dulcería'] },
+    { pista: 'Maleta', palabras: ['Hotel', 'Cabaña', 'Terminal de autobuses'] },
+    { pista: 'Vaca', palabras: ['Granja', 'Rancho', 'Establo'] },
+    { pista: 'Explorador', palabras: ['Volcán', 'Cueva', 'Isla', 'Cascada'] },
+  ],
+}
