@@ -16,9 +16,18 @@ interface CartaJugadorProps {
  * La carta secreta. Se muestra solo mientras el jugador la mantiene presionada,
  * para que al soltar el teléfono nadie más la vea.
  */
+/** Con mouse (escritorio) mantener presionado es incómodo; en pantallas táctiles es lo que protege la carta. */
+function prefiereToque(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  )
+}
+
 export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJugadorProps) {
   const [visible, setVisible] = useState(false)
-  const [modoToque, setModoToque] = useState(false)
+  const [modoToque, setModoToque] = useState(prefiereToque)
 
   const mostrar = () => {
     setVisible(true)
