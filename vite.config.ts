@@ -56,4 +56,8 @@ export default defineConfig({
       '@': path.resolve(import.meta.dirname, './src'),
     },
   },
+  preview: {
+    // `vite preview` solo se usa para probar dist/ detrás de un túnel; permitir cualquier host.
+    allowedHosts: true,
+  },
 })
