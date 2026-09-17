@@ -1,7 +1,6 @@
 import { Fingerprint, Lock } from 'lucide-react'
 import { useState, type KeyboardEvent, type PointerEvent } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { Palabra, Rol } from '@/game/types'
 
@@ -27,7 +26,7 @@ function prefiereToque(): boolean {
  */
 export function CartaJugador({ rol, palabra, conPista, onVista }: CartaJugadorProps) {
   const [visible, setVisible] = useState(false)
-  const [modoToque, setModoToque] = useState(prefiereToque)
+  const [modoToque] = useState(prefiereToque)
 
   const mostrar = () => {
     setVisible(true)
@@ -109,18 +108,6 @@ export function CartaJugador({ rol, palabra, conPista, onVista }: CartaJugadorPr
             ? 'Suelta para ocultar'
             : 'Mantén el dedo aquí'}
       </button>
-
-      <Button
-        variant="ghost"
-        size="sm"
-        className="self-center text-muted-foreground"
-        onClick={() => {
-          setModoToque((m) => !m)
-          ocultar()
-        }}
-      >
-        {modoToque ? 'Cambiar a mantener presionado' : 'Cambiar a tocar'}
-      </Button>
     </div>
   )
 }
