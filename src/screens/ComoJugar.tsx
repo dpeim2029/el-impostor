@@ -7,7 +7,7 @@ const pasos = [
   {
     titulo: 'Repartan las cartas',
     texto:
-      'Pásense el teléfono. Cada quien mantiene presionada su carta para verla en secreto: todos ven la misma palabra, menos el impostor.',
+      'Pásense el teléfono. Cada quien pone el dedo en el botón de abajo y su carta aparece arriba, en secreto: todos ven la misma palabra, menos el impostor.',
   },
   {
     titulo: 'Una palabra por turno',

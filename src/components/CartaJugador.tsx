@@ -1,4 +1,4 @@
-import { Eye, EyeOff, Fingerprint } from 'lucide-react'
+import { Eye, EyeOff, Fingerprint, Lock } from 'lucide-react'
 import { useState, type KeyboardEvent, type PointerEvent } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -12,10 +12,6 @@ interface CartaJugadorProps {
   onVista: () => void
 }
 
-/**
- * La carta secreta. Se muestra solo mientras el jugador la mantiene presionada,
- * para que al soltar el teléfono nadie más la vea.
- */
 /** Con mouse (escritorio) mantener presionado es incómodo; en pantallas táctiles es lo que protege la carta. */
 function prefiereToque(): boolean {
   return (
@@ -25,6 +21,10 @@ function prefiereToque(): boolean {
   )
 }
 
+/**
+ * La carta secreta. El contenido va arriba y la zona para el dedo abajo, así la mano
+ * nunca tapa el texto. Se muestra solo mientras el jugador mantiene presionada la zona.
+ */
 export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJugadorProps) {
   const [visible, setVisible] = useState(false)
   const [modoToque, setModoToque] = useState(prefiereToque)
@@ -61,25 +61,16 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
 
   return (
     <div className="flex flex-col gap-3">
-      <button
-        type="button"
-        aria-pressed={visible}
-        aria-label={visible ? 'Carta visible' : 'Mantén presionado para ver tu carta'}
+      <div
+        aria-live="polite"
         className={cn(
-          'no-callout relative flex min-h-80 w-full flex-col items-center justify-center gap-4 rounded-3xl border-2 p-6 text-center transition-colors duration-150 outline-none focus-visible:ring-4 focus-visible:ring-ring/40',
+          'flex min-h-72 flex-col items-center justify-center gap-4 rounded-3xl border-2 p-6 text-center transition-colors duration-150',
           visible
             ? rol === 'impostor'
               ? 'border-impostor/60 bg-impostor/15'
               : 'border-civil/60 bg-civil/10'
-            : 'border-dashed border-border bg-card/70 active:bg-card',
+            : 'border-dashed border-border bg-card/70',
         )}
-        onPointerDown={alPresionar}
-        onPointerUp={alSoltar}
-        onPointerCancel={alSoltar}
-        onLostPointerCapture={alSoltar}
-        onClick={alTocar}
-        onKeyDown={alTeclear}
-        onContextMenu={(e) => e.preventDefault()}
       >
         {visible ? (
           rol === 'impostor' ? (
@@ -89,19 +80,47 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
           )
         ) : (
           <>
-            <span className="flex size-20 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-              <Fingerprint className="size-10" aria-hidden="true" />
+            <span className="flex size-16 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+              <Lock className="size-8" aria-hidden="true" />
             </span>
-            <span className="text-lg font-semibold">
-              {modoToque ? 'Toca para ver tu carta' : 'Mantén presionado para ver tu carta'}
-            </span>
-            <span className="text-sm text-muted-foreground">
+            <p className="text-lg font-semibold">Tu carta está oculta</p>
+            <p className="text-sm text-muted-foreground">
               {modoToque
-                ? 'Vuelve a tocar para ocultarla antes de pasar el teléfono.'
-                : 'Se oculta sola en cuanto la sueltas.'}
-            </span>
+                ? 'Toca el botón de abajo para verla aquí.'
+                : 'Pon el dedo en el botón de abajo y aparecerá aquí, sin que tu mano la tape.'}
+            </p>
           </>
         )}
+      </div>
+
+      <button
+        type="button"
+        aria-pressed={visible}
+        aria-label={
+          modoToque ? 'Mostrar u ocultar la carta' : 'Mantén presionado para ver la carta'
+        }
+        className={cn(
+          'no-callout flex h-24 w-full items-center justify-center gap-3 rounded-3xl border-2 text-lg font-semibold transition-colors duration-150 outline-none focus-visible:ring-4 focus-visible:ring-ring/40',
+          visible
+            ? 'border-primary bg-primary text-primary-foreground'
+            : 'border-primary/50 bg-primary/15 text-foreground active:bg-primary/30',
+        )}
+        onPointerDown={alPresionar}
+        onPointerUp={alSoltar}
+        onPointerCancel={alSoltar}
+        onLostPointerCapture={alSoltar}
+        onClick={alTocar}
+        onKeyDown={alTeclear}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <Fingerprint className="size-8" aria-hidden="true" />
+        {modoToque
+          ? visible
+            ? 'Toca para ocultar'
+            : 'Toca para ver tu carta'
+          : visible
+            ? 'Suelta para ocultar'
+            : 'Mantén el dedo aquí'}
       </button>
 
       <Button
