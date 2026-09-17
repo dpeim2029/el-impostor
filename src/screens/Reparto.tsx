@@ -9,7 +9,7 @@ import type { Palabra, Rol } from '@/game/types'
 
 export function Reparto() {
   const { estado, dispatch } = useJuego()
-  const { jugadores, indiceReparto, ronda } = estado
+  const { jugadores, indiceReparto, ronda, ajustes } = estado
   const jugador = jugadores[indiceReparto]
   if (!ronda || !jugador) return null
 
@@ -21,6 +21,7 @@ export function Reparto() {
       total={jugadores.length}
       palabra={ronda.palabra}
       rol={ronda.roles[jugador.id]}
+      conPista={ajustes.conPista}
       onSiguiente={() => dispatch({ tipo: 'siguienteCarta' })}
     />
   )
@@ -32,6 +33,7 @@ function RepartoJugador({
   total,
   palabra,
   rol,
+  conPista,
   onSiguiente,
 }: {
   nombre: string
@@ -39,6 +41,7 @@ function RepartoJugador({
   total: number
   palabra: Palabra
   rol: Rol
+  conPista: boolean
   onSiguiente: () => void
 }) {
   const [vista, setVista] = useState(false)
@@ -67,7 +70,12 @@ function RepartoJugador({
 
       <div className="flex-1" />
 
-      <CartaJugador rol={rol} palabra={palabra} onVista={() => setVista(true)} />
+      <CartaJugador
+        rol={rol}
+        palabra={palabra}
+        conPista={conPista}
+        onVista={() => setVista(true)}
+      />
 
       <div className="flex-1" />
     </Pantalla>

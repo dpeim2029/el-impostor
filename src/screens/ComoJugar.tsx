@@ -6,7 +6,7 @@ const pasos = [
   'Pásense el teléfono. Cada quien ve su carta en secreto.',
   'Todos ven la misma palabra, menos el impostor.',
   'Por turnos, cada quien dice una palabra relacionada.',
-  'El impostor solo tiene una pista lejana y debe fingir.',
+  'El impostor debe fingir. Con pistas, solo sabe una pista lejana.',
   'Acusen a alguien. Si es el impostor, ganan.',
 ]
 

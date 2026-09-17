@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 export function Resultado() {
   const { estado, dispatch } = useJuego()
-  const { ronda, jugadores } = estado
+  const { ronda, jugadores, ajustes } = estado
   if (!ronda) return null
 
   const porId = new Map(jugadores.map((j) => [j.id, j]))
@@ -75,9 +75,11 @@ export function Resultado() {
             {ronda.palabra.categoriaNombre}
           </Badge>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Pista: <strong className="text-foreground">{ronda.palabra.pista}</strong>
-        </p>
+        {ajustes.conPista && (
+          <p className="text-sm text-muted-foreground">
+            Pista: <strong className="text-foreground">{ronda.palabra.pista}</strong>
+          </p>
+        )}
       </section>
 
       <section className="flex flex-col gap-2 rounded-2xl bg-card/70 p-4">

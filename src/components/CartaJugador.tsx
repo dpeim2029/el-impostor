@@ -8,6 +8,7 @@ import type { Palabra, Rol } from '@/game/types'
 interface CartaJugadorProps {
   rol: Rol
   palabra: Palabra
+  conPista: boolean
   onVista: () => void
 }
 
@@ -24,7 +25,7 @@ function prefiereToque(): boolean {
  * La carta secreta. El contenido va arriba y la zona para el dedo abajo, así la mano
  * nunca tapa el texto. Se muestra solo mientras el jugador mantiene presionada la zona.
  */
-export function CartaJugador({ rol, palabra, onVista }: CartaJugadorProps) {
+export function CartaJugador({ rol, palabra, conPista, onVista }: CartaJugadorProps) {
   const [visible, setVisible] = useState(false)
   const [modoToque, setModoToque] = useState(prefiereToque)
 
@@ -73,7 +74,7 @@ export function CartaJugador({ rol, palabra, onVista }: CartaJugadorProps) {
       >
         {visible ? (
           rol === 'impostor' ? (
-            <ContenidoImpostor palabra={palabra} />
+            <ContenidoImpostor palabra={palabra} conPista={conPista} />
           ) : (
             <ContenidoCivil palabra={palabra} />
           )
@@ -138,17 +139,23 @@ function ContenidoCivil({ palabra }: { palabra: Palabra }) {
   )
 }
 
-function ContenidoImpostor({ palabra }: { palabra: Palabra }) {
+function ContenidoImpostor({ palabra, conPista }: { palabra: Palabra; conPista: boolean }) {
   return (
     <>
       <p className="font-heading text-4xl leading-tight font-extrabold text-impostor sm:text-5xl">
         Eres el impostor
       </p>
-      <div className="rounded-2xl bg-background/60 px-5 py-3">
-        <p className="text-xs tracking-wide text-muted-foreground uppercase">Pista</p>
-        <p className="font-heading text-2xl font-bold">{palabra.pista}</p>
-      </div>
-      <p className="text-sm text-muted-foreground">Escucha y no repitas la pista.</p>
+      {conPista ? (
+        <>
+          <div className="rounded-2xl bg-background/60 px-5 py-3">
+            <p className="text-xs tracking-wide text-muted-foreground uppercase">Pista</p>
+            <p className="font-heading text-2xl font-bold">{palabra.pista}</p>
+          </div>
+          <p className="text-sm text-muted-foreground">Escucha y no repitas la pista.</p>
+        </>
+      ) : (
+        <p className="text-sm text-muted-foreground">Escucha y finge que sabes la palabra.</p>
+      )}
     </>
   )
 }

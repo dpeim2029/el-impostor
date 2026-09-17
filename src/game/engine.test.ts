@@ -30,6 +30,7 @@ function jugadores(n: number): Jugador[] {
 
 const ajustesBase: Ajustes = {
   numImpostores: 1,
+  conPista: true,
   categoriasActivas: categorias.map((c) => c.id),
 }
 

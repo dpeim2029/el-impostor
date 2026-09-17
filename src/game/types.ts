@@ -28,6 +28,8 @@ export type NumImpostores = 1 | 2
 
 export interface Ajustes {
   numImpostores: NumImpostores
+  /** Si el impostor recibe la pista lejana o entra a ciegas. */
+  conPista: boolean
   categoriasActivas: string[]
 }
 

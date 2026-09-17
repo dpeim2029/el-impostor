@@ -2,9 +2,11 @@ import { AvisoInstalarIOS } from '@/components/AvisoInstalarIOS'
 import { Pantalla } from '@/components/Pantalla'
 import { Button } from '@/components/ui/button'
 import { useJuego } from '@/game/JuegoContext'
+import { cn } from '@/lib/utils'
 
 export function Inicio() {
-  const { dispatch } = useJuego()
+  const { estado, dispatch } = useJuego()
+  const { conPista } = estado.ajustes
 
   return (
     <Pantalla className="justify-center gap-10 py-10">
@@ -19,6 +21,39 @@ export function Inicio() {
       </div>
 
       <div className="flex flex-col gap-3">
+        <div
+          role="radiogroup"
+          aria-label="Modo de juego"
+          className="grid grid-cols-2 gap-1 rounded-2xl bg-card/70 p-1"
+        >
+          {(
+            [
+              { valor: true, etiqueta: 'Con pistas' },
+              { valor: false, etiqueta: 'Sin pistas' },
+            ] as const
+          ).map(({ valor, etiqueta }) => {
+            const activo = conPista === valor
+            return (
+              <button
+                key={etiqueta}
+                type="button"
+                role="radio"
+                aria-checked={activo}
+                onClick={() => dispatch({ tipo: 'setConPista', conPista: valor })}
+                className={cn(
+                  'h-11 rounded-xl text-base font-semibold transition-colors',
+                  activo ? 'bg-secondary text-foreground shadow-sm' : 'text-muted-foreground',
+                )}
+              >
+                {etiqueta}
+              </button>
+            )
+          })}
+        </div>
+        <p className="text-center text-sm text-muted-foreground">
+          {conPista ? 'El impostor recibe una pista lejana.' : 'El impostor entra a ciegas.'}
+        </p>
+
         <Button
           size="lg"
           className="h-14 text-lg font-semibold"

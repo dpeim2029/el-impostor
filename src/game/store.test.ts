@@ -82,6 +82,12 @@ describe('reducer: ajustes', () => {
     estado = aplicar(estado, { tipo: 'setCategorias', ids: ['animales'] })
     expect(estado.ajustes.categoriasActivas).toEqual(['animales'])
   })
+
+  it('activa y desactiva la pista del impostor', () => {
+    expect(estadoInicial.ajustes.conPista).toBe(true)
+    const estado = aplicar(estadoInicial, { tipo: 'setConPista', conPista: false })
+    expect(estado.ajustes.conPista).toBe(false)
+  })
 })
 
 describe('reducer: flujo de una ronda', () => {
@@ -147,12 +153,14 @@ describe('persistencia', () => {
     const estado = aplicar(
       conJugadores(['Ana', 'Luis', 'Sofi']),
       { tipo: 'setCategorias', ids: ['comida', 'categoria-inexistente'] },
+      { tipo: 'setConPista', conPista: false },
       { tipo: 'repartir' },
     )
     guardarEstado(almacen, estado)
     const recuperado = cargarEstado(almacen)
     expect(recuperado.jugadores).toEqual(estado.jugadores)
     expect(recuperado.ajustes.categoriasActivas).toEqual(['comida'])
+    expect(recuperado.ajustes.conPista).toBe(false)
     expect(recuperado.palabrasUsadas).toEqual(estado.palabrasUsadas)
     expect(recuperado.fase).toBe('reparto')
     expect(recuperado.ronda).toEqual(estado.ronda)
@@ -180,5 +188,6 @@ describe('persistencia', () => {
     const recuperado = cargarEstado(almacen)
     expect(recuperado.ajustes.categoriasActivas).toEqual(ajustesIniciales.categoriasActivas)
     expect(recuperado.ajustes.numImpostores).toBe(1)
+    expect(recuperado.ajustes.conPista).toBe(true)
   })
 })
