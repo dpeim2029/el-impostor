@@ -1,5 +1,8 @@
 # El Impostor
 
+**Juega aquí: https://dpeim2029.github.io/el-impostor/** (en el iPhone: Compartir → Agregar a
+pantalla de inicio). Cada push a `main` se publica solo con GitHub Pages.
+
 Juego de palabras para jugar en familia pasando un solo teléfono. Es una versión libre de
 "Imposter Who?" sin anuncios, sin pagos y sin categorías bloqueadas, pensada para instalarse en
 el iPhone como app (PWA) y funcionar sin internet.
@@ -50,12 +53,17 @@ pnpm preview    # sirve dist/ en http://127.0.0.1:4517
 
 ## Instalar en el iPhone
 
-1. Publica la carpeta `dist/` en cualquier hosting estático con HTTPS (Netlify, Vercel, GitHub
-   Pages, Cloudflare Pages…). El service worker solo funciona con HTTPS.
-2. Abre la URL en Safari.
-3. Toca **Compartir → Agregar a pantalla de inicio**.
+1. Abre https://dpeim2029.github.io/el-impostor/ en Safari.
+2. Toca **Compartir → Agregar a pantalla de inicio**.
 
 Desde ahí se abre a pantalla completa, con icono propio y sin conexión.
+
+## Publicación
+
+El workflow `.github/workflows/pages.yml` corre en cada push a `main`: instala, prueba,
+construye con `VITE_BASE=/el-impostor/` y despliega a GitHub Pages. Para publicar en otro
+hosting estático (Netlify, Vercel, Cloudflare Pages) basta subir `dist/`; si va en la raíz del
+dominio no hace falta `VITE_BASE`. El service worker requiere HTTPS.
 
 ## Agregar palabras
 
