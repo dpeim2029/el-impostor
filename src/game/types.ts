@@ -24,13 +24,10 @@ export interface Jugador {
   nombre: string
 }
 
-export type VariantePista = 'sin-pista' | 'pista-lejana'
-
 export type NumImpostores = 1 | 2
 
 export interface Ajustes {
   numImpostores: NumImpostores
-  variantePista: VariantePista
   categoriasActivas: string[]
 }
 

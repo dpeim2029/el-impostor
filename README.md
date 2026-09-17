@@ -31,8 +31,9 @@ palabra de la misma categoría.
 
 - 3 a 15 jugadores con nombre; el orden de la lista es el orden en que están sentados.
 - 1 impostor, o 2 con 6+ jugadores (no saben quién es el otro; el grupo hace 2 acusaciones).
-- Dos variantes: **sin pista** (clásica) o **con pista lejana**.
-- 12 categorías y ~700 palabras en español de México, aptas para niños.
+- El impostor siempre recibe una pista lejana.
+- 12 categorías y ~700 palabras en español de México, aptas para niños. Todas activas por
+  defecto; un switch permite elegir solo algunas.
 - No se repiten palabras entre rondas hasta agotar la categoría.
 - La carta se ve solo mientras se mantiene presionada; se oculta al soltar.
 - Jugadores, ajustes y ronda en curso se guardan en el teléfono (sobrevive a recargas).

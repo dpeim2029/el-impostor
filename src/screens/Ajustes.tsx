@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { categorias, palabrasDeCategoria } from '@/data/words'
+import { categorias } from '@/data/words'
 import { maxImpostores, validarPartida } from '@/game/engine'
 import { useJuego } from '@/game/JuegoContext'
-import { MAX_JUGADORES, MIN_JUGADORES, MIN_JUGADORES_DOS_IMPOSTORES, type Jugador } from '@/game/types'
+import { MAX_JUGADORES, MIN_JUGADORES_DOS_IMPOSTORES, type Jugador } from '@/game/types'
 import { cn } from '@/lib/utils'
+
+const todasLasCategorias = categorias.map((c) => c.id)
 
 export function Ajustes() {
   const { estado, dispatch } = useJuego()
@@ -17,6 +19,14 @@ export function Ajustes() {
   const validacion = validarPartida(jugadores, ajustes)
   const permiteDos = maxImpostores(jugadores.length) === 2
   const lleno = jugadores.length >= MAX_JUGADORES
+  const [elegirCategorias, setElegirCategorias] = useState(
+    ajustes.categoriasActivas.length !== categorias.length,
+  )
+
+  const cambiarElegir = (activo: boolean) => {
+    setElegirCategorias(activo)
+    if (!activo) dispatch({ tipo: 'setCategorias', ids: todasLasCategorias })
+  }
 
   return (
     <Pantalla
@@ -38,20 +48,12 @@ export function Ajustes() {
         </>
       }
     >
-      <Seccion
-        titulo="Jugadores"
-        detalle={`${jugadores.length} de ${MAX_JUGADORES}`}
-        ayuda={`Mínimo ${MIN_JUGADORES}. Acomódalos en el orden en que están sentados.`}
-      >
+      <Seccion titulo="Jugadores" detalle={jugadores.length > 0 ? String(jugadores.length) : undefined}>
         <FormularioJugador
           deshabilitado={lleno}
           onAgregar={(nombre) => dispatch({ tipo: 'agregarJugador', nombre })}
         />
-        {jugadores.length === 0 ? (
-          <p className="rounded-2xl border border-dashed p-4 text-center text-sm text-muted-foreground">
-            Todavía no hay nadie. Escribe un nombre y toca “+”.
-          </p>
-        ) : (
+        {jugadores.length > 0 && (
           <ul className="flex flex-col gap-2">
             {jugadores.map((jugador, i) => (
               <FilaJugador
@@ -83,96 +85,62 @@ export function Ajustes() {
                 disabled={deshabilitado}
                 onClick={() => dispatch({ tipo: 'setNumImpostores', numImpostores: n })}
                 className={cn(
-                  'flex h-12 items-center justify-center gap-2 rounded-2xl border text-base font-semibold transition-colors',
+                  'flex h-12 items-center justify-center rounded-2xl border text-base font-semibold transition-colors',
                   activo
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-card/70 hover:bg-card',
                   deshabilitado && 'cursor-not-allowed opacity-40',
                 )}
               >
-                {n === 1 ? '1 impostor' : '2 impostores'}
+                {n}
               </button>
             )
           })}
         </div>
-        <p className="text-sm text-muted-foreground">
-          {permiteDos
-            ? 'Con 2 impostores el grupo hace 2 acusaciones. Los impostores no saben quién es el otro.'
-            : `Para 2 impostores se necesitan ${MIN_JUGADORES_DOS_IMPOSTORES} jugadores o más.`}
-        </p>
-      </Seccion>
-
-      <Seccion titulo="Variante">
-        <label className="flex items-center justify-between gap-4 rounded-2xl bg-card/70 p-4">
-          <span>
-            <span className="block font-semibold">Pista lejana para el impostor</span>
-            <span className="mt-0.5 block text-sm text-muted-foreground">
-              {ajustes.variantePista === 'pista-lejana'
-                ? 'El impostor ve una palabra que solo lo acerca al tema, nunca la palabra.'
-                : 'Sin pista: el impostor entra a ciegas. La variante clásica.'}
-            </span>
-          </span>
-          <Switch
-            checked={ajustes.variantePista === 'pista-lejana'}
-            onCheckedChange={(activa) =>
-              dispatch({ tipo: 'setVariantePista', variantePista: activa ? 'pista-lejana' : 'sin-pista' })
-            }
-            aria-label="Pista lejana para el impostor"
-          />
-        </label>
+        {!permiteDos && (
+          <p className="text-sm text-muted-foreground">
+            2 impostores a partir de {MIN_JUGADORES_DOS_IMPOSTORES} jugadores.
+          </p>
+        )}
       </Seccion>
 
       <Seccion
         titulo="Categorías"
-        detalle={`${ajustes.categoriasActivas.length} de ${categorias.length}`}
+        detalle={elegirCategorias ? `${ajustes.categoriasActivas.length} de ${categorias.length}` : 'Todas'}
         accion={
-          <div className="flex gap-1">
-            <Button
-              variant="ghost"
-              size="xs"
-              onClick={() => dispatch({ tipo: 'setCategorias', ids: categorias.map((c) => c.id) })}
-            >
-              Todas
-            </Button>
-            <Button
-              variant="ghost"
-              size="xs"
-              onClick={() => dispatch({ tipo: 'setCategorias', ids: [] })}
-            >
-              Ninguna
-            </Button>
-          </div>
+          <Switch
+            checked={elegirCategorias}
+            onCheckedChange={cambiarElegir}
+            aria-label="Elegir categorías"
+          />
         }
       >
-        <div className="grid grid-cols-2 gap-2">
-          {categorias.map((categoria) => {
-            const activa = ajustes.categoriasActivas.includes(categoria.id)
-            return (
-              <button
-                key={categoria.id}
-                type="button"
-                aria-pressed={activa}
-                onClick={() => dispatch({ tipo: 'toggleCategoria', id: categoria.id })}
-                className={cn(
-                  'flex items-center gap-2 rounded-2xl border p-3 text-left transition-colors',
-                  activa
-                    ? 'border-primary/60 bg-primary/15'
-                    : 'border-border bg-card/40 text-muted-foreground',
-                )}
-              >
-                <span className="text-2xl" aria-hidden="true">
-                  {categoria.emoji}
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-semibold">{categoria.nombre}</span>
-                  <span className="block text-xs text-muted-foreground">
-                    {palabrasDeCategoria(categoria).length} palabras
+        {elegirCategorias && (
+          <div className="grid grid-cols-2 gap-2">
+            {categorias.map((categoria) => {
+              const activa = ajustes.categoriasActivas.includes(categoria.id)
+              return (
+                <button
+                  key={categoria.id}
+                  type="button"
+                  aria-pressed={activa}
+                  onClick={() => dispatch({ tipo: 'toggleCategoria', id: categoria.id })}
+                  className={cn(
+                    'flex h-14 items-center gap-2 rounded-2xl border px-3 text-left transition-colors',
+                    activa
+                      ? 'border-primary/60 bg-primary/15'
+                      : 'border-border bg-card/40 text-muted-foreground',
+                  )}
+                >
+                  <span className="text-2xl" aria-hidden="true">
+                    {categoria.emoji}
                   </span>
-                </span>
-              </button>
-            )
-          })}
-        </div>
+                  <span className="truncate text-sm font-semibold">{categoria.nombre}</span>
+                </button>
+              )
+            })}
+          </div>
+        )}
       </Seccion>
     </Pantalla>
   )
@@ -181,19 +149,17 @@ export function Ajustes() {
 function Seccion({
   titulo,
   detalle,
-  ayuda,
   accion,
   children,
 }: {
   titulo: string
   detalle?: string
-  ayuda?: string
   accion?: ReactNode
   children: ReactNode
 }) {
   return (
     <section className="flex flex-col gap-3">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex min-h-8 items-center justify-between gap-2">
         <h2 className="text-lg font-bold">
           {titulo}
           {detalle && (
@@ -202,7 +168,6 @@ function Seccion({
         </h2>
         {accion}
       </div>
-      {ayuda && <p className="-mt-2 text-sm text-muted-foreground">{ayuda}</p>}
       {children}
     </section>
   )
@@ -227,13 +192,13 @@ function FormularioJugador({
   return (
     <form onSubmit={enviar} className="flex gap-2">
       <Label htmlFor="nuevo-jugador" className="sr-only">
-        Nombre del jugador
+        Nombre
       </Label>
       <Input
         id="nuevo-jugador"
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
-        placeholder={deshabilitado ? 'Ya están todos' : 'Nombre del jugador'}
+        placeholder="Nombre"
         disabled={deshabilitado}
         autoComplete="off"
         autoCapitalize="words"
@@ -246,7 +211,7 @@ function FormularioJugador({
         size="icon-lg"
         className="size-12 rounded-2xl"
         disabled={deshabilitado || !nombre.trim()}
-        aria-label="Agregar jugador"
+        aria-label="Agregar"
       >
         <Plus className="size-5" />
       </Button>
@@ -307,7 +272,6 @@ function FilaJugador({
           type="button"
           className="flex-1 truncate py-2 text-left font-medium"
           onClick={() => setEditando(true)}
-          title="Tocar para editar"
         >
           {jugador.nombre}
         </button>

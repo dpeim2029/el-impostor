@@ -1,4 +1,3 @@
-import { RefreshCw, Settings2 } from 'lucide-react'
 import { Pantalla } from '@/components/Pantalla'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -8,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 export function Resultado() {
   const { estado, dispatch } = useJuego()
-  const { ronda, jugadores, ajustes } = estado
+  const { ronda, jugadores } = estado
   if (!ronda) return null
 
   const porId = new Map(jugadores.map((j) => [j.id, j]))
@@ -27,17 +26,15 @@ export function Resultado() {
             className="h-14 text-lg font-semibold"
             onClick={() => dispatch({ tipo: 'otraRonda' })}
           >
-            <RefreshCw className="size-5" />
             Otra ronda
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="lg"
-            className="h-12"
+            className="h-12 text-muted-foreground"
             onClick={() => dispatch({ tipo: 'cancelarRonda' })}
           >
-            <Settings2 className="size-4" />
-            Cambiar jugadores o ajustes
+            Jugadores y ajustes
           </Button>
         </>
       }
@@ -61,25 +58,16 @@ export function Resultado() {
         >
           {resultado.ganaronCiviles
             ? plural
-              ? '¡Atraparon a los impostores!'
-              : '¡Atraparon al impostor!'
-            : resultado.escapados.length === impostores.length && plural
-              ? '¡Los impostores se escaparon!'
-              : plural
-                ? '¡Un impostor se escapó!'
-                : '¡El impostor se escapó!'}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          {resultado.ganaronCiviles
-            ? 'Ganan los civiles esta ronda.'
-            : resultado.civilesAcusados.length > 0
-              ? `Acusaron a ${resultado.civilesAcusados.map(nombre).join(' y ')} sin razón.`
-              : 'Gana el bando impostor esta ronda.'}
+              ? '¡Los atraparon!'
+              : '¡Lo atraparon!'
+            : plural
+              ? '¡Se escaparon!'
+              : '¡Se escapó!'}
         </p>
       </div>
 
       <section className="flex flex-col gap-2 rounded-2xl bg-card/70 p-4">
-        <p className="text-xs tracking-wide text-muted-foreground uppercase">La palabra era</p>
+        <p className="text-xs tracking-wide text-muted-foreground uppercase">Palabra</p>
         <div className="flex flex-wrap items-center gap-2">
           <p className="font-heading text-3xl font-extrabold">{ronda.palabra.texto}</p>
           <Badge variant="outline" className="h-auto gap-1 px-2.5 py-1">
@@ -87,17 +75,14 @@ export function Resultado() {
             {ronda.palabra.categoriaNombre}
           </Badge>
         </div>
-        {ajustes.variantePista === 'pista-lejana' && (
-          <p className="text-sm text-muted-foreground">
-            {plural ? 'Los impostores vieron' : 'El impostor vio'} la pista lejana{' '}
-            <strong className="text-foreground">«{ronda.palabra.pista}»</strong>.
-          </p>
-        )}
+        <p className="text-sm text-muted-foreground">
+          Pista: <strong className="text-foreground">{ronda.palabra.pista}</strong>
+        </p>
       </section>
 
       <section className="flex flex-col gap-2 rounded-2xl bg-card/70 p-4">
         <p className="text-xs tracking-wide text-muted-foreground uppercase">
-          {plural ? 'Los impostores eran' : 'El impostor era'}
+          {plural ? 'Impostores' : 'Impostor'}
         </p>
         <ul className="flex flex-col gap-2">
           {impostores.map((id) => {

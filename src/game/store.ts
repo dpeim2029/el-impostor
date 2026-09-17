@@ -7,14 +7,12 @@ import {
   type Fase,
   type Jugador,
   type NumImpostores,
-  type VariantePista,
 } from './types'
 
 export const CLAVE_ALMACEN = 'el-impostor:v1'
 
 export const ajustesIniciales: Ajustes = {
   numImpostores: 1,
-  variantePista: 'pista-lejana',
   categoriasActivas: categorias.map((c) => c.id),
 }
 
@@ -34,7 +32,6 @@ export type Accion =
   | { tipo: 'renombrarJugador'; id: string; nombre: string }
   | { tipo: 'moverJugador'; id: string; direccion: -1 | 1 }
   | { tipo: 'setNumImpostores'; numImpostores: NumImpostores }
-  | { tipo: 'setVariantePista'; variantePista: VariantePista }
   | { tipo: 'toggleCategoria'; id: string }
   | { tipo: 'setCategorias'; ids: string[] }
   | { tipo: 'repartir' }
@@ -110,9 +107,6 @@ export function reducer(estado: EstadoJuego, accion: Accion): EstadoJuego {
     case 'setNumImpostores':
       return ajustarImpostores(conAjustes(estado, { numImpostores: accion.numImpostores }))
 
-    case 'setVariantePista':
-      return conAjustes(estado, { variantePista: accion.variantePista })
-
     case 'toggleCategoria': {
       const activas = estado.ajustes.categoriasActivas
       const nuevas = activas.includes(accion.id)
@@ -184,8 +178,6 @@ export function cargarEstado(almacen: Pick<Storage, 'getItem'> | undefined): Est
         : [],
       ajustes: {
         numImpostores: guardado.ajustes?.numImpostores === 2 ? 2 : 1,
-        variantePista:
-          guardado.ajustes?.variantePista === 'sin-pista' ? 'sin-pista' : 'pista-lejana',
         categoriasActivas: activas.length > 0 ? activas : ajustesIniciales.categoriasActivas,
       },
       palabrasUsadas: Array.isArray(guardado.palabrasUsadas)

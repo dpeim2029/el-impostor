@@ -1,9 +1,7 @@
-import { RotateCcw, Vote } from 'lucide-react'
+import { RotateCcw } from 'lucide-react'
 import { BotonCancelarRonda } from '@/components/BotonCancelarRonda'
 import { Pantalla } from '@/components/Pantalla'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { impostoresDe } from '@/game/engine'
 import { useJuego } from '@/game/JuegoContext'
 import { cn } from '@/lib/utils'
 
@@ -15,11 +13,10 @@ export function Ronda() {
   const porId = new Map(jugadores.map((j) => [j.id, j]))
   const orden = ronda.orden.map((id) => porId.get(id)).filter((j) => j !== undefined)
   const primero = orden[0]
-  const numImpostores = impostoresDe(ronda).length
 
   return (
     <Pantalla
-      titulo={ronda.vuelta === 1 ? 'Ronda de palabras' : `Vuelta ${ronda.vuelta}`}
+      titulo={ronda.vuelta === 1 ? 'Ronda' : `Vuelta ${ronda.vuelta}`}
       accion={<BotonCancelarRonda />}
       pie={
         <>
@@ -28,17 +25,16 @@ export function Ronda() {
             className="h-14 text-lg font-semibold"
             onClick={() => dispatch({ tipo: 'irAVotar' })}
           >
-            <Vote className="size-5" />
-            ¡A votar!
+            Votar
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="lg"
-            className="h-12"
+            className="h-12 text-muted-foreground"
             onClick={() => dispatch({ tipo: 'otraVuelta' })}
           >
             <RotateCcw className="size-4" />
-            Otra vuelta de palabras
+            Otra vuelta
           </Button>
         </>
       }
@@ -46,10 +42,7 @@ export function Ronda() {
       <div className="flex flex-col items-center gap-1 pt-2 text-center">
         <p className="text-sm text-muted-foreground">Empieza</p>
         <p className="font-heading text-4xl font-extrabold text-balance">{primero?.nombre}</p>
-        <p className="mt-1 max-w-xs text-sm text-balance text-muted-foreground">
-          Cada quien dice <strong className="text-foreground">una palabra</strong> relacionada con
-          la secreta, siguiendo el orden de la lista.
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">Una palabra cada quien, en este orden.</p>
       </div>
 
       <ol className="flex flex-col gap-2">
@@ -65,22 +58,9 @@ export function Ronda() {
               {i + 1}
             </span>
             <span className="flex-1 truncate font-medium">{jugador.nombre}</span>
-            {i === 0 && <Badge>Empieza</Badge>}
           </li>
         ))}
       </ol>
-
-      <div className="rounded-2xl bg-card/50 p-4 text-sm text-muted-foreground">
-        <p className="font-semibold text-foreground">Recuerden</p>
-        <ul className="mt-1 list-disc space-y-1 pl-5">
-          <li>Nada de decir la palabra secreta ni repetir la de otro.</li>
-          <li>
-            Hay {numImpostores === 1 ? 'un impostor' : 'dos impostores'} en la mesa. Fíjense en
-            quién titubea o suelta algo demasiado genérico.
-          </li>
-          <li>Si dudan, pidan otra vuelta antes de votar.</li>
-        </ul>
-      </div>
     </Pantalla>
   )
 }

@@ -5,11 +5,11 @@ import { CartaJugador } from '@/components/CartaJugador'
 import { Pantalla } from '@/components/Pantalla'
 import { Button } from '@/components/ui/button'
 import { useJuego } from '@/game/JuegoContext'
-import type { Palabra, Rol, VariantePista } from '@/game/types'
+import type { Palabra, Rol } from '@/game/types'
 
 export function Reparto() {
   const { estado, dispatch } = useJuego()
-  const { jugadores, indiceReparto, ronda, ajustes } = estado
+  const { jugadores, indiceReparto, ronda } = estado
   const jugador = jugadores[indiceReparto]
   if (!ronda || !jugador) return null
 
@@ -21,7 +21,6 @@ export function Reparto() {
       total={jugadores.length}
       palabra={ronda.palabra}
       rol={ronda.roles[jugador.id]}
-      variantePista={ajustes.variantePista}
       onSiguiente={() => dispatch({ tipo: 'siguienteCarta' })}
     />
   )
@@ -33,7 +32,6 @@ function RepartoJugador({
   total,
   palabra,
   rol,
-  variantePista,
   onSiguiente,
 }: {
   nombre: string
@@ -41,7 +39,6 @@ function RepartoJugador({
   total: number
   palabra: Palabra
   rol: Rol
-  variantePista: VariantePista
   onSiguiente: () => void
 }) {
   const [vista, setVista] = useState(false)
@@ -49,7 +46,7 @@ function RepartoJugador({
 
   return (
     <Pantalla
-      titulo={`Carta ${posicion} de ${total}`}
+      titulo={`${posicion} de ${total}`}
       accion={<BotonCancelarRonda />}
       pie={
         <Button
@@ -58,7 +55,7 @@ function RepartoJugador({
           disabled={!vista}
           onClick={onSiguiente}
         >
-          {esUltimo ? '¡Todos listos, a jugar!' : 'Ya la vi, pasar el teléfono'}
+          {esUltimo ? 'Jugar' : 'Pasar el teléfono'}
           <ArrowRight className="size-5" />
         </Button>
       }
@@ -66,19 +63,11 @@ function RepartoJugador({
       <div className="flex flex-col items-center gap-1 pt-2 text-center">
         <p className="text-sm text-muted-foreground">Pásale el teléfono a</p>
         <p className="font-heading text-4xl font-extrabold text-balance">{nombre}</p>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Que nadie más mire la pantalla mientras la ve.
-        </p>
       </div>
 
       <div className="flex-1" />
 
-      <CartaJugador
-        rol={rol}
-        palabra={palabra}
-        variantePista={variantePista}
-        onVista={() => setVista(true)}
-      />
+      <CartaJugador rol={rol} palabra={palabra} onVista={() => setVista(true)} />
 
       <div className="flex-1" />
     </Pantalla>

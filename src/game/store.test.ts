@@ -74,15 +74,13 @@ describe('reducer: jugadores', () => {
 })
 
 describe('reducer: ajustes', () => {
-  it('alterna categorías y cambia la variante de pista', () => {
+  it('alterna y fija categorías', () => {
     let estado = aplicar(estadoInicial, { tipo: 'toggleCategoria', id: 'comida' })
     expect(estado.ajustes.categoriasActivas).not.toContain('comida')
     estado = aplicar(estado, { tipo: 'toggleCategoria', id: 'comida' })
     expect(estado.ajustes.categoriasActivas).toContain('comida')
     estado = aplicar(estado, { tipo: 'setCategorias', ids: ['animales'] })
     expect(estado.ajustes.categoriasActivas).toEqual(['animales'])
-    estado = aplicar(estado, { tipo: 'setVariantePista', variantePista: 'sin-pista' })
-    expect(estado.ajustes.variantePista).toBe('sin-pista')
   })
 })
 
@@ -148,14 +146,12 @@ describe('persistencia', () => {
     const almacen = new AlmacenFalso()
     const estado = aplicar(
       conJugadores(['Ana', 'Luis', 'Sofi']),
-      { tipo: 'setVariantePista', variantePista: 'sin-pista' },
       { tipo: 'setCategorias', ids: ['comida', 'categoria-inexistente'] },
       { tipo: 'repartir' },
     )
     guardarEstado(almacen, estado)
     const recuperado = cargarEstado(almacen)
     expect(recuperado.jugadores).toEqual(estado.jugadores)
-    expect(recuperado.ajustes.variantePista).toBe('sin-pista')
     expect(recuperado.ajustes.categoriasActivas).toEqual(['comida'])
     expect(recuperado.palabrasUsadas).toEqual(estado.palabrasUsadas)
     expect(recuperado.fase).toBe('reparto')

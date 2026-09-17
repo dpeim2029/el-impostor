@@ -1,4 +1,4 @@
-import { ArrowRight, Gavel } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 import { BotonCancelarRonda } from '@/components/BotonCancelarRonda'
 import { Pantalla } from '@/components/Pantalla'
@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -40,30 +39,21 @@ export function Votacion() {
     const eraImpostor = ronda.roles[ultimo.id] === 'impostor'
     return (
       <Pantalla
-        titulo={`Acusación ${hechas} de ${permitidas}`}
+        titulo={permitidas > 1 ? `${hechas} de ${permitidas}` : 'Votación'}
         pie={
-          faltan > 0 ? (
-            <Button
-              size="lg"
-              className="h-14 text-lg font-semibold"
-              onClick={() => setRevelando(false)}
-            >
-              Siguiente acusación
-              <ArrowRight className="size-5" />
-            </Button>
-          ) : (
-            <Button
-              size="lg"
-              className="h-14 text-lg font-semibold"
-              onClick={() => dispatch({ tipo: 'verResultado' })}
-            >
-              Ver resultado
-              <ArrowRight className="size-5" />
-            </Button>
-          )
+          <Button
+            size="lg"
+            className="h-14 text-lg font-semibold"
+            onClick={() =>
+              faltan > 0 ? setRevelando(false) : dispatch({ tipo: 'verResultado' })
+            }
+          >
+            {faltan > 0 ? 'Siguiente' : 'Resultado'}
+            <ArrowRight className="size-5" />
+          </Button>
         }
       >
-        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
+        <div className="flex flex-1 flex-col items-center justify-center text-center">
           <div
             className={cn(
               'animate-in zoom-in-90 fade-in flex w-full flex-col items-center gap-3 rounded-3xl border-2 p-8 duration-300',
@@ -76,20 +66,11 @@ export function Votacion() {
             <p className="text-lg text-muted-foreground">{ultimo.nombre} era…</p>
             <p
               className={cn(
-                'font-heading text-4xl font-extrabold uppercase',
+                'font-heading text-4xl font-extrabold',
                 eraImpostor ? 'text-impostor' : 'text-civil',
               )}
             >
               {eraImpostor ? '¡Impostor!' : 'Civil'}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {eraImpostor
-                ? faltan > 0
-                  ? 'Bien. Pero todavía hay otro impostor suelto.'
-                  : 'Lo atraparon.'
-                : faltan > 0
-                  ? 'Ups, inocente. Les queda una acusación.'
-                  : 'Ups, era inocente.'}
             </p>
           </div>
         </div>
@@ -102,15 +83,7 @@ export function Votacion() {
       titulo={permitidas > 1 ? `Acusación ${hechas + 1} de ${permitidas}` : 'Votación'}
       accion={<BotonCancelarRonda />}
     >
-      <div className="flex flex-col items-center gap-1 pt-2 text-center">
-        <span className="flex size-14 items-center justify-center rounded-full bg-primary/15 text-primary">
-          <Gavel className="size-7" aria-hidden="true" />
-        </span>
-        <p className="font-heading mt-2 text-3xl font-extrabold">¿Quién es el impostor?</p>
-        <p className="max-w-xs text-sm text-balance text-muted-foreground">
-          Pónganse de acuerdo y toquen el nombre del sospechoso. Se revela al instante.
-        </p>
-      </div>
+      <p className="font-heading pt-2 text-center text-3xl font-extrabold">¿Quién es el impostor?</p>
 
       <ul className="flex flex-col gap-2">
         {jugadores.map((jugador) => {
@@ -145,17 +118,12 @@ export function Votacion() {
         <DialogContent showCloseButton={false}>
           <DialogHeader>
             <DialogTitle>¿Acusar a {candidato?.nombre}?</DialogTitle>
-            <DialogDescription>
-              {faltan > 1
-                ? 'Les quedan 2 acusaciones en total. La revelación es inmediata.'
-                : 'Es su última acusación. La revelación es inmediata.'}
-            </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setPendiente(null)}>
-              Todavía no
+              No
             </Button>
-            <Button onClick={confirmar}>Sí, acusar</Button>
+            <Button onClick={confirmar}>Acusar</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -1,14 +1,13 @@
-import { Eye, EyeOff, Fingerprint, Lock } from 'lucide-react'
+import { Fingerprint, Lock } from 'lucide-react'
 import { useState, type KeyboardEvent, type PointerEvent } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { Palabra, Rol, VariantePista } from '@/game/types'
+import type { Palabra, Rol } from '@/game/types'
 
 interface CartaJugadorProps {
   rol: Rol
   palabra: Palabra
-  variantePista: VariantePista
   onVista: () => void
 }
 
@@ -25,7 +24,7 @@ function prefiereToque(): boolean {
  * La carta secreta. El contenido va arriba y la zona para el dedo abajo, así la mano
  * nunca tapa el texto. Se muestra solo mientras el jugador mantiene presionada la zona.
  */
-export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJugadorProps) {
+export function CartaJugador({ rol, palabra, onVista }: CartaJugadorProps) {
   const [visible, setVisible] = useState(false)
   const [modoToque, setModoToque] = useState(prefiereToque)
 
@@ -64,7 +63,7 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
       <div
         aria-live="polite"
         className={cn(
-          'flex min-h-72 flex-col items-center justify-center gap-4 rounded-3xl border-2 p-6 text-center transition-colors duration-150',
+          'flex min-h-64 flex-col items-center justify-center gap-4 rounded-3xl border-2 p-6 text-center transition-colors duration-150',
           visible
             ? rol === 'impostor'
               ? 'border-impostor/60 bg-impostor/15'
@@ -74,31 +73,18 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
       >
         {visible ? (
           rol === 'impostor' ? (
-            <ContenidoImpostor palabra={palabra} variantePista={variantePista} />
+            <ContenidoImpostor palabra={palabra} />
           ) : (
             <ContenidoCivil palabra={palabra} />
           )
         ) : (
-          <>
-            <span className="flex size-16 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-              <Lock className="size-8" aria-hidden="true" />
-            </span>
-            <p className="text-lg font-semibold">Tu carta está oculta</p>
-            <p className="text-sm text-muted-foreground">
-              {modoToque
-                ? 'Toca el botón de abajo para verla aquí.'
-                : 'Pon el dedo en el botón de abajo y aparecerá aquí, sin que tu mano la tape.'}
-            </p>
-          </>
+          <Lock className="size-10 text-muted-foreground" aria-label="Carta oculta" />
         )}
       </div>
 
       <button
         type="button"
         aria-pressed={visible}
-        aria-label={
-          modoToque ? 'Mostrar u ocultar la carta' : 'Mantén presionado para ver la carta'
-        }
         className={cn(
           'no-callout flex h-24 w-full items-center justify-center gap-3 rounded-3xl border-2 text-lg font-semibold transition-colors duration-150 outline-none focus-visible:ring-4 focus-visible:ring-ring/40',
           visible
@@ -116,8 +102,8 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
         <Fingerprint className="size-8" aria-hidden="true" />
         {modoToque
           ? visible
-            ? 'Toca para ocultar'
-            : 'Toca para ver tu carta'
+            ? 'Ocultar'
+            : 'Ver mi carta'
           : visible
             ? 'Suelta para ocultar'
             : 'Mantén el dedo aquí'}
@@ -132,8 +118,7 @@ export function CartaJugador({ rol, palabra, variantePista, onVista }: CartaJuga
           ocultar()
         }}
       >
-        {modoToque ? <EyeOff /> : <Eye />}
-        {modoToque ? 'Volver a mantener presionado' : '¿Prefieres tocar para mostrar y ocultar?'}
+        {modoToque ? 'Cambiar a mantener presionado' : 'Cambiar a tocar'}
       </Button>
     </div>
   )
@@ -146,51 +131,24 @@ function ContenidoCivil({ palabra }: { palabra: Palabra }) {
         <span aria-hidden="true">{palabra.categoriaEmoji}</span>
         {palabra.categoriaNombre}
       </Badge>
-      <p className="text-sm text-muted-foreground">La palabra secreta es</p>
       <p className="font-heading text-4xl leading-tight font-extrabold text-balance sm:text-5xl">
         {palabra.texto}
-      </p>
-      <p className="max-w-xs text-sm text-muted-foreground">
-        En tu turno di <strong className="text-foreground">una</strong> palabra relacionada. Nunca
-        digas esta.
       </p>
     </>
   )
 }
 
-function ContenidoImpostor({
-  palabra,
-  variantePista,
-}: {
-  palabra: Palabra
-  variantePista: VariantePista
-}) {
+function ContenidoImpostor({ palabra }: { palabra: Palabra }) {
   return (
     <>
-      <Badge className="h-auto bg-impostor px-3 py-1 text-sm text-impostor-foreground">
-        Shhh…
-      </Badge>
       <p className="font-heading text-4xl leading-tight font-extrabold text-impostor sm:text-5xl">
         Eres el impostor
       </p>
-      {variantePista === 'pista-lejana' ? (
-        <>
-          <div className="rounded-2xl bg-background/60 px-5 py-3">
-            <p className="text-xs tracking-wide text-muted-foreground uppercase">
-              Tu pista lejana
-            </p>
-            <p className="font-heading text-2xl font-bold">{palabra.pista}</p>
-          </div>
-          <p className="max-w-xs text-sm text-muted-foreground">
-            La pista solo te acerca al tema, no es la palabra. Si la dices tal cual sonará
-            genérico: escucha a los demás y di algo más específico.
-          </p>
-        </>
-      ) : (
-        <p className="max-w-xs text-sm text-muted-foreground">
-          No conoces la palabra. Escucha con atención, finge que la sabes y no te delates.
-        </p>
-      )}
+      <div className="rounded-2xl bg-background/60 px-5 py-3">
+        <p className="text-xs tracking-wide text-muted-foreground uppercase">Pista</p>
+        <p className="font-heading text-2xl font-bold">{palabra.pista}</p>
+      </div>
+      <p className="text-sm text-muted-foreground">Escucha y no repitas la pista.</p>
     </>
   )
 }

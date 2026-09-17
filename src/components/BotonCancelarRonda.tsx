@@ -1,14 +1,7 @@
 import { X } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useJuego } from '@/game/JuegoContext'
 
 /** Botón de salida del encabezado durante la ronda, con confirmación para no perderla por un toque accidental. */
@@ -29,17 +22,14 @@ export function BotonCancelarRonda() {
       <Dialog open={abierto} onOpenChange={setAbierto}>
         <DialogContent showCloseButton={false}>
           <DialogHeader>
-            <DialogTitle>¿Cancelar esta ronda?</DialogTitle>
-            <DialogDescription>
-              Se descarta la palabra actual y regresan a los ajustes. Los jugadores se conservan.
-            </DialogDescription>
+            <DialogTitle>¿Cancelar la ronda?</DialogTitle>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setAbierto(false)}>
-              Seguir jugando
+              No
             </Button>
             <Button variant="destructive" onClick={() => dispatch({ tipo: 'cancelarRonda' })}>
-              Cancelar ronda
+              Cancelar
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -51,13 +51,11 @@ export function AvisoInstalarIOS() {
       >
         <X />
       </Button>
-      <p className="font-semibold">Agrégalo a tu pantalla de inicio</p>
+      <p className="font-semibold">Instálalo como app</p>
       <p className="mt-1 text-muted-foreground">
-        Así se abre como app, a pantalla completa y sin internet. En Safari toca{' '}
-        <Share className="inline size-4 align-text-bottom" aria-label="Compartir" /> Compartir y
-        luego{' '}
-        <SquarePlus className="inline size-4 align-text-bottom" aria-hidden="true" /> «Agregar a
-        pantalla de inicio».
+        <Share className="inline size-4 align-text-bottom" aria-label="Compartir" /> Compartir →{' '}
+        <SquarePlus className="inline size-4 align-text-bottom" aria-hidden="true" /> Agregar a
+        pantalla de inicio
       </p>
     </div>
   )
