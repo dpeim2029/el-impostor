@@ -1,0 +1,1770 @@
+{
+  "idioma": "es-MX",
+  "version": 1,
+  "reglas": {
+    "pista": "Cada pista es lejana (segundo grado: origen, contexto, oficio, lugar), no es sinónimo ni parte de la palabra, y la comparten 2 o más palabras del mismo grupo."
+  },
+  "categorias": [
+    {
+      "id": "animales",
+      "nombre": "Animales",
+      "emoji": "🦁",
+      "grupos": [
+        {
+          "pista": "Safari",
+          "palabras": [
+            "León",
+            "Elefante",
+            "Jirafa",
+            "Cebra",
+            "Hipopótamo",
+            "Rinoceronte"
+          ]
+        },
+        {
+          "pista": "Tarzán",
+          "palabras": [
+            "Mono",
+            "Serpiente",
+            "Tigre",
+            "Loro",
+            "Cocodrilo"
+          ]
+        },
+        {
+          "pista": "Rancho",
+          "palabras": [
+            "Vaca",
+            "Caballo",
+            "Gallina",
+            "Cerdo",
+            "Borrego",
+            "Burro"
+          ]
+        },
+        {
+          "pista": "Veterinario",
+          "palabras": [
+            "Perro",
+            "Gato",
+            "Hámster",
+            "Conejo"
+          ]
+        },
+        {
+          "pista": "Buzo",
+          "palabras": [
+            "Tiburón",
+            "Delfín",
+            "Pulpo",
+            "Ballena",
+            "Tortuga"
+          ]
+        },
+        {
+          "pista": "Halloween",
+          "palabras": [
+            "Murciélago",
+            "Búho",
+            "Araña"
+          ]
+        },
+        {
+          "pista": "Bosque",
+          "palabras": [
+            "Lobo",
+            "Oso",
+            "Zorro",
+            "Venado",
+            "Ardilla"
+          ]
+        },
+        {
+          "pista": "Jardín",
+          "palabras": [
+            "Mariposa",
+            "Abeja",
+            "Caracol",
+            "Hormiga"
+          ]
+        },
+        {
+          "pista": "Iglú",
+          "palabras": [
+            "Pingüino",
+            "Oso polar",
+            "Foca"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comida",
+      "nombre": "Comida",
+      "emoji": "🌮",
+      "grupos": [
+        {
+          "pista": "Italia",
+          "palabras": [
+            "Pizza",
+            "Espagueti",
+            "Lasaña"
+          ]
+        },
+        {
+          "pista": "Japón",
+          "palabras": [
+            "Sushi",
+            "Ramen"
+          ]
+        },
+        {
+          "pista": "Estados Unidos",
+          "palabras": [
+            "Hamburguesa",
+            "Hot dog"
+          ]
+        },
+        {
+          "pista": "Cine",
+          "palabras": [
+            "Palomitas",
+            "Nachos"
+          ]
+        },
+        {
+          "pista": "Abuelita",
+          "palabras": [
+            "Mole",
+            "Pozole",
+            "Tamales",
+            "Enchiladas",
+            "Sopes"
+          ]
+        },
+        {
+          "pista": "Puesto",
+          "palabras": [
+            "Tacos",
+            "Elote",
+            "Esquites",
+            "Churros"
+          ]
+        },
+        {
+          "pista": "Domingo",
+          "palabras": [
+            "Hot cakes",
+            "Chilaquiles",
+            "Barbacoa"
+          ]
+        },
+        {
+          "pista": "Cumpleaños",
+          "palabras": [
+            "Pastel",
+            "Gelatina"
+          ]
+        },
+        {
+          "pista": "Playa",
+          "palabras": [
+            "Ceviche",
+            "Camarones",
+            "Pescado"
+          ]
+        },
+        {
+          "pista": "Verano",
+          "palabras": [
+            "Helado",
+            "Paleta de hielo",
+            "Raspado"
+          ]
+        },
+        {
+          "pista": "Oaxaca",
+          "palabras": [
+            "Tlayuda",
+            "Chapulines"
+          ]
+        },
+        {
+          "pista": "Vaca",
+          "palabras": [
+            "Queso",
+            "Yogurt",
+            "Mantequilla"
+          ]
+        },
+        {
+          "pista": "Panadero",
+          "palabras": [
+            "Concha",
+            "Bolillo",
+            "Galletas",
+            "Dona"
+          ]
+        },
+        {
+          "pista": "Enfermo",
+          "palabras": [
+            "Caldo de pollo",
+            "Sopa de fideo"
+          ]
+        },
+        {
+          "pista": "Dentista",
+          "palabras": [
+            "Chocolate",
+            "Chicle",
+            "Algodón de azúcar",
+            "Paleta de caramelo"
+          ]
+        },
+        {
+          "pista": "Lonchera",
+          "palabras": [
+            "Sándwich",
+            "Quesadilla",
+            "Torta"
+          ]
+        },
+        {
+          "pista": "Fonda",
+          "palabras": [
+            "Arroz",
+            "Frijoles",
+            "Milanesa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frutas-verduras",
+      "nombre": "Frutas y verduras",
+      "emoji": "🍓",
+      "grupos": [
+        {
+          "pista": "Licuado",
+          "palabras": [
+            "Plátano",
+            "Fresa",
+            "Mango",
+            "Papaya"
+          ]
+        },
+        {
+          "pista": "Hawái",
+          "palabras": [
+            "Piña",
+            "Coco"
+          ]
+        },
+        {
+          "pista": "Mermelada",
+          "palabras": [
+            "Zarzamora",
+            "Chabacano",
+            "Durazno"
+          ]
+        },
+        {
+          "pista": "Gripa",
+          "palabras": [
+            "Naranja",
+            "Mandarina",
+            "Toronja",
+            "Guayaba"
+          ]
+        },
+        {
+          "pista": "Taquería",
+          "palabras": [
+            "Limón",
+            "Cebolla",
+            "Cilantro",
+            "Rábano",
+            "Aguacate"
+          ]
+        },
+        {
+          "pista": "Cuento",
+          "palabras": [
+            "Manzana",
+            "Calabaza",
+            "Chícharo"
+          ]
+        },
+        {
+          "pista": "Conejo",
+          "palabras": [
+            "Lechuga",
+            "Zanahoria",
+            "Apio"
+          ]
+        },
+        {
+          "pista": "Ensalada",
+          "palabras": [
+            "Jitomate",
+            "Pepino",
+            "Espinaca"
+          ]
+        },
+        {
+          "pista": "Caldo",
+          "palabras": [
+            "Papa",
+            "Chayote",
+            "Calabacita",
+            "Ejote"
+          ]
+        },
+        {
+          "pista": "Molcajete",
+          "palabras": [
+            "Chile",
+            "Tomate verde",
+            "Ajo"
+          ]
+        },
+        {
+          "pista": "Posada",
+          "palabras": [
+            "Tejocote",
+            "Cacahuate",
+            "Caña",
+            "Jícama"
+          ]
+        },
+        {
+          "pista": "Verano",
+          "palabras": [
+            "Sandía",
+            "Melón"
+          ]
+        },
+        {
+          "pista": "Año Nuevo",
+          "palabras": [
+            "Uva",
+            "Lenteja"
+          ]
+        },
+        {
+          "pista": "Huerta",
+          "palabras": [
+            "Pera",
+            "Cereza",
+            "Ciruela",
+            "Higo"
+          ]
+        },
+        {
+          "pista": "Berrinche",
+          "palabras": [
+            "Brócoli",
+            "Coliflor",
+            "Betabel"
+          ]
+        },
+        {
+          "pista": "Desierto",
+          "palabras": [
+            "Nopal",
+            "Tuna",
+            "Pitaya"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "casa",
+      "nombre": "Cosas de la casa",
+      "emoji": "🏠",
+      "grupos": [
+        {
+          "pista": "Chef",
+          "palabras": [
+            "Sartén",
+            "Olla",
+            "Licuadora",
+            "Cuchillo",
+            "Estufa"
+          ]
+        },
+        {
+          "pista": "Electricista",
+          "palabras": [
+            "Refrigerador",
+            "Microondas",
+            "Lavadora",
+            "Lámpara",
+            "Ventilador",
+            "Plancha"
+          ]
+        },
+        {
+          "pista": "Hotel",
+          "palabras": [
+            "Cama",
+            "Almohada",
+            "Cobija",
+            "Toalla",
+            "Jabón"
+          ]
+        },
+        {
+          "pista": "Plomero",
+          "palabras": [
+            "Regadera",
+            "Lavabo",
+            "Escusado",
+            "Tinaco"
+          ]
+        },
+        {
+          "pista": "Mañana",
+          "palabras": [
+            "Cepillo de dientes",
+            "Peine",
+            "Espejo",
+            "Shampoo"
+          ]
+        },
+        {
+          "pista": "Visitas",
+          "palabras": [
+            "Sofá",
+            "Cojín",
+            "Alfombra",
+            "Cortina"
+          ]
+        },
+        {
+          "pista": "Restaurante",
+          "palabras": [
+            "Plato",
+            "Vaso",
+            "Cuchara",
+            "Tenedor",
+            "Servilleta",
+            "Mesa",
+            "Silla"
+          ]
+        },
+        {
+          "pista": "Cenicienta",
+          "palabras": [
+            "Escoba",
+            "Trapeador",
+            "Cubeta",
+            "Trapo"
+          ]
+        },
+        {
+          "pista": "Tarea",
+          "palabras": [
+            "Escritorio",
+            "Computadora",
+            "Librero"
+          ]
+        },
+        {
+          "pista": "Cartero",
+          "palabras": [
+            "Puerta",
+            "Timbre",
+            "Buzón"
+          ]
+        },
+        {
+          "pista": "Ladrón",
+          "palabras": [
+            "Ventana",
+            "Llave",
+            "Candado"
+          ]
+        },
+        {
+          "pista": "Martillo",
+          "palabras": [
+            "Reloj",
+            "Cuadro",
+            "Calendario",
+            "Repisa"
+          ]
+        },
+        {
+          "pista": "Jardinero",
+          "palabras": [
+            "Manguera",
+            "Maceta",
+            "Podadora",
+            "Pala"
+          ]
+        },
+        {
+          "pista": "Cigüeña",
+          "palabras": [
+            "Cuna",
+            "Biberón",
+            "Pañal",
+            "Chupón",
+            "Sonaja"
+          ]
+        },
+        {
+          "pista": "Netflix",
+          "palabras": [
+            "Televisión",
+            "Control remoto",
+            "Bocina"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escuela",
+      "nombre": "Escuela",
+      "emoji": "🎒",
+      "grupos": [
+        {
+          "pista": "Papelería",
+          "palabras": [
+            "Cuaderno",
+            "Lápiz",
+            "Pluma",
+            "Borrador",
+            "Sacapuntas",
+            "Regla",
+            "Colores",
+            "Tijeras",
+            "Pegamento",
+            "Cartulina"
+          ]
+        },
+        {
+          "pista": "Recreo",
+          "palabras": [
+            "Lonchera",
+            "Patio",
+            "Campana",
+            "Columpio"
+          ]
+        },
+        {
+          "pista": "Lunes",
+          "palabras": [
+            "Uniforme",
+            "Mochila",
+            "Bandera"
+          ]
+        },
+        {
+          "pista": "Calificación",
+          "palabras": [
+            "Examen",
+            "Boleta",
+            "Tarea"
+          ]
+        },
+        {
+          "pista": "Maestra",
+          "palabras": [
+            "Pizarrón",
+            "Gis",
+            "Lista",
+            "Escritorio"
+          ]
+        },
+        {
+          "pista": "Biblioteca",
+          "palabras": [
+            "Libro",
+            "Diccionario",
+            "Enciclopedia",
+            "Atlas"
+          ]
+        },
+        {
+          "pista": "Laboratorio",
+          "palabras": [
+            "Microscopio",
+            "Bata",
+            "Probeta",
+            "Lupa"
+          ]
+        },
+        {
+          "pista": "Ingeniero",
+          "palabras": [
+            "Calculadora",
+            "Compás",
+            "Escuadra",
+            "Transportador"
+          ]
+        },
+        {
+          "pista": "Festival",
+          "palabras": [
+            "Disfraz",
+            "Escenario",
+            "Micrófono",
+            "Bailable"
+          ]
+        },
+        {
+          "pista": "Entrenador",
+          "palabras": [
+            "Balón",
+            "Silbato",
+            "Cancha",
+            "Cono"
+          ]
+        },
+        {
+          "pista": "Museo",
+          "palabras": [
+            "Pincel",
+            "Acuarelas",
+            "Plastilina",
+            "Crayolas"
+          ]
+        },
+        {
+          "pista": "Internet",
+          "palabras": [
+            "Teclado",
+            "Mouse",
+            "Tableta",
+            "Proyector"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profesiones",
+      "nombre": "Profesiones",
+      "emoji": "👩‍🚒",
+      "grupos": [
+        {
+          "pista": "Sala de espera",
+          "palabras": [
+            "Doctor",
+            "Enfermera",
+            "Veterinario",
+            "Psicólogo"
+          ]
+        },
+        {
+          "pista": "Bata",
+          "palabras": [
+            "Científico",
+            "Dentista",
+            "Farmacéutico"
+          ]
+        },
+        {
+          "pista": "Sirena",
+          "palabras": [
+            "Bombero",
+            "Policía",
+            "Paramédico"
+          ]
+        },
+        {
+          "pista": "Silbato",
+          "palabras": [
+            "Árbitro",
+            "Entrenador",
+            "Salvavidas"
+          ]
+        },
+        {
+          "pista": "Aplausos",
+          "palabras": [
+            "Cantante",
+            "Actor",
+            "Bailarina",
+            "Mago",
+            "Músico",
+            "Payaso"
+          ]
+        },
+        {
+          "pista": "Grúa",
+          "palabras": [
+            "Albañil",
+            "Ingeniero",
+            "Arquitecto"
+          ]
+        },
+        {
+          "pista": "Cielo",
+          "palabras": [
+            "Piloto",
+            "Sobrecargo",
+            "Astronauta"
+          ]
+        },
+        {
+          "pista": "Hambre",
+          "palabras": [
+            "Chef",
+            "Panadero",
+            "Mesero",
+            "Taquero"
+          ]
+        },
+        {
+          "pista": "Madrugar",
+          "palabras": [
+            "Granjero",
+            "Pescador",
+            "Barrendero",
+            "Jardinero"
+          ]
+        },
+        {
+          "pista": "Recreo",
+          "palabras": [
+            "Maestro",
+            "Director",
+            "Conserje"
+          ]
+        },
+        {
+          "pista": "Propina",
+          "palabras": [
+            "Bolero",
+            "Cerillo",
+            "Taxista",
+            "Repartidor"
+          ]
+        },
+        {
+          "pista": "Quinceañera",
+          "palabras": [
+            "Peluquero",
+            "Modista",
+            "Fotógrafo",
+            "DJ"
+          ]
+        },
+        {
+          "pista": "Noticias",
+          "palabras": [
+            "Reportero",
+            "Locutor",
+            "Camarógrafo"
+          ]
+        },
+        {
+          "pista": "Wifi",
+          "palabras": [
+            "Programador",
+            "Diseñador",
+            "Youtuber"
+          ]
+        },
+        {
+          "pista": "Ancla",
+          "palabras": [
+            "Marinero",
+            "Capitán",
+            "Buzo"
+          ]
+        },
+        {
+          "pista": "Estadio",
+          "palabras": [
+            "Futbolista",
+            "Portero",
+            "Porrista"
+          ]
+        },
+        {
+          "pista": "Corbata",
+          "palabras": [
+            "Abogado",
+            "Juez",
+            "Contador",
+            "Gerente"
+          ]
+        },
+        {
+          "pista": "Timbre",
+          "palabras": [
+            "Cartero",
+            "Plomero",
+            "Electricista",
+            "Cerrajero"
+          ]
+        },
+        {
+          "pista": "Gasolina",
+          "palabras": [
+            "Chofer",
+            "Camionero",
+            "Mecánico"
+          ]
+        },
+        {
+          "pista": "Desfile",
+          "palabras": [
+            "Soldado",
+            "Charro",
+            "Bastonera"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deportes",
+      "nombre": "Deportes",
+      "emoji": "⚽",
+      "grupos": [
+        {
+          "pista": "Pasto",
+          "palabras": [
+            "Futbol",
+            "Golf",
+            "Beisbol",
+            "Futbol americano"
+          ]
+        },
+        {
+          "pista": "Red",
+          "palabras": [
+            "Voleibol",
+            "Tenis",
+            "Ping pong",
+            "Bádminton"
+          ]
+        },
+        {
+          "pista": "Cloro",
+          "palabras": [
+            "Natación",
+            "Clavados",
+            "Waterpolo",
+            "Nado sincronizado"
+          ]
+        },
+        {
+          "pista": "Cinturón",
+          "palabras": [
+            "Box",
+            "Lucha libre",
+            "Karate",
+            "Judo",
+            "Taekwondo"
+          ]
+        },
+        {
+          "pista": "Máscara",
+          "palabras": [
+            "Esgrima",
+            "Hockey",
+            "Buceo"
+          ]
+        },
+        {
+          "pista": "Colchoneta",
+          "palabras": [
+            "Gimnasia",
+            "Yoga",
+            "Porristas"
+          ]
+        },
+        {
+          "pista": "Chamarra",
+          "palabras": [
+            "Esquí",
+            "Snowboard",
+            "Patinaje sobre hielo"
+          ]
+        },
+        {
+          "pista": "Casco",
+          "palabras": [
+            "Ciclismo",
+            "Patineta",
+            "Patines",
+            "Motociclismo"
+          ]
+        },
+        {
+          "pista": "Herradura",
+          "palabras": [
+            "Equitación",
+            "Charrería",
+            "Polo"
+          ]
+        },
+        {
+          "pista": "Puntería",
+          "palabras": [
+            "Tiro con arco",
+            "Dardos",
+            "Boliche",
+            "Billar"
+          ]
+        },
+        {
+          "pista": "Cronómetro",
+          "palabras": [
+            "Atletismo",
+            "Maratón",
+            "Automovilismo"
+          ]
+        },
+        {
+          "pista": "Rebote",
+          "palabras": [
+            "Basquetbol",
+            "Frontón",
+            "Squash"
+          ]
+        },
+        {
+          "pista": "Bloqueador",
+          "palabras": [
+            "Surf",
+            "Vela",
+            "Voleibol de playa",
+            "Kayak"
+          ]
+        },
+        {
+          "pista": "Silencio",
+          "palabras": [
+            "Ajedrez",
+            "Damas"
+          ]
+        },
+        {
+          "pista": "Proteína",
+          "palabras": [
+            "Levantamiento de pesas",
+            "Crossfit",
+            "Fisicoculturismo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transporte",
+      "nombre": "Transporte",
+      "emoji": "🚌",
+      "grupos": [
+        {
+          "pista": "Maleta",
+          "palabras": [
+            "Avión",
+            "Crucero",
+            "Autobús",
+            "Tren"
+          ]
+        },
+        {
+          "pista": "Semáforo",
+          "palabras": [
+            "Coche",
+            "Moto",
+            "Taxi",
+            "Camioneta"
+          ]
+        },
+        {
+          "pista": "Parque",
+          "palabras": [
+            "Bicicleta",
+            "Patineta",
+            "Patines",
+            "Scooter"
+          ]
+        },
+        {
+          "pista": "Titanic",
+          "palabras": [
+            "Barco",
+            "Submarino"
+          ]
+        },
+        {
+          "pista": "Pirata",
+          "palabras": [
+            "Velero",
+            "Balsa"
+          ]
+        },
+        {
+          "pista": "Xochimilco",
+          "palabras": [
+            "Trajinera",
+            "Lancha",
+            "Canoa"
+          ]
+        },
+        {
+          "pista": "Torniquete",
+          "palabras": [
+            "Metro",
+            "Metrobús",
+            "Tren ligero"
+          ]
+        },
+        {
+          "pista": "Sirena",
+          "palabras": [
+            "Ambulancia",
+            "Patrulla",
+            "Camión de bomberos"
+          ]
+        },
+        {
+          "pista": "Cuenta regresiva",
+          "palabras": [
+            "Cohete",
+            "Nave espacial",
+            "Transbordador"
+          ]
+        },
+        {
+          "pista": "Nubes",
+          "palabras": [
+            "Helicóptero",
+            "Avioneta",
+            "Globo aerostático",
+            "Paracaídas"
+          ]
+        },
+        {
+          "pista": "Cuento",
+          "palabras": [
+            "Carroza",
+            "Alfombra mágica",
+            "Trineo",
+            "Escoba voladora"
+          ]
+        },
+        {
+          "pista": "Rancho",
+          "palabras": [
+            "Tractor",
+            "Cuatrimoto",
+            "Caballo",
+            "Burro"
+          ]
+        },
+        {
+          "pista": "Centro comercial",
+          "palabras": [
+            "Elevador",
+            "Escaleras eléctricas",
+            "Carrito de súper"
+          ]
+        },
+        {
+          "pista": "Montaña",
+          "palabras": [
+            "Teleférico",
+            "Funicular"
+          ]
+        },
+        {
+          "pista": "Colonia",
+          "palabras": [
+            "Camión de basura",
+            "Camión de gas",
+            "Pesero"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lugares",
+      "nombre": "Lugares",
+      "emoji": "🗺️",
+      "grupos": [
+        {
+          "pista": "Palomitas",
+          "palabras": [
+            "Cine",
+            "Circo",
+            "Feria",
+            "Estadio"
+          ]
+        },
+        {
+          "pista": "Fila",
+          "palabras": [
+            "Banco",
+            "Parque de diversiones",
+            "Farmacia"
+          ]
+        },
+        {
+          "pista": "Carrito",
+          "palabras": [
+            "Supermercado",
+            "Aeropuerto",
+            "Centro comercial"
+          ]
+        },
+        {
+          "pista": "Silencio",
+          "palabras": [
+            "Biblioteca",
+            "Iglesia",
+            "Hospital",
+            "Museo"
+          ]
+        },
+        {
+          "pista": "Toalla",
+          "palabras": [
+            "Playa",
+            "Alberca",
+            "Gimnasio"
+          ]
+        },
+        {
+          "pista": "Fogata",
+          "palabras": [
+            "Bosque",
+            "Montaña",
+            "Campamento"
+          ]
+        },
+        {
+          "pista": "Camello",
+          "palabras": [
+            "Desierto",
+            "Oasis"
+          ]
+        },
+        {
+          "pista": "Princesa",
+          "palabras": [
+            "Castillo",
+            "Palacio",
+            "Torre"
+          ]
+        },
+        {
+          "pista": "Boleta",
+          "palabras": [
+            "Escuela",
+            "Universidad",
+            "Kínder"
+          ]
+        },
+        {
+          "pista": "Inyección",
+          "palabras": [
+            "Consultorio",
+            "Clínica",
+            "Veterinaria"
+          ]
+        },
+        {
+          "pista": "Elefante",
+          "palabras": [
+            "Zoológico",
+            "Safari",
+            "Selva"
+          ]
+        },
+        {
+          "pista": "Astronauta",
+          "palabras": [
+            "Luna",
+            "Marte",
+            "Estación espacial"
+          ]
+        },
+        {
+          "pista": "Pez",
+          "palabras": [
+            "Acuario",
+            "Océano",
+            "Río",
+            "Lago"
+          ]
+        },
+        {
+          "pista": "Propina",
+          "palabras": [
+            "Restaurante",
+            "Cafetería",
+            "Taquería"
+          ]
+        },
+        {
+          "pista": "Vecinos",
+          "palabras": [
+            "Departamento",
+            "Edificio",
+            "Colonia"
+          ]
+        },
+        {
+          "pista": "Paseo",
+          "palabras": [
+            "Parque",
+            "Plaza",
+            "Malecón",
+            "Jardín"
+          ]
+        },
+        {
+          "pista": "Fantasma",
+          "palabras": [
+            "Cementerio",
+            "Casa embrujada"
+          ]
+        },
+        {
+          "pista": "Turista",
+          "palabras": [
+            "Pirámides",
+            "Torre Eiffel",
+            "Coliseo",
+            "Muralla China"
+          ]
+        },
+        {
+          "pista": "Paloma",
+          "palabras": [
+            "Zócalo",
+            "Catedral",
+            "Alameda"
+          ]
+        },
+        {
+          "pista": "Jefe",
+          "palabras": [
+            "Oficina",
+            "Fábrica",
+            "Bodega"
+          ]
+        },
+        {
+          "pista": "Piñata",
+          "palabras": [
+            "Salón de fiestas",
+            "Dulcería"
+          ]
+        },
+        {
+          "pista": "Maleta",
+          "palabras": [
+            "Hotel",
+            "Cabaña",
+            "Terminal de autobuses"
+          ]
+        },
+        {
+          "pista": "Vaca",
+          "palabras": [
+            "Granja",
+            "Rancho",
+            "Establo"
+          ]
+        },
+        {
+          "pista": "Explorador",
+          "palabras": [
+            "Volcán",
+            "Cueva",
+            "Isla",
+            "Cascada"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naturaleza",
+      "nombre": "Naturaleza y clima",
+      "emoji": "🌦️",
+      "grupos": [
+        {
+          "pista": "Botas",
+          "palabras": [
+            "Lluvia",
+            "Tormenta",
+            "Granizo",
+            "Lodo"
+          ]
+        },
+        {
+          "pista": "Bufanda",
+          "palabras": [
+            "Nieve",
+            "Hielo",
+            "Invierno",
+            "Escarcha"
+          ]
+        },
+        {
+          "pista": "Bloqueador",
+          "palabras": [
+            "Sol",
+            "Calor",
+            "Verano",
+            "Sequía"
+          ]
+        },
+        {
+          "pista": "Papalote",
+          "palabras": [
+            "Viento",
+            "Brisa",
+            "Tornado",
+            "Huracán"
+          ]
+        },
+        {
+          "pista": "Miedo",
+          "palabras": [
+            "Trueno",
+            "Relámpago",
+            "Terremoto",
+            "Erupción"
+          ]
+        },
+        {
+          "pista": "Foto",
+          "palabras": [
+            "Arcoíris",
+            "Atardecer",
+            "Aurora boreal",
+            "Amanecer"
+          ]
+        },
+        {
+          "pista": "Telescopio",
+          "palabras": [
+            "Luna",
+            "Estrella",
+            "Cometa",
+            "Planeta",
+            "Eclipse"
+          ]
+        },
+        {
+          "pista": "Ardilla",
+          "palabras": [
+            "Árbol",
+            "Rama",
+            "Hoja",
+            "Bosque",
+            "Semilla",
+            "Otoño"
+          ]
+        },
+        {
+          "pista": "Abeja",
+          "palabras": [
+            "Flor",
+            "Primavera",
+            "Girasol",
+            "Rosa"
+          ]
+        },
+        {
+          "pista": "Sirena",
+          "palabras": [
+            "Mar",
+            "Océano",
+            "Ola",
+            "Isla"
+          ]
+        },
+        {
+          "pista": "Rana",
+          "palabras": [
+            "Río",
+            "Lago",
+            "Laguna",
+            "Cascada",
+            "Pantano"
+          ]
+        },
+        {
+          "pista": "Camello",
+          "palabras": [
+            "Desierto",
+            "Duna",
+            "Cactus",
+            "Oasis"
+          ]
+        },
+        {
+          "pista": "Algodón",
+          "palabras": [
+            "Nube",
+            "Niebla",
+            "Neblina"
+          ]
+        },
+        {
+          "pista": "Alpinista",
+          "palabras": [
+            "Montaña",
+            "Cerro",
+            "Volcán",
+            "Glaciar"
+          ]
+        },
+        {
+          "pista": "Zapato",
+          "palabras": [
+            "Piedra",
+            "Tierra",
+            "Arena",
+            "Polvo"
+          ]
+        },
+        {
+          "pista": "Bombero",
+          "palabras": [
+            "Fuego",
+            "Humo",
+            "Incendio",
+            "Ceniza"
+          ]
+        },
+        {
+          "pista": "Noticias",
+          "palabras": [
+            "Inundación",
+            "Tsunami",
+            "Deslave"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fiestas",
+      "nombre": "Fiestas y tradiciones",
+      "emoji": "🎉",
+      "grupos": [
+        {
+          "pista": "Coco",
+          "palabras": [
+            "Día de Muertos",
+            "Altar",
+            "Cempasúchil",
+            "Pan de muerto",
+            "Alebrije",
+            "Catrina",
+            "Calaverita"
+          ]
+        },
+        {
+          "pista": "Chimenea",
+          "palabras": [
+            "Navidad",
+            "Santa Claus",
+            "Nochebuena",
+            "Regalos"
+          ]
+        },
+        {
+          "pista": "Vela",
+          "palabras": [
+            "Posadas",
+            "Villancicos",
+            "Ponche",
+            "Luces de bengala"
+          ]
+        },
+        {
+          "pista": "Enero",
+          "palabras": [
+            "Año Nuevo",
+            "Día de Reyes",
+            "Reyes Magos",
+            "Uvas de la suerte"
+          ]
+        },
+        {
+          "pista": "Muñequito",
+          "palabras": [
+            "Rosca de Reyes",
+            "Día de la Candelaria",
+            "Tamales"
+          ]
+        },
+        {
+          "pista": "Zócalo",
+          "palabras": [
+            "Grito de Independencia",
+            "Desfile",
+            "Noche mexicana",
+            "Fuegos artificiales",
+            "Mariachi"
+          ]
+        },
+        {
+          "pista": "Febrero",
+          "palabras": [
+            "Día del Amor y la Amistad",
+            "Día de la Bandera",
+            "Carnaval"
+          ]
+        },
+        {
+          "pista": "Fotógrafo",
+          "palabras": [
+            "Quinceañera",
+            "Graduación",
+            "Bautizo",
+            "Primera comunión"
+          ]
+        },
+        {
+          "pista": "Mordida",
+          "palabras": [
+            "Cumpleaños",
+            "Piñata",
+            "Globos",
+            "Las Mañanitas"
+          ]
+        },
+        {
+          "pista": "Conejo",
+          "palabras": [
+            "Pascua",
+            "Huevos de Pascua"
+          ]
+        },
+        {
+          "pista": "Playa",
+          "palabras": [
+            "Semana Santa",
+            "Puente"
+          ]
+        },
+        {
+          "pista": "Bruja",
+          "palabras": [
+            "Halloween",
+            "Disfraz",
+            "Calabaza",
+            "Dulce o truco"
+          ]
+        },
+        {
+          "pista": "Serenata",
+          "palabras": [
+            "Día de las Madres",
+            "Día del Maestro",
+            "Aniversario"
+          ]
+        },
+        {
+          "pista": "Juguetería",
+          "palabras": [
+            "Día del Niño",
+            "Baby shower"
+          ]
+        },
+        {
+          "pista": "Corbata",
+          "palabras": [
+            "Día del Padre",
+            "Boda"
+          ]
+        },
+        {
+          "pista": "Diciembre",
+          "palabras": [
+            "Día de la Virgen de Guadalupe",
+            "Nacimiento",
+            "Árbol de Navidad",
+            "Esferas",
+            "Intercambio"
+          ]
+        },
+        {
+          "pista": "Noviembre",
+          "palabras": [
+            "Día de la Revolución",
+            "Buen Fin"
+          ]
+        },
+        {
+          "pista": "Confeti",
+          "palabras": [
+            "Cascarones",
+            "Serpentinas",
+            "Espantasuegras"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "musica",
+      "nombre": "Instrumentos y música",
+      "emoji": "🎸",
+      "grupos": [
+        {
+          "pista": "Mariachi",
+          "palabras": [
+            "Guitarrón",
+            "Vihuela",
+            "Trompeta",
+            "Violín"
+          ]
+        },
+        {
+          "pista": "Fogata",
+          "palabras": [
+            "Guitarra",
+            "Ukulele",
+            "Armónica"
+          ]
+        },
+        {
+          "pista": "Kínder",
+          "palabras": [
+            "Xilófono",
+            "Triángulo",
+            "Pandero",
+            "Maracas",
+            "Cascabeles",
+            "Flauta"
+          ]
+        },
+        {
+          "pista": "Boda",
+          "palabras": [
+            "Órgano",
+            "Coro",
+            "Arpa"
+          ]
+        },
+        {
+          "pista": "Beethoven",
+          "palabras": [
+            "Piano",
+            "Orquesta",
+            "Partitura",
+            "Sinfonía"
+          ]
+        },
+        {
+          "pista": "Desfile",
+          "palabras": [
+            "Tambor",
+            "Tuba",
+            "Trombón",
+            "Clarinete",
+            "Platillos",
+            "Corneta",
+            "Saxofón"
+          ]
+        },
+        {
+          "pista": "Tapones",
+          "palabras": [
+            "Batería",
+            "Guitarra eléctrica",
+            "Bajo",
+            "Amplificador"
+          ]
+        },
+        {
+          "pista": "Norteño",
+          "palabras": [
+            "Acordeón",
+            "Bajo sexto",
+            "Tololoche",
+            "Corrido"
+          ]
+        },
+        {
+          "pista": "Quinceañera",
+          "palabras": [
+            "Cumbia",
+            "Salsa",
+            "Reggaetón",
+            "Vals",
+            "DJ"
+          ]
+        },
+        {
+          "pista": "Radio",
+          "palabras": [
+            "Rock",
+            "Pop",
+            "Rap",
+            "Balada"
+          ]
+        },
+        {
+          "pista": "Tropical",
+          "palabras": [
+            "Marimba",
+            "Bongó",
+            "Güiro",
+            "Congas"
+          ]
+        },
+        {
+          "pista": "España",
+          "palabras": [
+            "Castañuelas",
+            "Flamenco"
+          ]
+        },
+        {
+          "pista": "Regadera",
+          "palabras": [
+            "Karaoke",
+            "Micrófono",
+            "Canción"
+          ]
+        },
+        {
+          "pista": "Celular",
+          "palabras": [
+            "Audífonos",
+            "Bocina",
+            "Playlist"
+          ]
+        },
+        {
+          "pista": "Bellas Artes",
+          "palabras": [
+            "Ópera",
+            "Ballet",
+            "Director de orquesta"
+          ]
+        },
+        {
+          "pista": "Abuelita",
+          "palabras": [
+            "Las Mañanitas",
+            "Cielito Lindo",
+            "Villancico"
+          ]
+        },
+        {
+          "pista": "Bandera",
+          "palabras": [
+            "Himno Nacional",
+            "Banda de guerra"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPalabras": 701
+}
