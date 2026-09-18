@@ -1,0 +1,10 @@
+# Generado por XcodeGen a partir de project.yml
+ElImpostor.xcodeproj/
+# Salidas de compilación y pruebas
+DerivedData/
+build/
+*.xcresult
+.build/
+xcuserdata/
+*.xcuserstate
+.swiftpm/

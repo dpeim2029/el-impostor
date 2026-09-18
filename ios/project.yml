@@ -1,0 +1,94 @@
+# Proyecto Xcode generado con XcodeGen: `xcodegen generate --spec ios/project.yml --project ios`
+# El .xcodeproj no se versiona; este archivo es la fuente de verdad.
+name: ElImpostor
+options:
+  bundleIdPrefix: mx.elimpostor
+  deploymentTarget:
+    iOS: "26.0"
+  developmentLanguage: es-MX
+  xcodeVersion: "27.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    TARGETED_DEVICE_FAMILY: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+    STRING_CATALOG_GENERATE_SYMBOLS: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+packages:
+  ImpostorCore:
+    path: ImpostorCore
+
+targets:
+  ElImpostor:
+    type: application
+    platform: iOS
+    sources:
+      - path: ElImpostor
+      # El banco de palabras se referencia desde la raíz del repo; no se copia.
+      - path: ../data/words.es-MX.json
+        buildPhase: resources
+    dependencies:
+      - package: ImpostorCore
+    info:
+      path: ElImpostor/Info.plist
+      properties:
+        CFBundleDisplayName: El Impostor
+        CFBundleName: El Impostor
+        CFBundleDevelopmentRegion: es-MX
+        CFBundleLocalizations: [es-MX]
+        UILaunchScreen:
+          UIColorName: Fondo
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIUserInterfaceStyle: Dark
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: mx.elimpostor.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+
+  ElImpostorTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ElImpostorTests
+    dependencies:
+      - target: ElImpostor
+      - package: ImpostorCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: mx.elimpostor.app.tests
+
+schemes:
+  ElImpostor:
+    build:
+      targets:
+        ElImpostor: all
+        ElImpostorTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: false
+      targets:
+        - ElImpostorTests
+        - package: ImpostorCore/ImpostorCoreTests
+    archive:
+      config: Release
