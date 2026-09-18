@@ -8,3 +8,5 @@ build/
 xcuserdata/
 *.xcuserstate
 .swiftpm/
+# Generado por XcodeGen desde project.yml
+ElImpostor/Info.plist
