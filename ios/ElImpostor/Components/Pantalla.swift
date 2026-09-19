@@ -72,7 +72,7 @@ struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
                 Color.clear.frame(width: 40, height: 40)
             }
             Text(titulo ?? "")
-                .font(.system(size: 17, weight: .semibold))
+                .font(.fila)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity)
             accion()

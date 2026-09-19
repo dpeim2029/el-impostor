@@ -74,7 +74,7 @@ struct VotacionView: View {
                             Spacer()
                             if acusado {
                                 Text(eraImpostor ? "Impostor" : "Civil")
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(.apoyo.weight(.medium))
                                     .foregroundStyle(tinte ?? .texto)
                             }
                         }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Lentes redondos con puente; geometría de public/favicon.svg escalada ×2 -->
+  <circle cx="388" cy="672" r="96" fill="none" stroke="#f5b53a" stroke-width="48"/>
+  <circle cx="636" cy="672" r="96" fill="none" stroke="#f5b53a" stroke-width="48"/>
+  <path d="M484 672 L540 672" stroke="#f5b53a" stroke-width="48" stroke-linecap="round"/>
+</svg>

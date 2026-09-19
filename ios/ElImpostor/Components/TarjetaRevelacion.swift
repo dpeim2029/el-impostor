@@ -17,7 +17,7 @@ struct TarjetaRevelacion: View {
                 .symbolEffect(.bounce, value: aparecio)
             if let apoyo {
                 Text(apoyo)
-                    .font(.system(size: 18))
+                    .font(.cuerpo)
                     .foregroundStyle(Color.textoApagado)
             }
             Text(veredicto)

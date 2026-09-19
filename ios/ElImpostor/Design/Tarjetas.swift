@@ -49,7 +49,7 @@ struct Insignia: View {
             }
             Text(texto)
         }
-        .font(.system(size: 14, weight: .semibold))
+        .font(.apoyo.weight(.semibold))
         .foregroundStyle(relleno == nil ? tinte : Color.texto)
         .padding(.horizontal, 12)
         .padding(.vertical, 6)

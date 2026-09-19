@@ -29,12 +29,12 @@ struct RondaView: View {
                         HStack(spacing: 12) {
                             NumeroCirculo(numero: indice + 1)
                             Text(jugador.nombre)
-                                .font(.system(size: 17, weight: .medium))
+                                .font(.cuerpo.weight(.medium))
                                 .lineLimit(1)
                             Spacer(minLength: 0)
                         }
                         .padding(.horizontal, 16)
-                        .frame(height: 52)
+                        .frame(minHeight: 52)
                         .tarjeta(
                             relleno: indice == 0 ? Color.ambar.opacity(0.15) : Color.tarjeta.opacity(0.7),
                             borde: indice == 0 ? Color.ambar.opacity(0.5) : nil,

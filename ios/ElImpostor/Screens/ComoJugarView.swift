@@ -19,7 +19,7 @@ struct ComoJugarView: View {
                     HStack(spacing: 12) {
                         NumeroCirculo(numero: indice + 1, tamano: 32, relleno: .ambar, color: .ambarTexto)
                         Text(paso)
-                            .font(.system(size: 16))
+                            .font(.cuerpo)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding(16)

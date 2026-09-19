@@ -26,7 +26,7 @@ struct SelectorSegmentado<Valor: Hashable>: View {
                     }
                 } label: {
                     Text(opcion.etiqueta)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.fila)
                         .foregroundStyle(activa ? Color.texto : Color.textoApagado)
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)

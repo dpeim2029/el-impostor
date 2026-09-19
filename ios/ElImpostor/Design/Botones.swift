@@ -10,8 +10,10 @@ struct PrimarioButtonStyle: ButtonStyle {
         configuration.label
             .font(.boton)
             .foregroundStyle(Color.ambarTexto.opacity(habilitado ? 1 : 0.5))
+            .lineLimit(1)
+            .minimumScaleFactor(0.75)
             .frame(maxWidth: .infinity)
-            .frame(height: 56)
+            .frame(minHeight: 56)
             .background(Color.ambar.opacity(habilitado ? 1 : 0.3), in: .rect(cornerRadius: 20))
             .glassEffect(
                 habilitado ? .regular.tint(Color.ambar.opacity(0.85)).interactive() : .identity,
@@ -31,8 +33,10 @@ struct SecundarioButtonStyle: ButtonStyle {
         configuration.label
             .font(.fila)
             .foregroundStyle(Color.textoApagado)
+            .lineLimit(1)
+            .minimumScaleFactor(0.75)
             .frame(maxWidth: .infinity)
-            .frame(height: 48)
+            .frame(minHeight: 48)
             .contentShape(.rect)
             .opacity(configuration.isPressed ? 0.6 : (habilitado ? 1 : 0.4))
     }
@@ -44,7 +48,7 @@ struct IconoButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.system(size: 17, weight: .semibold))
+            .font(.fila)
             .foregroundStyle(Color.texto)
             .frame(width: 40, height: 40)
             .glassEffect(.regular.interactive(), in: .circle)
@@ -76,7 +80,7 @@ struct FilaButtonStyle: ButtonStyle {
         configuration.label
             .font(.fila)
             .frame(maxWidth: .infinity)
-            .frame(height: 56)
+            .frame(minHeight: 56)
             .padding(.horizontal, 16)
             .tarjeta(
                 relleno: tinte.map { $0.opacity(0.12) } ?? Color.tarjeta.opacity(0.7),

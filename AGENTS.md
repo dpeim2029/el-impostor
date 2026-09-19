@@ -21,6 +21,9 @@ es tan directa que basta repetirla. Este juego es **gratis, sin anuncios** y la 
 - 98 tests en verde (`pnpm test`). Lint con oxlint. Sin backend, sin cuentas.
 - **Banco de palabras**: `src/data/words/*.ts` (fuente) y `data/words.es-MX.json` (export para
   otros clientes; regenerar con `pnpm words:export` tras editar la fuente).
+- **App iOS nativa (SwiftUI) en `ios/`**, funcional de punta a punta en el simulador; ver la
+  sección "Cliente iOS" abajo. Aún sin cuenta de Apple Developer (en trámite, sep-2026).
+- Política de privacidad pública en `public/privacidad.html` (la pide App Store Connect).
 
 ## Reglas de juego (decididas, no cambiar sin preguntar)
 
@@ -114,15 +117,41 @@ experiencia Apple, en varios idiomas**. Decisiones:
    (App Transfer conserva usuarios, reseñas y compras). Nombre de la app: distinto de "Imposter
    Who?" y de cualquier combinación cercana (reglas 4.1 y 5.2); lo genérico va en el subtítulo.
 
-## Para el cliente iOS (guía de arranque)
+## Cliente iOS (SwiftUI) — estado y cómo trabajarlo
 
-- Cargar `data/words.es-MX.json` como recurso del bundle (`Codable`), y portar `engine.ts`
-  (elegir palabra sin repetir, asignar roles, orden de ronda, resolver voto, validar partida) con
-  tests unitarios equivalentes a `engine.test.ts`.
-- Persistir jugadores, ajustes y palabras usadas (`UserDefaults` o SwiftData).
-- Replicar las pantallas y reglas de UX de arriba; añadir haptics al revelar carta y al
-  revelar acusación. Orientación vertical. `isIdleTimerDisabled = true` durante la partida.
-- Icono: `public/favicon.svg` es el vector fuente (sombrero + lentes, ámbar sobre azul oscuro).
+Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen desde
+`ios/project.yml` (`xcodegen generate --spec ios/project.yml --project ios`).
+
+- **`ios/ImpostorCore/`**: paquete SwiftPM con el motor, solo Foundation (sin UIKit/SwiftUI para
+  reutilizarlo en el servidor). Espejo 1:1 de `src/game/*.ts` con identificadores en español:
+  `Tipos`, `Aleatorio` (RNG inyectable; `LCG` usa la fórmula de los tests web), `BancoPalabras`,
+  `Motor`, `Reductor` (enum `Accion` + `reducir(_:_:contexto:)`), `Persistencia` (clave
+  `el-impostor:v1`, **mismo JSON que la web**, lectura tolerante). 50 tests con Swift Testing que
+  copian los nombres de los tests TS. `swift test --package-path ios/ImpostorCore` corre en segundos.
+- **`ios/ElImpostor/`**: app. `JuegoStore` (`@Observable`, MainActor) envuelve el reductor y guarda
+  en UserDefaults tras cada acción. `RaizView` hace `switch fase` (sin NavigationStack).
+  `Pantalla` es el marco común (cabecera 56 pt, contenido, pie con Liquid Glass). Estilos en
+  `Design/` (`.primario` 56 pt ámbar, `.secundario` 48 pt, tarjetas, `LogoImpostor` vectorial).
+  `CartaJugadorView` implementa el gesto de mantener con `DragGesture(minimumDistance: 0)` y se
+  oculta al perder foco. Tipografía SF Rounded escalada con Dynamic Type (tope accessibility2).
+  Textos como `LocalizedStringKey` literales en español; catálogo `Localizable.xcstrings` base es-MX.
+- **Ícono**: `Resources/AppIcon.icon` (Icon Composer, Liquid Glass, capas SVG sombrero + lentes)
+  y `AppIcon.appiconset` con PNG 1024 de respaldo. Fuente vectorial: `public/favicon.svg`.
+- **Banco de palabras**: la app referencia `../data/words.es-MX.json` como recurso; no se copia.
+- **Verificación solo por CLI** (Xcode 27 ya no trae Simulator.app; el panel de simulador de
+  Claude Code Desktop no lo soporta): `xcodebuild test` (unit + UI) y `ios/scripts/capturas.sh`,
+  que siembra estados en UserDefaults del contenedor y captura las 10 pantallas. Argumentos de
+  depuración (solo Debug): `--reiniciar`, `--fase <inicio|como-jugar|ajustes>`, `--mostrar-carta`.
+- **UI tests** (`ElImpostorUITests/FlujoUITests`): partida completa con el gesto, cancelar ronda,
+  persistencia al relanzar. Los identificadores de accesibilidad son la API de los tests.
+- **Gotchas**: el vidrio (`glassEffect`) ignora `.opacity` del ancestro, por eso el estado
+  deshabilitado cambia colores y quita el vidrio. `UserDefaults` no es `Sendable` en el SDK 27
+  (`@unchecked`). El target de UI tests necesita `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated`.
+  `xcode-select` debe apuntar a Xcode (`sudo xcode-select -s /Applications/Xcode.app`) o exportar
+  `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
+- **Pendiente para publicar**: cuenta Apple Developer → `DEVELOPMENT_TEAM` en `project.yml`,
+  Bundle ID `mx.elimpostor.app` y ficha en App Store Connect, capturas 6.9", TestFlight.
+  CI: `.github/workflows/ios.yml` (runner macOS, XcodeGen + swift test + xcodebuild test).
 
 ## Comandos web
 

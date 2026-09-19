@@ -1,0 +1,61 @@
+name: iOS
+
+on:
+  push:
+    branches: [main]
+    paths: ['ios/**', 'data/**', '.github/workflows/ios.yml']
+  pull_request:
+    paths: ['ios/**', 'data/**', '.github/workflows/ios.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruebas:
+    name: Compilar y probar
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Elegir Xcode
+        run: |
+          ls -d /Applications/Xcode*.app
+          X=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V | tail -1)
+          X=${X:-$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)}
+          X=${X:-/Applications/Xcode.app}
+          sudo xcode-select -s "$X"
+          xcodebuild -version
+
+      - name: Instalar XcodeGen
+        run: brew install xcodegen
+
+      - name: Generar proyecto
+        run: xcodegen generate --spec ios/project.yml --project ios
+
+      - name: Motor (swift test)
+        run: swift test --package-path ios/ImpostorCore
+
+      - name: Elegir simulador
+        run: |
+          SIM=$(xcrun simctl list devices available -j | jq -r '[.devices[][] | select(.name | startswith("iPhone"))][0].name')
+          echo "SIM=$SIM" >> "$GITHUB_ENV"
+          echo "Simulador: $SIM"
+
+      - name: App (xcodebuild test)
+        run: |
+          xcodebuild test \
+            -project ios/ElImpostor.xcodeproj \
+            -scheme ElImpostor \
+            -destination "platform=iOS Simulator,name=${SIM}" \
+            -resultBundlePath Tests.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Guardar resultados si falla
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult
+          path: Tests.xcresult

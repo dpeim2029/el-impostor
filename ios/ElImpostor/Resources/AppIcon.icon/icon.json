@@ -1,0 +1,50 @@
+{
+  "fill" : {
+    "solid" : "srgb:0.11373,0.10196,0.18039,1.00000"
+  },
+  "groups" : [
+    {
+      "name" : "Lentes",
+      "layers" : [
+        {
+          "image-name" : "lentes.svg",
+          "name" : "lentes"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.35
+      },
+      "specular" : true,
+      "glass" : true
+    },
+    {
+      "name" : "Sombrero",
+      "layers" : [
+        {
+          "image-name" : "sombrero.svg",
+          "name" : "sombrero"
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.6
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.25
+      },
+      "specular" : true,
+      "glass" : true
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "iOS"
+    ]
+  }
+}

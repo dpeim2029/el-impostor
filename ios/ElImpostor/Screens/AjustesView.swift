@@ -73,7 +73,7 @@ struct AjustesView: View {
                             .font(.fila)
                             .foregroundStyle(activo ? Color.ambarTexto : Color.texto)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 48)
+                            .frame(minHeight: 48)
                             .tarjeta(
                                 relleno: activo ? Color.ambar : Color.tarjeta.opacity(0.7),
                                 borde: activo ? Color.ambar : Color.borde,
@@ -124,14 +124,14 @@ struct AjustesView: View {
                                 Text(categoria.emoji)
                                     .font(.system(size: 24))
                                 Text(categoria.nombre)
-                                    .font(.system(size: 14, weight: .semibold))
+                                    .font(.apoyo.weight(.semibold))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.8)
                                     .foregroundStyle(activa ? Color.texto : Color.textoApagado)
                                 Spacer(minLength: 0)
                             }
                             .padding(.horizontal, 12)
-                            .frame(height: 56)
+                            .frame(minHeight: 56)
                             .tarjeta(
                                 relleno: activa ? Color.ambar.opacity(0.15) : Color.tarjeta.opacity(0.4),
                                 borde: activa ? Color.ambar.opacity(0.6) : Color.borde,
@@ -175,7 +175,7 @@ struct Seccion<Accion: View, Contenido: View>: View {
                         .font(.seccion)
                     if let detalle {
                         Text(detalle)
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.apoyo.weight(.medium))
                             .foregroundStyle(Color.textoApagado)
                     }
                 }
@@ -202,7 +202,7 @@ struct FormularioJugadorView: View {
     var body: some View {
         HStack(spacing: 8) {
             TextField("Nombre", text: $nombre)
-                .font(.system(size: 17))
+                .font(.cuerpo)
                 .textInputAutocapitalization(.words)
                 .autocorrectionDisabled()
                 .submitLabel(.done)
@@ -212,7 +212,7 @@ struct FormularioJugadorView: View {
                     if nuevo.count > 20 { nombre = String(nuevo.prefix(20)) }
                 }
                 .padding(.horizontal, 16)
-                .frame(height: 48)
+                .frame(minHeight: 48)
                 .tarjeta(relleno: Color.tarjeta.opacity(0.7), borde: Color.borde, radio: 16)
                 .disabled(deshabilitado)
                 .accessibilityIdentifier("nombreJugador")
@@ -259,7 +259,7 @@ struct FilaJugadorView: View {
                 .padding(.trailing, 4)
             if editando {
                 TextField("Nombre", text: $borrador)
-                    .font(.system(size: 17, weight: .medium))
+                    .font(.cuerpo.weight(.medium))
                     .textInputAutocapitalization(.words)
                     .autocorrectionDisabled()
                     .submitLabel(.done)
@@ -279,7 +279,7 @@ struct FilaJugadorView: View {
                     enfocado = true
                 } label: {
                     Text(jugador.nombre)
-                        .font(.system(size: 17, weight: .medium))
+                        .font(.cuerpo.weight(.medium))
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(.rect)
@@ -302,7 +302,7 @@ struct FilaJugadorView: View {
         }
         .padding(.leading, 12)
         .padding(.trailing, 6)
-        .frame(height: 52)
+        .frame(minHeight: 52)
         .tarjeta(radio: 16)
     }
 

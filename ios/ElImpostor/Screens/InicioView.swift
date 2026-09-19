@@ -25,7 +25,7 @@ struct InicioView: View {
                     .font(.tituloApp)
                     .tracking(-1)
                 Text("Todos saben la palabra menos uno. Encuéntrenlo.")
-                    .font(.system(size: 17))
+                    .font(.cuerpo)
                     .foregroundStyle(Color.textoApagado)
                     .multilineTextAlignment(.center)
             }

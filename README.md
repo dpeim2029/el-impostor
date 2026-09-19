@@ -95,3 +95,20 @@ src/
 ```
 
 Stack: Vite, React 19, TypeScript, Tailwind CSS v4, shadcn/ui, vite-plugin-pwa, Vitest.
+
+## App iOS nativa (SwiftUI)
+
+En `ios/` vive la app nativa para iPhone, en camino a la App Store. Comparte el banco de
+palabras (`data/words.es-MX.json`) con la web y porta el motor a Swift con los mismos tests.
+
+```bash
+brew install xcodegen
+xcodegen generate --spec ios/project.yml --project ios     # genera ios/ElImpostor.xcodeproj
+swift test --package-path ios/ImpostorCore                 # motor del juego, sin simulador
+xcodebuild test -project ios/ElImpostor.xcodeproj -scheme ElImpostor \
+  -destination 'platform=iOS Simulator,name=iPhone 17e' CODE_SIGNING_ALLOWED=NO
+ios/scripts/capturas.sh                                    # captura cada pantalla en el simulador
+```
+
+Requiere Xcode 26 o más reciente. Abre `ios/ElImpostor.xcodeproj` para correrla en tu iPhone.
+Política de privacidad: https://dpeim2029.github.io/el-impostor/privacidad.html

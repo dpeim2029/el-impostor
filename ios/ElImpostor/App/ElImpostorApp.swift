@@ -29,6 +29,7 @@ struct ElImpostorApp: App {
                 .preferredColorScheme(.dark)
                 .fontDesign(.rounded)
                 .tint(.ambar)
+                .dynamicTypeSize(...Tipografia.topeDeTamano)
         }
     }
 }
