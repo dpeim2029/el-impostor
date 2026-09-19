@@ -51,6 +51,13 @@ struct CartaJugadorView: View {
         .padding(.horizontal, 22)
         .padding(.vertical, 28)
         .background(fondo, in: .rect(cornerRadius: 30))
+        .overlay(alignment: .bottomTrailing) {
+            if !visible {
+                EtiquetaSticker(texto: "Solo para \(nombre)")
+                    .padding(22)
+                    .transition(.opacity)
+            }
+        }
         .shadow(color: .black.opacity(visible ? 0.18 : 0.08), radius: visible ? 35 : 20, y: visible ? 16 : 8)
         .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
         .animation(.spring(duration: 0.35, bounce: 0.25), value: visible)
@@ -58,16 +65,10 @@ struct CartaJugadorView: View {
     }
 
     private var cerrada: some View {
-        VStack(spacing: 14) {
-            Image(systemName: "envelope")
-                .font(.system(size: 56, weight: .light))
-                .foregroundStyle(Color.textoTerciario)
-            Text("Solo para \(nombre)")
-                .font(.apoyo)
-                .foregroundStyle(Color.textoSecundario)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Carta cerrada, solo para \(nombre)")
+        Image(systemName: "envelope")
+            .font(.system(size: 64, weight: .light))
+            .foregroundStyle(Color.textoTerciario)
+            .accessibilityLabel("Carta cerrada, solo para \(nombre)")
     }
 
     @ViewBuilder

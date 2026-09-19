@@ -95,6 +95,15 @@ implementado en la app iOS (la web todavía tiene el diseño anterior):
   **el texto siempre queda arriba del dedo**; "Pasar el teléfono" se habilita tras ver la carta.
 - Color por rol solo en momentos públicos: verde `#1F9E6E` (civil, atrapado) y rojo `#E5484D`
   (impostor, se escapó).
+- **Toques "Papel y stickers" (mezcla J1, definitiva el 19-sep-2026)**: marcador amarillo girado
+  detrás de "IMPOSTOR" en el inicio y del nombre de quien empieza; títulos de cabecera de las
+  pantallas de juego como pastilla amarilla girada ("1 de 4", "Ronda", "Votación"); en Nueva
+  partida cada sección va en un marco pastel (lila jugadores, durazno impostores, amarillo
+  categorías) con filas blancas adentro (`FondoDeSeccion` como `listRowBackground`); números de
+  las instrucciones como calcomanías de colores giradas; la lista de la ronda en marco cielo y
+  la de votación en marco durazno (`MarcoDeColor` + `GrupoBlanco(radio: 16)`); el sobre cerrado
+  lleva la calcomanía "SOLO PARA {NOMBRE}"; en las modales el veredicto lleva marcador menta o
+  coral y los detalles del resultado van en marco amarillo. Colores en `Design/Stickers.swift`.
 - Ícono: sombrero y lentes negros sobre papel (Liquid Glass en `AppIcon.icon`).
 - Textos cortos; "tú"/"ustedes", nunca "vosotros". Mantener la pantalla encendida en la partida.
 

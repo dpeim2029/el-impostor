@@ -5,6 +5,8 @@ import SwiftUI
 struct TarjetaModal<Icono: View, Detalle: View, Botones: View>: View {
     var titulo: LocalizedStringKey
     var subtitulo: LocalizedStringKey?
+    /// Color del marcador detrás del título (nil = sin marcador).
+    var marcador: Color?
     @ViewBuilder var icono: () -> Icono
     @ViewBuilder var detalle: () -> Detalle
     @ViewBuilder var botones: () -> Botones
@@ -14,12 +16,14 @@ struct TarjetaModal<Icono: View, Detalle: View, Botones: View>: View {
     init(
         titulo: LocalizedStringKey,
         subtitulo: LocalizedStringKey? = nil,
+        marcador: Color? = nil,
         @ViewBuilder icono: @escaping () -> Icono,
         @ViewBuilder detalle: @escaping () -> Detalle = { EmptyView() },
         @ViewBuilder botones: @escaping () -> Botones
     ) {
         self.titulo = titulo
         self.subtitulo = subtitulo
+        self.marcador = marcador
         self.icono = icono
         self.detalle = detalle
         self.botones = botones
@@ -29,11 +33,17 @@ struct TarjetaModal<Icono: View, Detalle: View, Botones: View>: View {
         VStack(spacing: 10) {
             icono()
                 .padding(.bottom, 6)
-            Text(titulo)
-                .font(.modalTitulo)
-                .foregroundStyle(Color.tinta)
-                .multilineTextAlignment(.center)
-                .minimumScaleFactor(0.8)
+            Group {
+                if let marcador {
+                    Text(titulo).marcador(marcador)
+                } else {
+                    Text(titulo)
+                }
+            }
+            .font(.modalTitulo)
+            .foregroundStyle(Color.tinta)
+            .multilineTextAlignment(.center)
+            .minimumScaleFactor(0.8)
             if let subtitulo {
                 Text(subtitulo)
                     .font(.cuerpo)

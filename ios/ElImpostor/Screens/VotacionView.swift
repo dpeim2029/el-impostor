@@ -43,7 +43,8 @@ struct VotacionView: View {
         let eraImpostor = ronda.roles[jugador.id] == .impostor
         return TarjetaModal(
             titulo: eraImpostor ? "¡Impostor!" : "Civil",
-            subtitulo: eraImpostor ? "\(jugador.nombre) era el impostor." : "\(jugador.nombre) era civil."
+            subtitulo: eraImpostor ? "\(jugador.nombre) era el impostor." : "\(jugador.nombre) era civil.",
+            marcador: eraImpostor ? .coral : .menta
         ) {
             TileIcono(color: eraImpostor ? .rojo : .verde) {
                 if eraImpostor {
@@ -71,13 +72,20 @@ struct VotacionView: View {
 
     private func lista(_ ronda: Ronda, hechas: Int, permitidas: Int, interactiva: Bool) -> some View {
         Pantalla(titulo: permitidas > 1 ? "Acusación \(hechas + 1) de \(permitidas)" : "Votación") {
-            Text("¿Quién es el impostor?")
-                .font(.encabezadoMedio)
-                .foregroundStyle(Color.tinta)
-                .multilineTextAlignment(.center)
-                .padding(.top, 6)
+            VStack(spacing: 6) {
+                Text("¿Quién es el")
+                Text("impostor?")
+                    .marcador(.durazno)
+            }
+            .font(.encabezadoMedio)
+            .foregroundStyle(Color.tinta)
+            .multilineTextAlignment(.center)
+            .padding(.top, 6)
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("preguntaVotacion")
 
-            GrupoBlanco {
+            MarcoDeColor(color: .durazno) {
+              GrupoBlanco(radio: 16) {
                 ForEach(Array(store.estado.jugadores.enumerated()), id: \.element.id) { indice, jugador in
                     if indice > 0 { Separador() }
                     let acusado = ronda.acusaciones.contains(jugador.id)
@@ -110,6 +118,7 @@ struct VotacionView: View {
                     .disabled(acusado || !interactiva)
                     .accessibilityIdentifier("acusar-\(jugador.nombre)")
                 }
+              }
             }
         } accion: {
             BotonCancelarRonda()

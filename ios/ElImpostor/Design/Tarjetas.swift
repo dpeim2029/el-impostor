@@ -96,14 +96,15 @@ struct EtiquetaSeccion: View {
 
 /// Contenedor blanco redondeado para filas, al estilo de las listas agrupadas de iOS.
 struct GrupoBlanco<Contenido: View>: View {
+    var radio: CGFloat = 22
     @ViewBuilder var contenido: () -> Contenido
 
     var body: some View {
         VStack(spacing: 0) {
             contenido()
         }
-        .background(Color.tarjeta, in: .rect(cornerRadius: 22))
-        .clipShape(.rect(cornerRadius: 22))
+        .background(Color.tarjeta, in: .rect(cornerRadius: radio))
+        .clipShape(.rect(cornerRadius: radio))
         .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
     }
 }

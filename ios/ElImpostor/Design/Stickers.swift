@@ -92,6 +92,55 @@ struct Calcomania: View {
     }
 }
 
+/// Etiqueta pegada en una esquina, como en un sobre.
+struct EtiquetaSticker: View {
+    var texto: LocalizedStringKey
+    var color: Color = .amarillo
+    var giro: Double = -6
+
+    var body: some View {
+        Text(texto)
+            .font(.system(size: Tipografia.escalado(13, como: .caption1), weight: .heavy))
+            .textCase(.uppercase)
+            .tracking(0.8)
+            .foregroundStyle(Color.tinta)
+            .lineLimit(1)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 6)
+            .background(color, in: .capsule)
+            .shadow(color: .black.opacity(0.12), radius: 4, y: 2)
+            .rotationEffect(.degrees(giro))
+    }
+}
+
+/// Título de cabecera como pastilla amarilla girada.
+struct PastillaTitulo: View {
+    var texto: LocalizedStringKey
+
+    var body: some View {
+        Text(texto)
+            .font(.system(size: Tipografia.escalado(14, como: .subheadline), weight: .bold))
+            .foregroundStyle(Color.tinta)
+            .lineLimit(1)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 5)
+            .background(Color.amarillo, in: .capsule)
+            .rotationEffect(.degrees(-2))
+    }
+}
+
+/// Marco de color alrededor de un grupo blanco, como las secciones de Nueva partida.
+struct MarcoDeColor<Contenido: View>: View {
+    var color: Color
+    @ViewBuilder var contenido: () -> Contenido
+
+    var body: some View {
+        contenido()
+            .padding(8)
+            .background(color, in: .rect(cornerRadius: 22))
+    }
+}
+
 extension Color {
     /// Colores de calcomanía en orden, para alternar.
     static let stickers: [Color] = [.amarillo, .lila, .durazno, .cielo, .mentaFuerte]

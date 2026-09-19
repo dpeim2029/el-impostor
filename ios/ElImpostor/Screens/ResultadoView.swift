@@ -17,7 +17,8 @@ struct ResultadoView: View {
             } tarjeta: {
                 TarjetaModal(
                     titulo: veredicto(ganaron: ganaron, plural: plural),
-                    subtitulo: ganaron ? "Los civiles ganan esta ronda." : (plural ? "Los impostores ganan esta ronda." : "El impostor gana esta ronda.")
+                    subtitulo: ganaron ? "Los civiles ganan esta ronda." : (plural ? "Los impostores ganan esta ronda." : "El impostor gana esta ronda."),
+                    marcador: ganaron ? .menta : .coral
                 ) {
                     TileIcono(color: ganaron ? .verde : .rojo) {
                         if ganaron {
@@ -59,9 +60,11 @@ struct ResultadoView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 4)
-                    .background(Color.papel, in: .rect(cornerRadius: 18))
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 2)
+                    .background(Color.tarjeta, in: .rect(cornerRadius: 12))
+                    .padding(8)
+                    .background(Color.amarillo, in: .rect(cornerRadius: 18))
                     .padding(.top, 8)
                 } botones: {
                     Button("Otra ronda") { store.enviar(.otraRonda) }
@@ -79,7 +82,7 @@ struct ResultadoView: View {
 
     /// La lista de jugadores, difuminada detrás de la tarjeta.
     private var fondo: some View {
-        Pantalla(titulo: "Resultado") {
+        Pantalla {
             GrupoBlanco {
                 ForEach(Array(store.estado.jugadores.enumerated()), id: \.element.id) { indice, jugador in
                     if indice > 0 { Separador() }

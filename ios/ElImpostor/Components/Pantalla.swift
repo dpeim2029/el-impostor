@@ -74,11 +74,14 @@ struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
             } else {
                 Color.clear.frame(width: 38, height: 38)
             }
-            Text(titulo ?? "")
-                .font(.fila)
-                .foregroundStyle(Color.tinta)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity)
+            Group {
+                if let titulo {
+                    PastillaTitulo(texto: titulo)
+                } else {
+                    Color.clear
+                }
+            }
+            .frame(maxWidth: .infinity)
             accion()
                 .frame(width: 38, height: 38, alignment: .trailing)
         }

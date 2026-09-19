@@ -16,6 +16,8 @@ struct RondaView: View {
                         .foregroundStyle(Color.tinta)
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.6)
+                        .marcador(.amarillo)
+                        .padding(.vertical, 4)
                         .accessibilityIdentifier("empieza")
                     Text("Una palabra cada quien, en este orden.")
                         .font(.apoyo)
@@ -24,15 +26,16 @@ struct RondaView: View {
                 }
                 .padding(.top, 6)
 
-                GrupoBlanco {
+                MarcoDeColor(color: .cielo) {
+                  GrupoBlanco(radio: 16) {
                     ForEach(Array(orden.enumerated()), id: \.element.id) { indice, jugador in
                         if indice > 0 { Separador() }
                         HStack(spacing: 12) {
                             NumeroCirculo(
                                 numero: indice + 1,
                                 tamano: 26,
-                                relleno: indice == 0 ? .tinta : .rellenoClaro,
-                                color: indice == 0 ? .white : .textoSecundario
+                                relleno: indice == 0 ? .tinta : .cielo,
+                                color: indice == 0 ? .white : .tinta
                             )
                             Text(jugador.nombre)
                                 .font(indice == 0 ? .fila : .cuerpo)
@@ -44,6 +47,7 @@ struct RondaView: View {
                         .frame(minHeight: 52)
                         .background(indice == 0 ? Color.amarillo : Color.clear)
                     }
+                  }
                 }
             } accion: {
                 BotonCancelarRonda()

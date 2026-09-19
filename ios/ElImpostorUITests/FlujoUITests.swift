@@ -50,7 +50,7 @@ final class FlujoUITests: XCTestCase {
         app.buttons["votar"].tap()
 
         // Votación: acusar a Ana y confirmar
-        XCTAssertTrue(app.staticTexts["¿Quién es el impostor?"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.descendants(matching: .any)["preguntaVotacion"].waitForExistence(timeout: 3))
         app.buttons["acusar-Ana"].tap()
         let confirmar = app.buttons["Acusar"]
         XCTAssertTrue(confirmar.waitForExistence(timeout: 3))
