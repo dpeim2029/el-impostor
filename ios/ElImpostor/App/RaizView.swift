@@ -2,22 +2,27 @@ import SwiftUI
 import ImpostorCore
 
 /// Enrutador: una pantalla por fase, sin pila de navegación (igual que App.tsx).
+/// "Cómo se juega" es una hoja sobre el inicio, así que comparte pantalla con él.
 struct RaizView: View {
     @Environment(JuegoStore.self) private var store
     @Environment(\.scenePhase) private var scenePhase
+
+    private var faseVisual: Fase {
+        store.estado.fase == .comoJugar ? .inicio : store.estado.fase
+    }
 
     var body: some View {
         ZStack {
             FondoView()
             pantalla
-                .id(store.estado.fase)
+                .id(faseVisual)
                 .transition(.asymmetric(
                     insertion: .move(edge: .trailing).combined(with: .opacity),
                     removal: .opacity
                 ))
         }
-        .animation(.snappy(duration: 0.3), value: store.estado.fase)
-        .foregroundStyle(Color.texto)
+        .animation(.snappy(duration: 0.3), value: faseVisual)
+        .foregroundStyle(Color.tinta)
         .onChange(of: store.enJuego, initial: true) { _, enJuego in
             UIApplication.shared.isIdleTimerDisabled = enJuego
         }
@@ -30,9 +35,8 @@ struct RaizView: View {
 
     @ViewBuilder
     private var pantalla: some View {
-        switch store.estado.fase {
-        case .inicio: InicioView()
-        case .comoJugar: ComoJugarView()
+        switch faseVisual {
+        case .inicio, .comoJugar: InicioView()
         case .ajustes: AjustesView()
         case .reparto: RepartoView()
         case .ronda: RondaView()
@@ -59,6 +63,5 @@ extension ErrorPartida {
 #Preview {
     RaizView()
         .environment(JuegoStore(banco: try! BancoPalabras.cargar(en: .main), almacen: AlmacenEnMemoria()))
-        .preferredColorScheme(.dark)
-        .fontDesign(.rounded)
+        .preferredColorScheme(.light)
 }

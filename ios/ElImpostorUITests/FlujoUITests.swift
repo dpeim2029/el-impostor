@@ -27,7 +27,7 @@ final class FlujoUITests: XCTestCase {
             campo.typeText(nombre)
             app.buttons["agregarJugador"].tap()
         }
-        XCTAssertTrue(app.buttons["jugador-Sofi"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.textFields["jugador-Sofi"].waitForExistence(timeout: 2))
         XCTAssertTrue(repartir.isEnabled)
         repartir.tap()
 
@@ -59,8 +59,7 @@ final class FlujoUITests: XCTestCase {
         // Revelación y resultado
         XCTAssertTrue(app.descendants(matching: .any)["revelacion"].waitForExistence(timeout: 3))
         app.buttons["siguiente"].tap()
-        XCTAssertTrue(app.staticTexts["Resultado"].waitForExistence(timeout: 3))
-        XCTAssertTrue(app.descendants(matching: .any)["veredicto"].exists)
+        XCTAssertTrue(app.descendants(matching: .any)["veredicto"].waitForExistence(timeout: 3))
 
         // Otra ronda vuelve al reparto con una palabra nueva
         app.buttons["otraRonda"].tap()
@@ -71,7 +70,7 @@ final class FlujoUITests: XCTestCase {
         app.launchArguments = []
         app.launch()
         XCTAssertTrue(app.staticTexts["1 de 3"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["Pásale el teléfono a"].exists)
+        XCTAssertTrue(app.staticTexts["nombreEnTurno"].exists)
     }
 
     func testCancelarRondaVuelveAAjustes() {
@@ -89,6 +88,6 @@ final class FlujoUITests: XCTestCase {
         XCTAssertTrue(confirmar.waitForExistence(timeout: 3))
         confirmar.tap()
         XCTAssertTrue(app.staticTexts["Nueva partida"].waitForExistence(timeout: 3))
-        XCTAssertTrue(app.buttons["jugador-Ana"].exists)
+        XCTAssertTrue(app.textFields["jugador-Ana"].exists)
     }
 }

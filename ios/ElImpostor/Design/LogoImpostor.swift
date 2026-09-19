@@ -3,7 +3,7 @@ import SwiftUI
 /// El logo: sombrero de detective sobre unos lentes redondos. Misma geometría que `public/favicon.svg`
 /// (lienzo de 512), dibujada como vector para escalar sin pérdida.
 struct LogoImpostor: View {
-    var color: Color = .ambar
+    var color: Color = .tinta
 
     var body: some View {
         Canvas { contexto, tamano in
@@ -44,7 +44,7 @@ struct LogoImpostor: View {
 
 #Preview {
     ZStack {
-        Color.fondo
+        Color.papel
         LogoImpostor()
             .frame(width: 160, height: 160)
     }

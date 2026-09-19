@@ -52,9 +52,9 @@ targets:
         CFBundleDevelopmentRegion: es-MX
         CFBundleLocalizations: [es-MX]
         UILaunchScreen:
-          UIColorName: Fondo
+          UIColorName: Papel
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
-        UIUserInterfaceStyle: Dark
+        UIUserInterfaceStyle: Light
         ITSAppUsesNonExemptEncryption: false
         LSRequiresIPhoneOS: true
         UIApplicationSceneManifest:

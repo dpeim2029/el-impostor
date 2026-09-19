@@ -14,91 +14,105 @@ struct VotacionView: View {
             let ultimo = ronda.acusaciones.last.flatMap(store.jugador)
 
             if revelando, let ultimo {
-                revelacion(ultimo, ronda: ronda, hechas: hechas, permitidas: permitidas, faltan: faltan)
+                ModalSobreFondo {
+                    lista(ronda, hechas: hechas, permitidas: permitidas, interactiva: false)
+                } tarjeta: {
+                    revelacion(ultimo, ronda: ronda, faltan: faltan)
+                }
+                .transition(.opacity)
             } else {
-                lista(ronda, hechas: hechas, permitidas: permitidas)
+                lista(ronda, hechas: hechas, permitidas: permitidas, interactiva: true)
+                    .confirmationDialog(
+                        "¿Acusar a \(pendiente?.nombre ?? "")?",
+                        isPresented: Binding(get: { pendiente != nil }, set: { if !$0 { pendiente = nil } }),
+                        titleVisibility: .visible,
+                        presenting: pendiente
+                    ) { jugador in
+                        Button("Acusar") {
+                            store.enviar(.acusar(id: jugador.id))
+                            pendiente = nil
+                            withAnimation(.snappy(duration: 0.25)) { revelando = true }
+                        }
+                        Button("No", role: .cancel) { pendiente = nil }
+                    }
             }
         }
     }
 
-    private func revelacion(_ jugador: Jugador, ronda: Ronda, hechas: Int, permitidas: Int, faltan: Int) -> some View {
+    private func revelacion(_ jugador: Jugador, ronda: Ronda, faltan: Int) -> some View {
         let eraImpostor = ronda.roles[jugador.id] == .impostor
-        return Pantalla(titulo: permitidas > 1 ? "\(hechas) de \(permitidas)" : "Votación") {
-            Spacer(minLength: 0)
-            TarjetaRevelacion(
-                simbolo: eraImpostor ? "theatermasks.fill" : "checkmark.seal.fill",
-                tinte: eraImpostor ? .impostor : .civil,
-                apoyo: "\(jugador.nombre) era…",
-                veredicto: eraImpostor ? "¡Impostor!" : "Civil"
-            )
-            .sensoryFeedback(eraImpostor ? .error : .success, trigger: revelando)
-            .accessibilityIdentifier("revelacion")
-            Spacer(minLength: 0)
-        } pie: {
-            Button {
+        return TarjetaModal(
+            titulo: eraImpostor ? "¡Impostor!" : "Civil",
+            subtitulo: eraImpostor ? "\(jugador.nombre) era el impostor." : "\(jugador.nombre) era civil."
+        ) {
+            TileIcono(color: eraImpostor ? .rojo : .verde) {
+                if eraImpostor {
+                    LogoImpostor(color: .white).frame(width: 52, height: 52)
+                } else {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 40, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+            }
+        } botones: {
+            Button(faltan > 0 ? "Siguiente" : "Ver resultado") {
                 if faltan > 0 {
-                    revelando = false
+                    withAnimation(.snappy(duration: 0.25)) { revelando = false }
                 } else {
                     store.enviar(.verResultado)
-                }
-            } label: {
-                HStack(spacing: 8) {
-                    Text(faltan > 0 ? "Siguiente" : "Resultado")
-                    Image(systemName: "arrow.right")
                 }
             }
             .buttonStyle(.primario)
             .accessibilityIdentifier("siguiente")
         }
+        .sensoryFeedback(eraImpostor ? .error : .success, trigger: revelando)
+        .accessibilityIdentifier("revelacion")
     }
 
-    private func lista(_ ronda: Ronda, hechas: Int, permitidas: Int) -> some View {
+    private func lista(_ ronda: Ronda, hechas: Int, permitidas: Int, interactiva: Bool) -> some View {
         Pantalla(titulo: permitidas > 1 ? "Acusación \(hechas + 1) de \(permitidas)" : "Votación") {
             Text("¿Quién es el impostor?")
                 .font(.encabezadoMedio)
+                .foregroundStyle(Color.tinta)
                 .multilineTextAlignment(.center)
-                .padding(.top, 8)
+                .padding(.top, 6)
 
-            VStack(spacing: 8) {
-                ForEach(store.estado.jugadores) { jugador in
+            GrupoBlanco {
+                ForEach(Array(store.estado.jugadores.enumerated()), id: \.element.id) { indice, jugador in
+                    if indice > 0 { Separador() }
                     let acusado = ronda.acusaciones.contains(jugador.id)
                     let eraImpostor = ronda.roles[jugador.id] == .impostor
-                    let tinte: Color? = acusado ? (eraImpostor ? .impostor : .civil) : nil
+                    let tinte: Color = eraImpostor ? .rojo : .verde
                     Button {
                         pendiente = jugador
                     } label: {
                         HStack {
                             Text(jugador.nombre)
+                                .font(.fila)
+                                .foregroundStyle(acusado ? tinte : Color.tinta)
                                 .lineLimit(1)
-                                .foregroundStyle(tinte ?? .texto)
                             Spacer()
                             if acusado {
                                 Text(eraImpostor ? "Impostor" : "Civil")
-                                    .font(.apoyo.weight(.medium))
-                                    .foregroundStyle(tinte ?? .texto)
+                                    .font(.apoyo.weight(.semibold))
+                                    .foregroundStyle(tinte)
+                            } else {
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundStyle(Color.textoTerciario)
                             }
                         }
+                        .padding(.horizontal, 16)
+                        .frame(minHeight: 56)
+                        .contentShape(.rect)
                     }
-                    .buttonStyle(FilaButtonStyle(tinte: tinte))
-                    .disabled(acusado)
+                    .buttonStyle(.plain)
+                    .disabled(acusado || !interactiva)
                     .accessibilityIdentifier("acusar-\(jugador.nombre)")
                 }
             }
         } accion: {
             BotonCancelarRonda()
-        }
-        .confirmationDialog(
-            "¿Acusar a \(pendiente?.nombre ?? "")?",
-            isPresented: Binding(get: { pendiente != nil }, set: { if !$0 { pendiente = nil } }),
-            titleVisibility: .visible,
-            presenting: pendiente
-        ) { jugador in
-            Button("Acusar") {
-                store.enviar(.acusar(id: jugador.id))
-                pendiente = nil
-                revelando = true
-            }
-            Button("No", role: .cancel) { pendiente = nil }
         }
     }
 }

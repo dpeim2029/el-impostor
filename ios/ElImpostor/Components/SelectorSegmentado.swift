@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Control segmentado de 44 pt con la pastilla que se desliza; el nativo mide 32 pt y es chico para un juego.
+/// Control segmentado de 48 pt con la pastilla blanca que se desliza; el nativo mide 32 pt y es chico para un juego.
 struct SelectorSegmentado<Valor: Hashable>: View {
     struct Opcion: Identifiable {
         var valor: Valor
@@ -27,14 +27,14 @@ struct SelectorSegmentado<Valor: Hashable>: View {
                 } label: {
                     Text(opcion.etiqueta)
                         .font(.fila)
-                        .foregroundStyle(activa ? Color.texto : Color.textoApagado)
+                        .foregroundStyle(activa ? Color.tinta : Color.textoSecundario)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 44)
+                        .frame(height: 40)
                         .background {
                             if activa {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(Color.secundario)
-                                    .shadow(color: .black.opacity(0.25), radius: 4, y: 1)
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color.tarjeta)
+                                    .shadow(color: .black.opacity(0.14), radius: 3, y: 1)
                                     .matchedGeometryEffect(id: "pastilla", in: espacio)
                             }
                         }
@@ -47,7 +47,7 @@ struct SelectorSegmentado<Valor: Hashable>: View {
             }
         }
         .padding(4)
-        .background(Color.tarjeta.opacity(0.7), in: .rect(cornerRadius: 18))
+        .background(Color.relleno, in: .rect(cornerRadius: 16))
         .sensoryFeedback(.selection, trigger: seleccion)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(etiquetaAccesible)

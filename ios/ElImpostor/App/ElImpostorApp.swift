@@ -26,9 +26,8 @@ struct ElImpostorApp: App {
         WindowGroup {
             RaizView()
                 .environment(store)
-                .preferredColorScheme(.dark)
-                .fontDesign(.rounded)
-                .tint(.ambar)
+                .preferredColorScheme(.light)
+                .tint(.tinta)
                 .dynamicTypeSize(...Tipografia.topeDeTamano)
         }
     }

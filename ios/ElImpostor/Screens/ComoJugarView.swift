@@ -1,6 +1,7 @@
 import SwiftUI
 import ImpostorCore
 
+/// Contenido de la hoja "Cómo se juega".
 struct ComoJugarView: View {
     @Environment(JuegoStore.self) private var store
 
@@ -13,30 +14,42 @@ struct ComoJugarView: View {
     ]
 
     var body: some View {
-        Pantalla(titulo: "Cómo se juega", alRegresar: { store.enviar(.ir(.inicio)) }) {
-            VStack(spacing: 8) {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Cómo se juega")
+                    .font(.hojaTitulo)
+                    .foregroundStyle(Color.tinta)
+                    .padding(.top, 22)
+                    .padding(.bottom, 6)
+
                 ForEach(Array(pasos.enumerated()), id: \.offset) { indice, paso in
-                    HStack(spacing: 12) {
-                        NumeroCirculo(numero: indice + 1, tamano: 32, relleno: .ambar, color: .ambarTexto)
+                    if indice > 0 {
+                        Rectangle().fill(Color.rellenoClaro).frame(height: 1)
+                    }
+                    HStack(alignment: .top, spacing: 12) {
+                        NumeroCirculo(numero: indice + 1, tamano: 28, relleno: .tinta, color: .white)
+                            .padding(.top, 1)
                         Text(paso)
                             .font(.cuerpo)
+                            .foregroundStyle(Color.tinta)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(16)
-                    .tarjeta()
+                    .padding(.vertical, 12)
                 }
-            }
-            .padding(.top, 8)
 
-            Text("Ejemplo: la palabra es **Pizza**; el impostor solo ve **Italia**.")
-                .font(.apoyo)
-                .foregroundStyle(Color.textoApagado)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 4)
-        } pie: {
-            Button("Jugar") { store.enviar(.ir(.ajustes)) }
-                .buttonStyle(.primario)
-                .accessibilityIdentifier("jugar")
+                Text("Ejemplo: la palabra es **Pizza**; el impostor solo ve **Italia**.")
+                    .font(.apoyo)
+                    .foregroundStyle(Color.textoSecundario)
+                    .padding(.top, 8)
+
+                Button("Jugar") { store.enviar(.ir(.ajustes)) }
+                    .buttonStyle(.primario)
+                    .accessibilityIdentifier("jugar")
+                    .padding(.top, 20)
+            }
+            .padding(.horizontal, 22)
+            .padding(.bottom, 24)
         }
+        .scrollBounceBehavior(.basedOnSize)
     }
 }

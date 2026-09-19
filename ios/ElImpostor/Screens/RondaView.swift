@@ -8,38 +8,40 @@ struct RondaView: View {
         if let ronda = store.estado.ronda {
             let orden = ronda.orden.compactMap(store.jugador)
             Pantalla(titulo: ronda.vuelta == 1 ? "Ronda" : "Vuelta \(ronda.vuelta)") {
-                VStack(spacing: 4) {
-                    Text("Empieza")
-                        .font(.apoyo)
-                        .foregroundStyle(Color.textoApagado)
+                VStack(spacing: 8) {
+                    EtiquetaSeccion(texto: "Empieza")
                     Text(orden.first?.nombre ?? "")
-                        .font(.encabezado)
+                        .font(.nombre)
+                        .textCase(.uppercase)
+                        .foregroundStyle(Color.tinta)
                         .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.7)
+                        .minimumScaleFactor(0.6)
                         .accessibilityIdentifier("empieza")
                     Text("Una palabra cada quien, en este orden.")
                         .font(.apoyo)
-                        .foregroundStyle(Color.textoApagado)
-                        .padding(.top, 4)
+                        .foregroundStyle(Color.textoSecundario)
+                        .padding(.top, 2)
                 }
-                .padding(.top, 8)
+                .padding(.top, 6)
 
-                VStack(spacing: 8) {
+                GrupoBlanco {
                     ForEach(Array(orden.enumerated()), id: \.element.id) { indice, jugador in
+                        if indice > 0 { Separador() }
                         HStack(spacing: 12) {
-                            NumeroCirculo(numero: indice + 1)
+                            NumeroCirculo(
+                                numero: indice + 1,
+                                tamano: 26,
+                                relleno: indice == 0 ? .tinta : .rellenoClaro,
+                                color: indice == 0 ? .white : .textoSecundario
+                            )
                             Text(jugador.nombre)
-                                .font(.cuerpo.weight(.medium))
+                                .font(indice == 0 ? .fila : .cuerpo)
+                                .foregroundStyle(Color.tinta)
                                 .lineLimit(1)
                             Spacer(minLength: 0)
                         }
                         .padding(.horizontal, 16)
                         .frame(minHeight: 52)
-                        .tarjeta(
-                            relleno: indice == 0 ? Color.ambar.opacity(0.15) : Color.tarjeta.opacity(0.7),
-                            borde: indice == 0 ? Color.ambar.opacity(0.5) : nil,
-                            radio: 16
-                        )
                     }
                 }
             } accion: {

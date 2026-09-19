@@ -72,20 +72,31 @@ Formato JSON (`data/words.es-MX.json`):
     "grupos": [ { "pista": "Italia", "palabras": ["Pizza", "Espagueti", "Lasaña"] } ] } ] }
 ```
 
-## Decisiones de UX (estilo app nativa de iPhone, mínimo texto)
+## Decisiones de UX (diseño "Papel + nativo", decidido el 19-sep-2026)
 
-- Tema oscuro único; acento ámbar; rojo para impostor, verde para civil.
-- Inicio: icono, título, una frase, selector Con/Sin pistas, botón **Jugar**, enlace "Cómo se
-  juega". Nada más.
-- Reparto de cartas: "Pásale el teléfono a {nombre}", panel superior con la carta (oculto = solo
-  un candado) y un **botón grande abajo "Mantén el dedo aquí"**: la carta se ve solo mientras se
-  mantiene presionado y se oculta al soltar. **El texto siempre queda arriba del dedo.** No hay
-  enlaces ni textos grises debajo del botón. El botón "Pasar el teléfono" se habilita solo tras
-  ver la carta. Con mouse (escritorio) el botón es de tocar para mostrar/ocultar.
-- Textos cortos y sin explicaciones largas en ninguna pantalla. Botones de 56 pt para la acción
-  principal.
-- Mantener la pantalla encendida durante la partida.
-- Todo en español de México; "tú"/"ustedes", nunca "vosotros".
+Daniel descartó el tema oscuro con ámbar y resplandores ("se ve muy IA"). El diseño vigente,
+implementado en la app iOS (la web todavía tiene el diseño anterior):
+
+- **Tema claro único**: fondo papel `#F5F4F0`, tinta `#111`, tipografía SF Pro en pesos fuertes;
+  títulos y nombres en **mayúsculas** ("EL IMPOSTOR", "ANA"). Sin degradados ni brillos. Botón
+  principal: cápsula negra de 56 pt. Sin acento de color en la interfaz base.
+- **Elementos nativos de iOS**: Nueva partida es una lista agrupada (título grande, asas para
+  reordenar con Editar, deslizar para quitar, fila verde "Agregar jugador", control segmentado,
+  interruptor). "Cómo se juega" es una hoja con asa sobre el inicio. Acusación y resultado son
+  **tarjetas modales sobre fondo difuminado** (ícono en un tile de color, título, subtítulo,
+  botones). Botones circulares de vidrio (iOS 26) para regresar y cancelar.
+- **La carta secreta (cartas H1)**: un **sobre blanco cerrado, idéntico para todos**, con "Solo
+  para {nombre}". Al mantener el dedo, el resto de la pantalla se difumina y la carta se abre:
+  **menta** con ojo, la palabra grande y la categoría en pastilla (civil); **coral** con el
+  sombrero rojo, "ERES EL IMPOSTOR" y la pastilla "Pista: {pista}" (impostor). Sin frases extra:
+  Daniel prefirió claridad inmediata para personas mayores por encima de la discreción de reojo
+  (se evaluaron variantes neutras; quedan como posible ajuste futuro "cartas discretas").
+- Reparto: "Pásale el teléfono a {NOMBRE}", carta, zona de 84 pt "Mantén el dedo aquí" abajo;
+  **el texto siempre queda arriba del dedo**; "Pasar el teléfono" se habilita tras ver la carta.
+- Color por rol solo en momentos públicos: verde `#1F9E6E` (civil, atrapado) y rojo `#E5484D`
+  (impostor, se escapó).
+- Ícono: sombrero y lentes negros sobre papel (Liquid Glass en `AppIcon.icon`).
+- Textos cortos; "tú"/"ustedes", nunca "vosotros". Mantener la pantalla encendida en la partida.
 
 ## Plan acordado hacia adelante
 
@@ -130,13 +141,14 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   copian los nombres de los tests TS. `swift test --package-path ios/ImpostorCore` corre en segundos.
 - **`ios/ElImpostor/`**: app. `JuegoStore` (`@Observable`, MainActor) envuelve el reductor y guarda
   en UserDefaults tras cada acción. `RaizView` hace `switch fase` (sin NavigationStack).
-  `Pantalla` es el marco común (cabecera 56 pt, contenido, pie con Liquid Glass). Estilos en
-  `Design/` (`.primario` 56 pt ámbar, `.secundario` 48 pt, tarjetas, `LogoImpostor` vectorial).
+  `Pantalla` es el marco común (cabecera 56 pt, contenido, pie). Estilos en `Design/`
+  (`.primario` cápsula negra 56 pt, `.borde`, `.secundario`, tarjetas blancas, `LogoImpostor`).
+  `TarjetaModal` + `ModalSobreFondo` para acusación y resultado; `AjustesView` usa `List` nativa.
   `CartaJugadorView` implementa el gesto de mantener con `DragGesture(minimumDistance: 0)` y se
-  oculta al perder foco. Tipografía SF Rounded escalada con Dynamic Type (tope accessibility2).
+  oculta al perder foco. Tipografía SF Pro escalada con Dynamic Type (tope accessibility2).
   Textos como `LocalizedStringKey` literales en español; catálogo `Localizable.xcstrings` base es-MX.
-- **Ícono**: `Resources/AppIcon.icon` (Icon Composer, Liquid Glass, capas SVG sombrero + lentes)
-  y `AppIcon.appiconset` con PNG 1024 de respaldo. Fuente vectorial: `public/favicon.svg`.
+- **Ícono**: `Resources/AppIcon.icon` (Icon Composer, Liquid Glass, capas SVG negras sobre papel)
+  y `AppIcon.appiconset` con PNG 1024 de respaldo. Geometría: `public/favicon.svg`.
 - **Banco de palabras**: la app referencia `../data/words.es-MX.json` como recurso; no se copia.
 - **Verificación solo por CLI** (Xcode 27 ya no trae Simulator.app; el panel de simulador de
   Claude Code Desktop no lo soporta): `xcodebuild test` (unit + UI) y `ios/scripts/capturas.sh`,
@@ -144,8 +156,9 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   depuración (solo Debug): `--reiniciar`, `--fase <inicio|como-jugar|ajustes>`, `--mostrar-carta`.
 - **UI tests** (`ElImpostorUITests/FlujoUITests`): partida completa con el gesto, cancelar ronda,
   persistencia al relanzar. Los identificadores de accesibilidad son la API de los tests.
-- **Gotchas**: el vidrio (`glassEffect`) ignora `.opacity` del ancestro, por eso el estado
-  deshabilitado cambia colores y quita el vidrio. `UserDefaults` no es `Sendable` en el SDK 27
+- **Gotchas**: el vidrio (`glassEffect`) ignora `.opacity` del ancestro. Un
+  `accessibilityIdentifier` en una tarjeta se hereda a su único botón salvo que la tarjeta sea
+  `accessibilityElement(children: .contain)`. `UserDefaults` no es `Sendable` en el SDK 27
   (`@unchecked`). El target de UI tests necesita `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated`.
   `xcode-select` debe apuntar a Xcode (`sudo xcode-select -s /Applications/Xcode.app`) o exportar
   `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.

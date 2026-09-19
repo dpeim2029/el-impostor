@@ -12,63 +12,86 @@ struct ResultadoView: View {
             let plural = impostores.count > 1
             let ganaron = resultado.ganaronCiviles
 
-            Pantalla(titulo: "Resultado") {
-                TarjetaRevelacion(
-                    simbolo: ganaron ? "party.popper.fill" : "theatermasks.fill",
-                    tinte: ganaron ? .civil : .impostor,
-                    veredicto: veredicto(ganaron: ganaron, plural: plural)
-                )
-                .sensoryFeedback(ganaron ? .success : .warning, trigger: ronda.acusaciones)
-                .accessibilityIdentifier("veredicto")
-
-                VStack(alignment: .leading, spacing: 8) {
-                    EtiquetaSeccion(texto: "Palabra")
-                    HStack(spacing: 10) {
-                        Text(ronda.palabra.texto)
-                            .font(.encabezadoMedio)
-                            .minimumScaleFactor(0.7)
-                        Insignia(texto: ronda.palabra.categoriaNombre, emoji: ronda.palabra.categoriaEmoji, tinte: .textoApagado)
-                    }
-                    if store.estado.ajustes.conPista {
-                        Text("Pista: **\(ronda.palabra.pista)**")
-                            .font(.apoyo)
-                            .foregroundStyle(Color.textoApagado)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .tarjeta()
-
-                VStack(alignment: .leading, spacing: 10) {
-                    EtiquetaSeccion(texto: plural ? "Impostores" : "Impostor")
-                    ForEach(impostores, id: \.self) { id in
-                        let atrapado = resultado.atrapados.contains(id)
-                        HStack(spacing: 8) {
-                            Image(systemName: "theatermasks.fill")
-                                .foregroundStyle(Color.impostor)
-                            Text(store.nombre(id))
-                                .font(.fila)
-                                .lineLimit(1)
-                            Spacer()
-                            Insignia(
-                                texto: atrapado ? "Atrapado" : "Se escapó",
-                                relleno: atrapado ? .civil : .impostor
-                            )
-                            .foregroundStyle(atrapado ? Color.civilTexto : Color.impostorTexto)
+            ModalSobreFondo {
+                fondo
+            } tarjeta: {
+                TarjetaModal(
+                    titulo: veredicto(ganaron: ganaron, plural: plural),
+                    subtitulo: ganaron ? "Los civiles ganan esta ronda." : (plural ? "Los impostores ganan esta ronda." : "El impostor gana esta ronda.")
+                ) {
+                    TileIcono(color: ganaron ? .verde : .rojo) {
+                        if ganaron {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 40, weight: .bold))
+                                .foregroundStyle(.white)
+                        } else {
+                            LogoImpostor(color: .white).frame(width: 52, height: 52)
                         }
                     }
+                } detalle: {
+                    VStack(spacing: 0) {
+                        FilaDetalle(etiqueta: "Palabra") {
+                            Text("\(ronda.palabra.texto) \(ronda.palabra.categoriaEmoji)")
+                                .font(.fila)
+                                .foregroundStyle(Color.tinta)
+                        }
+                        if store.estado.ajustes.conPista {
+                            Rectangle().fill(Color.separador).frame(height: 1)
+                            FilaDetalle(etiqueta: "Pista") {
+                                Text(ronda.palabra.pista)
+                                    .font(.fila)
+                                    .foregroundStyle(Color.tinta)
+                            }
+                        }
+                        ForEach(impostores, id: \.self) { id in
+                            let atrapado = resultado.atrapados.contains(id)
+                            Rectangle().fill(Color.separador).frame(height: 1)
+                            FilaDetalle(etiqueta: "Impostor") {
+                                Text(store.nombre(id))
+                                    .font(.fila)
+                                    .foregroundStyle(Color.tinta)
+                                    .lineLimit(1)
+                                PastillaEstado(
+                                    texto: atrapado ? "Atrapado" : "Se escapó",
+                                    relleno: atrapado ? .verdeSuave : .rojoSuave,
+                                    color: atrapado ? .verdeTexto : .rojoTexto
+                                )
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 4)
+                    .background(Color.papel, in: .rect(cornerRadius: 18))
+                    .padding(.top, 8)
+                } botones: {
+                    Button("Otra ronda") { store.enviar(.otraRonda) }
+                        .buttonStyle(.primario)
+                        .accessibilityIdentifier("otraRonda")
+                    Button("Ajustes") { store.enviar(.cancelarRonda) }
+                        .buttonStyle(.borde)
+                        .accessibilityIdentifier("jugadoresYAjustes")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .tarjeta()
-            } pie: {
-                Button("Otra ronda") { store.enviar(.otraRonda) }
-                    .buttonStyle(.primario)
-                    .accessibilityIdentifier("otraRonda")
-                Button("Jugadores y ajustes") { store.enviar(.cancelarRonda) }
-                    .buttonStyle(.secundario)
-                    .accessibilityIdentifier("jugadoresYAjustes")
+                .sensoryFeedback(ganaron ? .success : .warning, trigger: ronda.acusaciones)
+                .accessibilityIdentifier("veredicto")
             }
+        }
+    }
+
+    /// La lista de jugadores, difuminada detrás de la tarjeta.
+    private var fondo: some View {
+        Pantalla(titulo: "Resultado") {
+            GrupoBlanco {
+                ForEach(Array(store.estado.jugadores.enumerated()), id: \.element.id) { indice, jugador in
+                    if indice > 0 { Separador() }
+                    HStack {
+                        Text(jugador.nombre).font(.fila)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .frame(minHeight: 56)
+                }
+            }
+            .padding(.top, 60)
         }
     }
 

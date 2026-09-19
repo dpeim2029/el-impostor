@@ -1,9 +1,8 @@
 import SwiftUI
 import UIKit
 
-// Escala tipográfica. La app usa SF Rounded (`.fontDesign(.rounded)` en la raíz) y diferencia
-// jerarquías por peso y tamaño, como la web con Geist. Los tamaños escalan con Dynamic Type
-// hasta el tope que fija la app (ver `Tipografia.topeDeTamano`).
+// Escala tipográfica. SF Pro con pesos fuertes; los títulos y nombres van en mayúsculas (se aplica
+// con `.textCase(.uppercase)` en la vista). Los tamaños escalan con Dynamic Type hasta el tope.
 enum Tipografia {
     /// Tamaños de accesibilidad más grandes rompen las cartas y los botones de una sola línea.
     static let topeDeTamano = DynamicTypeSize.accessibility2
@@ -19,26 +18,30 @@ enum Tipografia {
 }
 
 extension Font {
-    /// Título de la app en el inicio.
-    static var tituloApp: Font { .system(size: Tipografia.escalado(44, como: .largeTitle), weight: .heavy) }
-    /// Nombre del jugador o encabezado grande de pantalla.
-    static var encabezado: Font { .system(size: Tipografia.escalado(34, como: .largeTitle), weight: .heavy) }
-    /// Encabezado mediano (¿Quién es el impostor?, veredicto).
+    /// "EL IMPOSTOR" en el inicio.
+    static var tituloApp: Font { .system(size: Tipografia.escalado(58, como: .largeTitle), weight: .black) }
+    /// Nombre del jugador en mayúsculas (reparto, ronda).
+    static var nombre: Font { .system(size: Tipografia.escalado(44, como: .largeTitle), weight: .black) }
+    /// Encabezado mediano (¿Quién es el impostor?).
     static var encabezadoMedio: Font { .system(size: Tipografia.escalado(28, como: .title1), weight: .heavy) }
     /// La palabra secreta en la carta.
-    static var palabra: Font { .system(size: Tipografia.escalado(40, como: .largeTitle), weight: .heavy) }
-    /// La pista lejana.
-    static var pista: Font { .system(size: Tipografia.escalado(24, como: .title2), weight: .bold) }
-    /// Título de sección.
-    static var seccion: Font { .system(size: Tipografia.escalado(18, como: .headline), weight: .bold) }
+    static var palabra: Font { .system(size: Tipografia.escalado(56, como: .largeTitle), weight: .black) }
+    /// "ERES EL IMPOSTOR" en la carta.
+    static var impostor: Font { .system(size: Tipografia.escalado(36, como: .largeTitle), weight: .black) }
+    /// Título de una tarjeta modal.
+    static var modalTitulo: Font { .system(size: Tipografia.escalado(30, como: .title1), weight: .bold) }
+    /// Título de una hoja.
+    static var hojaTitulo: Font { .system(size: Tipografia.escalado(22, como: .title2), weight: .bold) }
     /// Etiqueta de botón principal.
-    static var boton: Font { .system(size: Tipografia.escalado(18, como: .headline), weight: .semibold) }
-    /// Filas y botones secundarios.
+    static var boton: Font { .system(size: Tipografia.escalado(17, como: .headline), weight: .semibold) }
+    /// Filas destacadas.
     static var fila: Font { .system(size: Tipografia.escalado(17, como: .body), weight: .semibold) }
     /// Texto normal.
     static var cuerpo: Font { .system(size: Tipografia.escalado(17, como: .body)) }
     /// Texto de apoyo.
-    static var apoyo: Font { .system(size: Tipografia.escalado(14, como: .footnote)) }
+    static var apoyo: Font { .system(size: Tipografia.escalado(15, como: .subheadline)) }
     /// Etiquetas pequeñas en mayúsculas.
-    static var etiqueta: Font { .system(size: Tipografia.escalado(12, como: .caption1), weight: .semibold) }
+    static var etiqueta: Font { .system(size: Tipografia.escalado(13, como: .caption1), weight: .semibold) }
+    /// Texto dentro de una pastilla.
+    static var pastilla: Font { .system(size: Tipografia.escalado(16, como: .callout), weight: .semibold) }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Marco común de todas las pantallas: cabecera opcional (regresar, título, acción), contenido y
-/// pie flotante con las acciones principales.
+/// Marco común de las pantallas de juego: cabecera opcional (regresar, título, acción), contenido y
+/// pie con las acciones principales.
 struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
     var titulo: LocalizedStringKey?
     var alRegresar: (() -> Void)?
@@ -48,14 +48,17 @@ struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
         .frame(maxWidth: 448)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .safeAreaBar(edge: .bottom) {
-            GlassEffectContainer(spacing: 8) {
-                VStack(spacing: 8) {
+            if Pie.self != EmptyView.self {
+                VStack(spacing: 10) {
                     pie()
                 }
+                .padding(.horizontal, 22)
+                .padding(.top, 10)
+                .padding(.bottom, 6)
+                .frame(maxWidth: 448)
+                .frame(maxWidth: .infinity)
+                .background(Color.papel)
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
-            .frame(maxWidth: 448)
         }
     }
 
@@ -69,17 +72,18 @@ struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
                 .accessibilityLabel("Regresar")
                 .accessibilityIdentifier("regresar")
             } else {
-                Color.clear.frame(width: 40, height: 40)
+                Color.clear.frame(width: 38, height: 38)
             }
             Text(titulo ?? "")
                 .font(.fila)
+                .foregroundStyle(Color.tinta)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity)
             accion()
-                .frame(width: 40, height: 40, alignment: .trailing)
+                .frame(width: 38, height: 38, alignment: .trailing)
         }
         .frame(height: 56)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 16)
     }
 
     private var cuerpo: some View {
@@ -87,7 +91,7 @@ struct Pantalla<Contenido: View, Accion: View, Pie: View>: View {
             contenido()
         }
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 22)
         .padding(.bottom, 16)
     }
 }

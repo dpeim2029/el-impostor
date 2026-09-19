@@ -1,64 +1,67 @@
 import SwiftUI
 
-/// Panel redondeado con relleno translúcido y borde fino, base de tarjetas y filas.
-struct TarjetaModifier: ViewModifier {
-    var relleno: Color
-    var borde: Color?
+/// Tarjeta blanca con sombra suave; `elevada` para la carta abierta y las modales.
+struct TarjetaBlancaModifier: ViewModifier {
     var radio: CGFloat
-    var grosor: CGFloat
-    var discontinuo: Bool
+    var elevada: Bool
 
     func body(content: Content) -> some View {
         content
-            .background(relleno, in: .rect(cornerRadius: radio))
-            .overlay {
-                if let borde {
-                    RoundedRectangle(cornerRadius: radio)
-                        .strokeBorder(
-                            borde,
-                            style: StrokeStyle(lineWidth: grosor, dash: discontinuo ? [8, 6] : [])
-                        )
-                }
-            }
+            .background(Color.tarjeta, in: .rect(cornerRadius: radio))
+            .shadow(color: .black.opacity(elevada ? 0.18 : 0.08), radius: elevada ? 35 : 20, y: elevada ? 16 : 8)
+            .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
     }
 }
 
 extension View {
-    func tarjeta(
-        relleno: Color = Color.tarjeta.opacity(0.7),
-        borde: Color? = nil,
-        radio: CGFloat = 20,
-        grosor: CGFloat = 1,
-        discontinuo: Bool = false
-    ) -> some View {
-        modifier(TarjetaModifier(relleno: relleno, borde: borde, radio: radio, grosor: grosor, discontinuo: discontinuo))
+    func tarjetaBlanca(radio: CGFloat = 30, elevada: Bool = false) -> some View {
+        modifier(TarjetaBlancaModifier(radio: radio, elevada: elevada))
     }
 }
 
-/// Pastilla con borde: categoría de la palabra, estado del impostor.
-struct Insignia: View {
-    var texto: String
-    var emoji: String? = nil
-    var tinte: Color = .texto
-    var relleno: Color? = nil
+/// Pastilla de texto (categoría, pista, estado).
+struct Pastilla: View {
+    var contenido: Text
+    var relleno: Color = .rellenoClaro
+    var color: Color = .tinta
 
     var body: some View {
-        HStack(spacing: 6) {
-            if let emoji {
-                Text(emoji)
-            }
-            Text(texto)
-        }
-        .font(.apoyo.weight(.semibold))
-        .foregroundStyle(relleno == nil ? tinte : Color.texto)
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
-        .background(relleno ?? .clear, in: .capsule)
-        .overlay {
-            if relleno == nil {
-                Capsule().strokeBorder(tinte.opacity(0.4), lineWidth: 1)
-            }
-        }
+        contenido
+            .font(.pastilla)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(relleno, in: .capsule)
+    }
+}
+
+/// Pastilla chica de estado (Atrapado / Se escapó).
+struct PastillaEstado: View {
+    var texto: LocalizedStringKey
+    var relleno: Color
+    var color: Color
+
+    var body: some View {
+        Text(texto)
+            .font(.system(size: 12, weight: .bold))
+            .foregroundStyle(color)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(relleno, in: .capsule)
+    }
+}
+
+/// Cuadro de color con un ícono, para las tarjetas modales.
+struct TileIcono<Contenido: View>: View {
+    var color: Color
+    @ViewBuilder var contenido: () -> Contenido
+
+    var body: some View {
+        contenido()
+            .frame(width: 84, height: 84)
+            .background(color, in: .rect(cornerRadius: 24))
     }
 }
 
@@ -66,8 +69,8 @@ struct Insignia: View {
 struct NumeroCirculo: View {
     var numero: Int
     var tamano: CGFloat = 28
-    var relleno: Color = .secundario
-    var color: Color = .texto
+    var relleno: Color = .rellenoClaro
+    var color: Color = .textoSecundario
 
     var body: some View {
         Text("\(numero)")
@@ -78,7 +81,7 @@ struct NumeroCirculo: View {
     }
 }
 
-/// Etiqueta pequeña en mayúsculas para encabezar un bloque.
+/// Etiqueta pequeña en mayúsculas.
 struct EtiquetaSeccion: View {
     var texto: LocalizedStringKey
 
@@ -87,6 +90,29 @@ struct EtiquetaSeccion: View {
             .font(.etiqueta)
             .textCase(.uppercase)
             .tracking(1)
-            .foregroundStyle(Color.textoApagado)
+            .foregroundStyle(Color.textoSecundario)
+    }
+}
+
+/// Contenedor blanco redondeado para filas, al estilo de las listas agrupadas de iOS.
+struct GrupoBlanco<Contenido: View>: View {
+    @ViewBuilder var contenido: () -> Contenido
+
+    var body: some View {
+        VStack(spacing: 0) {
+            contenido()
+        }
+        .background(Color.tarjeta, in: .rect(cornerRadius: 22))
+        .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
+    }
+}
+
+/// Separador de filas dentro de un `GrupoBlanco`.
+struct Separador: View {
+    var body: some View {
+        Rectangle()
+            .fill(Color.separador)
+            .frame(height: 1)
+            .padding(.leading, 16)
     }
 }

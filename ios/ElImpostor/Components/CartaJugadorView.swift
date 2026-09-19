@@ -1,22 +1,21 @@
 import SwiftUI
 import ImpostorCore
 
-/// La carta secreta. El contenido va arriba y la zona para el dedo abajo, así la mano nunca tapa el
-/// texto. Se muestra solo mientras el jugador mantiene presionada la zona y se oculta al soltar,
-/// al cambiar de app o al recibir una llamada.
+/// La carta secreta: un sobre blanco, igual para todos, que se abre mientras el jugador mantiene el
+/// dedo en la zona de abajo. Abierta, es menta con la palabra (civil) o coral con "Eres el impostor"
+/// y su pista. Se cierra al soltar, al cambiar de app o al recibir una llamada.
 struct CartaJugadorView: View {
+    var nombre: String
     var rol: Rol
     var palabra: Palabra
     var conPista: Bool
+    @Binding var visible: Bool
     var alVer: () -> Void
 
-    @State private var visible = false
     @Environment(\.scenePhase) private var scenePhase
 
-    private var tinte: Color { rol == .impostor ? .impostor : .civil }
-
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 14) {
             panel
             zonaDelDedo
         }
@@ -26,73 +25,76 @@ struct CartaJugadorView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
             visible = false
         }
-        .sensoryFeedback(.impact(weight: .medium), trigger: visible) { _, nueva in nueva }
+        .sensoryFeedback(.impact(weight: .medium), trigger: visible)
         .onAppear {
             if ArgumentosDeDepuracion.mostrarCarta { mostrar() }
         }
     }
 
+    private var fondo: Color {
+        guard visible else { return .tarjeta }
+        return rol == .impostor ? .coral : .menta
+    }
+
     private var panel: some View {
         ZStack {
             if visible {
-                contenido
+                abierta
                     .transition(.scale(scale: 0.94).combined(with: .opacity))
             } else {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 36, weight: .semibold))
-                    .foregroundStyle(Color.textoApagado)
-                    .accessibilityLabel("Carta oculta")
+                cerrada
                     .transition(.opacity)
             }
         }
         .frame(maxWidth: .infinity)
-        .frame(minHeight: 256)
-        .padding(24)
-        .tarjeta(
-            relleno: visible ? tinte.opacity(rol == .impostor ? 0.15 : 0.10) : Color.tarjeta.opacity(0.7),
-            borde: visible ? tinte.opacity(0.6) : Color.borde,
-            radio: 28,
-            grosor: 2,
-            discontinuo: !visible
-        )
-        .animation(.spring(duration: 0.3, bounce: 0.2), value: visible)
+        .frame(minHeight: visible ? 330 : 250)
+        .padding(.horizontal, 22)
+        .padding(.vertical, 28)
+        .background(fondo, in: .rect(cornerRadius: 30))
+        .shadow(color: .black.opacity(visible ? 0.18 : 0.08), radius: visible ? 35 : 20, y: visible ? 16 : 8)
+        .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
+        .animation(.spring(duration: 0.35, bounce: 0.25), value: visible)
         .accessibilityIdentifier("cartaPanel")
     }
 
+    private var cerrada: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "envelope")
+                .font(.system(size: 56, weight: .light))
+                .foregroundStyle(Color.textoTerciario)
+            Text("Solo para \(nombre)")
+                .font(.apoyo)
+                .foregroundStyle(Color.textoSecundario)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Carta cerrada, solo para \(nombre)")
+    }
+
     @ViewBuilder
-    private var contenido: some View {
+    private var abierta: some View {
         VStack(spacing: 16) {
             if rol == .impostor {
+                LogoImpostor(color: .rojo)
+                    .frame(width: 44, height: 44)
                 Text("Eres el impostor")
-                    .font(.palabra)
-                    .foregroundStyle(Color.impostor)
+                    .font(.impostor)
+                    .textCase(.uppercase)
+                    .foregroundStyle(Color.rojo)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
                 if conPista {
-                    VStack(spacing: 2) {
-                        EtiquetaSeccion(texto: "Pista")
-                        Text(palabra.pista)
-                            .font(.pista)
-                            .foregroundStyle(Color.texto)
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 12)
-                    .background(Color.fondo.opacity(0.6), in: .rect(cornerRadius: 16))
-                    Text("Escucha y no repitas la pista.")
-                        .font(.apoyo)
-                        .foregroundStyle(Color.textoApagado)
-                } else {
-                    Text("Escucha y finge que sabes la palabra.")
-                        .font(.apoyo)
-                        .foregroundStyle(Color.textoApagado)
+                    Pastilla(contenido: Text("Pista: **\(palabra.pista)**"), relleno: Color.white.opacity(0.85))
                 }
             } else {
-                Insignia(texto: palabra.categoriaNombre, emoji: palabra.categoriaEmoji, tinte: .civil)
+                Image(systemName: "eye")
+                    .font(.system(size: 40, weight: .medium))
+                    .foregroundStyle(Color.tinta)
                 Text(palabra.texto)
                     .font(.palabra)
-                    .foregroundStyle(Color.texto)
+                    .foregroundStyle(Color.tinta)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.6)
+                Pastilla(contenido: Text("\(palabra.categoriaEmoji) \(palabra.categoriaNombre)"), relleno: Color.white.opacity(0.8))
             }
         }
         .accessibilityElement(children: .combine)
@@ -101,19 +103,15 @@ struct CartaJugadorView: View {
     private var zonaDelDedo: some View {
         HStack(spacing: 12) {
             Image(systemName: "hand.tap.fill")
-                .font(.system(size: 26, weight: .semibold))
+                .font(.system(size: 24, weight: .semibold))
             Text(visible ? "Suelta para ocultar" : "Mantén el dedo aquí")
                 .font(.boton)
         }
-        .foregroundStyle(visible ? Color.ambarTexto : Color.texto)
+        .foregroundStyle(visible ? Color.white : Color.tinta)
         .frame(maxWidth: .infinity)
-        .frame(height: 96)
-        .tarjeta(
-            relleno: visible ? Color.ambar : Color.ambar.opacity(0.15),
-            borde: visible ? Color.ambar : Color.ambar.opacity(0.5),
-            radio: 28,
-            grosor: 2
-        )
+        .frame(height: 84)
+        .background(visible ? Color.tinta : Color.clear, in: .rect(cornerRadius: 28))
+        .overlay(RoundedRectangle(cornerRadius: 28).strokeBorder(Color.tinta, lineWidth: 2))
         .contentShape(.rect(cornerRadius: 28))
         .gesture(
             DragGesture(minimumDistance: 0)

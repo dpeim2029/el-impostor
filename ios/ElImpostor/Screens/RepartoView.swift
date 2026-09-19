@@ -32,25 +32,30 @@ private struct RepartoJugadorView: View {
     var alSiguiente: () -> Void
 
     @State private var vista = false
+    @State private var visible = false
 
     var body: some View {
         Pantalla(titulo: "\(posicion) de \(total)", desplazable: false) {
-            VStack(spacing: 4) {
-                Text("Pásale el teléfono a")
-                    .font(.apoyo)
-                    .foregroundStyle(Color.textoApagado)
+            VStack(spacing: 8) {
+                EtiquetaSeccion(texto: "Pásale el teléfono a")
                 Text(nombre)
-                    .font(.encabezado)
+                    .font(.nombre)
+                    .textCase(.uppercase)
+                    .foregroundStyle(Color.tinta)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
-                    .minimumScaleFactor(0.7)
+                    .minimumScaleFactor(0.6)
                     .accessibilityIdentifier("nombreEnTurno")
             }
-            .padding(.top, 8)
+            .padding(.top, 6)
+            // Mientras la carta está abierta, lo demás se difumina para concentrar la mirada.
+            .blur(radius: visible ? 9 : 0)
+            .opacity(visible ? 0.55 : 1)
+            .animation(.easeOut(duration: 0.25), value: visible)
 
             Spacer(minLength: 0)
 
-            CartaJugadorView(rol: rol, palabra: palabra, conPista: conPista) {
+            CartaJugadorView(nombre: nombre, rol: rol, palabra: palabra, conPista: conPista, visible: $visible) {
                 vista = true
             }
 
