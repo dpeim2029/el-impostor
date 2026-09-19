@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Llave de App Store Connect (no versionar)
+ios/.asc.env

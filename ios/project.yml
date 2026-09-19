@@ -19,7 +19,7 @@ settings:
     SWIFT_APPROACHABLE_CONCURRENCY: YES
     TARGETED_DEVICE_FAMILY: "1"
     CODE_SIGN_STYLE: Automatic
-    # Personal Team de Daniel mientras llega la cuenta de pago; al aprobarse se cambia por el Team ID de esa cuenta.
+    # Equipo de Daniel (persona física). Al transferir la app a la empresa se cambia por el Team ID nuevo.
     DEVELOPMENT_TEAM: 976FLL49MH
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
     SWIFT_EMIT_LOC_STRINGS: YES
