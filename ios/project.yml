@@ -76,12 +76,27 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: mx.elimpostor.app.tests
 
+  ElImpostorUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: ElImpostorUITests
+    dependencies:
+      - target: ElImpostor
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: mx.elimpostor.app.uitests
+        TEST_TARGET_NAME: ElImpostor
+        # XCTestCase es nonisolated; el aislamiento MainActor por defecto no aplica aquí.
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+
 schemes:
   ElImpostor:
     build:
       targets:
         ElImpostor: all
         ElImpostorTests: [test]
+        ElImpostorUITests: [test]
     run:
       config: Debug
     test:
@@ -89,6 +104,7 @@ schemes:
       gatherCoverageData: false
       targets:
         - ElImpostorTests
+        - ElImpostorUITests
         - package: ImpostorCore/ImpostorCoreTests
     archive:
       config: Release
