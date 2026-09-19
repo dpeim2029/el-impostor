@@ -16,15 +16,32 @@ struct AjustesView: View {
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    Text("Nueva partida")
+                        .font(.system(size: Tipografia.escalado(34, como: .largeTitle), weight: .black))
+                        .textCase(.uppercase)
+                        .tracking(-1)
+                        .foregroundStyle(Color.tinta)
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+                        .listRowSeparator(.hidden)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier("tituloNuevaPartida")
+                }
+                .listSectionSpacing(0)
                 seccionJugadores
                 seccionImpostores
                 seccionCategorias
             }
             .listStyle(.insetGrouped)
+            .listRowSeparator(.hidden)
             .scrollContentBackground(.hidden)
             .background(Color.papel)
-            .navigationTitle("Nueva partida")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar(.visible, for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button { store.enviar(.ir(.inicio)) } label: {
@@ -80,6 +97,7 @@ struct AjustesView: View {
                 FilaJugadorView(jugador: jugador, posicion: indice + 1) { nombre in
                     store.enviar(.renombrarJugador(id: jugador.id, nombre: nombre))
                 }
+                .listRowBackground(FondoDeSeccion(marco: .lila, posicion: .de(indice: indice, total: jugadores.count + (lleno ? 0 : 1))))
             }
             .onDelete { offsets in
                 for indice in offsets.sorted(by: >) where jugadores.indices.contains(indice) {
@@ -92,8 +110,8 @@ struct AjustesView: View {
                 HStack(spacing: 12) {
                     Button(action: agregar) {
                         Image(systemName: "plus.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundStyle(Color.verde)
+                            .font(.system(size: 26))
+                            .foregroundStyle(Color.tinta)
                     }
                     .buttonStyle(.plain)
                     .disabled(nombreLimpio.isEmpty)
@@ -111,9 +129,10 @@ struct AjustesView: View {
                         }
                         .accessibilityIdentifier("nombreJugador")
                 }
+                .listRowBackground(FondoDeSeccion(marco: .lila, posicion: .de(indice: jugadores.count, total: jugadores.count + 1)))
             }
         } header: {
-            Text("Jugadores")
+            EncabezadoDeSeccion(texto: "Jugadores")
         } footer: {
             if lleno {
                 Text("Máximo 15 jugadores.")
@@ -164,8 +183,9 @@ struct AjustesView: View {
                 .disabled(!permiteDos)
                 .accessibilityIdentifier("impostores")
             }
+            .listRowBackground(FondoDeSeccion(marco: .durazno, posicion: .unica))
         } header: {
-            Text("Impostores")
+            EncabezadoDeSeccion(texto: "Impostores")
         } footer: {
             if !permiteDos {
                 Text("2 impostores a partir de \(Reglas.minJugadoresDosImpostores) jugadores.")
@@ -184,8 +204,9 @@ struct AjustesView: View {
                 .onChange(of: elegirCategorias) { _, activo in
                     if !activo { store.enviar(.setCategorias(ids: store.banco.idsDeCategorias)) }
                 }
+                .listRowBackground(FondoDeSeccion(marco: .amarillo, posicion: .primera))
             if elegirCategorias {
-                ForEach(store.categorias) { categoria in
+                ForEach(Array(store.categorias.enumerated()), id: \.element.id) { indice, categoria in
                     let activa = ajustes.categoriasActivas.contains(categoria.id)
                     Button {
                         store.enviar(.toggleCategoria(id: categoria.id))
@@ -207,14 +228,16 @@ struct AjustesView: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityAddTraits(activa ? [.isSelected] : [])
+                    .listRowBackground(FondoDeSeccion(marco: .amarillo, posicion: indice == store.categorias.count - 1 ? .ultima : .media))
                 }
             } else {
                 Text("Todas las categorías")
                     .font(.cuerpo)
                     .foregroundStyle(Color.textoSecundario)
+                    .listRowBackground(FondoDeSeccion(marco: .amarillo, posicion: .ultima))
             }
         } header: {
-            Text("Categorías")
+            EncabezadoDeSeccion(texto: "Categorías")
         } footer: {
             if elegirCategorias {
                 Text("\(ajustes.categoriasActivas.count) de \(store.categorias.count) activas")
@@ -241,7 +264,7 @@ struct FilaJugadorView: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            NumeroCirculo(numero: posicion, tamano: 24)
+            NumeroCirculo(numero: posicion, tamano: 26, relleno: .lila, color: .tinta)
             TextField("Nombre", text: $borrador)
                 .font(.cuerpo)
                 .textInputAutocapitalization(.words)

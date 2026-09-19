@@ -103,6 +103,7 @@ struct GrupoBlanco<Contenido: View>: View {
             contenido()
         }
         .background(Color.tarjeta, in: .rect(cornerRadius: 22))
+        .clipShape(.rect(cornerRadius: 22))
         .shadow(color: .black.opacity(0.04), radius: 1, y: 1)
     }
 }

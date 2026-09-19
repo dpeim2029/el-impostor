@@ -15,7 +15,7 @@ final class FlujoUITests: XCTestCase {
     func testPartidaCompleta() {
         // Inicio → Nueva partida
         app.buttons["jugar"].tap()
-        XCTAssertTrue(app.staticTexts["Nueva partida"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["tituloNuevaPartida"].waitForExistence(timeout: 3))
 
         // Sin jugadores el botón principal está deshabilitado
         let repartir = app.buttons["repartirCartas"]
@@ -87,7 +87,7 @@ final class FlujoUITests: XCTestCase {
         let confirmar = app.buttons["Cancelar la ronda"]
         XCTAssertTrue(confirmar.waitForExistence(timeout: 3))
         confirmar.tap()
-        XCTAssertTrue(app.staticTexts["Nueva partida"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["tituloNuevaPartida"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.textFields["jugador-Ana"].exists)
     }
 }

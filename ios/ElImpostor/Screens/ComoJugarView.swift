@@ -27,8 +27,7 @@ struct ComoJugarView: View {
                         Rectangle().fill(Color.rellenoClaro).frame(height: 1)
                     }
                     HStack(alignment: .top, spacing: 12) {
-                        NumeroCirculo(numero: indice + 1, tamano: 28, relleno: .tinta, color: .white)
-                            .padding(.top, 1)
+                        Calcomania(numero: indice + 1, color: Color.stickers[indice % Color.stickers.count])
                         Text(paso)
                             .font(.cuerpo)
                             .foregroundStyle(Color.tinta)

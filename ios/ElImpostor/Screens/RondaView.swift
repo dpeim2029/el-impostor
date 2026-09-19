@@ -42,6 +42,7 @@ struct RondaView: View {
                         }
                         .padding(.horizontal, 16)
                         .frame(minHeight: 52)
+                        .background(indice == 0 ? Color.amarillo : Color.clear)
                     }
                 }
             } accion: {

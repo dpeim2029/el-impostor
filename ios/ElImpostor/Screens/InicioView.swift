@@ -25,9 +25,10 @@ struct InicioView: View {
 
             VStack(alignment: .leading, spacing: 14) {
                 // Dos líneas con el interlineado apretado de un cartel.
-                VStack(alignment: .leading, spacing: -12) {
+                VStack(alignment: .leading, spacing: -8) {
                     Text("El")
                     Text("Impostor")
+                        .marcador(.amarillo)
                 }
                 .font(.tituloApp)
                 .textCase(.uppercase)
