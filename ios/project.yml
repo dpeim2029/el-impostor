@@ -19,7 +19,8 @@ settings:
     SWIFT_APPROACHABLE_CONCURRENCY: YES
     TARGETED_DEVICE_FAMILY: "1"
     CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: ""
+    # Personal Team de Daniel mientras llega la cuenta de pago; al aprobarse se cambia por el Team ID de esa cuenta.
+    DEVELOPMENT_TEAM: 976FLL49MH
     LOCALIZATION_PREFERS_STRING_CATALOGS: YES
     SWIFT_EMIT_LOC_STRINGS: YES
     STRING_CATALOG_GENERATE_SYMBOLS: YES
