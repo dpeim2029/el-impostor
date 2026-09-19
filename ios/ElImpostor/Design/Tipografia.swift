@@ -28,6 +28,8 @@ extension Font {
     static var palabra: Font { .system(size: Tipografia.escalado(56, como: .largeTitle), weight: .black) }
     /// "ERES EL IMPOSTOR" en la carta.
     static var impostor: Font { .system(size: Tipografia.escalado(36, como: .largeTitle), weight: .black) }
+    /// La pista del impostor, casi tan grande como la palabra del civil.
+    static var pista: Font { .system(size: Tipografia.escalado(40, como: .largeTitle), weight: .black) }
     /// Título de una tarjeta modal.
     static var modalTitulo: Font { .system(size: Tipografia.escalado(30, como: .title1), weight: .bold) }
     /// Título de una hoja.

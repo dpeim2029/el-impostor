@@ -83,7 +83,17 @@ struct CartaJugadorView: View {
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.7)
                 if conPista {
-                    Pastilla(contenido: Text("Pista: **\(palabra.pista)**"), relleno: Color.white.opacity(0.85))
+                    VStack(spacing: 2) {
+                        EtiquetaSeccion(texto: "Pista")
+                        Text(palabra.pista)
+                            .font(.pista)
+                            .foregroundStyle(Color.tinta)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.6)
+                    }
+                    .padding(.horizontal, 26)
+                    .padding(.vertical, 12)
+                    .background(Color.white.opacity(0.85), in: .rect(cornerRadius: 20))
                 }
             } else {
                 Image(systemName: "eye")
