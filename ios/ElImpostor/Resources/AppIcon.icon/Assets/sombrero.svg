@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-  <!-- Copa y ala del sombrero; geometría de public/favicon.svg escalada ×2 -->
-  <path d="M348 472 L384 248 Q512 184 640 248 L676 472 Z" fill="#111111"/>
-  <ellipse cx="512" cy="484" rx="292" ry="56" fill="#111111"/>
-</svg>

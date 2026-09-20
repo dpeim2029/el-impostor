@@ -104,7 +104,11 @@ implementado en la app iOS (la web todavía tiene el diseño anterior):
   la de votación en marco durazno (`MarcoDeColor` + `GrupoBlanco(radio: 16)`); el sobre cerrado
   lleva la calcomanía "SOLO PARA {NOMBRE}"; en las modales el veredicto lleva marcador menta o
   coral y los detalles del resultado van en marco amarillo. Colores en `Design/Stickers.swift`.
-- Ícono: sombrero y lentes negros sobre papel (Liquid Glass en `AppIcon.icon`).
+- Ícono (decidido el 20-sep-2026): ilustración a todo color, tres cartas (dos amarillas con caras
+  riendo y una blanca con sombrero y lentes) sobre morado con confeti. Es una imagen plana:
+  `AppIcon.icon` tiene una sola capa PNG sin vidrio; el PNG 1024 de respaldo va en `AppIcon.appiconset`.
+  Los íconos de la web (`public/favicon.svg`, `pwa-*.png`, `apple-touch-icon.png`) siguen con el
+  sombrero anterior.
 - Textos cortos; "tú"/"ustedes", nunca "vosotros". Mantener la pantalla encendida en la partida.
 
 ## Plan acordado hacia adelante
@@ -156,8 +160,9 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   `CartaJugadorView` implementa el gesto de mantener con `DragGesture(minimumDistance: 0)` y se
   oculta al perder foco. Tipografía SF Pro escalada con Dynamic Type (tope accessibility2).
   Textos como `LocalizedStringKey` literales en español; catálogo `Localizable.xcstrings` base es-MX.
-- **Ícono**: `Resources/AppIcon.icon` (Icon Composer, Liquid Glass, capas SVG negras sobre papel)
-  y `AppIcon.appiconset` con PNG 1024 de respaldo. Geometría: `public/favicon.svg`.
+- **Ícono**: `Resources/AppIcon.icon` (Icon Composer, una capa `Assets/icono.png` plana, sin vidrio ni
+  sombra) y `AppIcon.appiconset` con el mismo PNG 1024. La fuente es una ilustración, no un SVG; para
+  App Store debe ir cuadrada, opaca y sin esquinas redondeadas (iOS aplica la máscara).
 - **Banco de palabras**: la app referencia `../data/words.es-MX.json` como recurso; no se copia.
 - **Verificación solo por CLI** (Xcode 27 ya no trae Simulator.app; el panel de simulador de
   Claude Code Desktop no lo soporta): `xcodebuild test` (unit + UI) y `ios/scripts/capturas.sh`,

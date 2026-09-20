@@ -54,6 +54,8 @@ targets:
         UILaunchScreen:
           UIColorName: Papel
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        # Solo vertical: App Store Connect exige esta clave si no se soportan todas las orientaciones.
+        UIRequiresFullScreen: true
         UIUserInterfaceStyle: Light
         ITSAppUsesNonExemptEncryption: false
         LSRequiresIPhoneOS: true
