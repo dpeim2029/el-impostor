@@ -16,14 +16,17 @@ mkdir -p "$SALIDA"
 xcrun simctl boot "$DISPOSITIVO" 2>/dev/null || true
 xcrun simctl bootstatus "$DISPOSITIVO" -b >/dev/null
 xcrun simctl install "$DISPOSITIVO" "$APP"
+# Barra de estado limpia, como en las capturas de la App Store.
+xcrun simctl status_bar "$DISPOSITIVO" override --time 9:41 --batteryState discharging --batteryLevel 100 \
+  --cellularMode active --cellularBars 4 --wifiBars 3 --dataNetwork wifi
 # UserDefaults vive en el contenedor de la app; `defaults write <bundle>` iría al dominio global del simulador.
 CONTENEDOR="$(xcrun simctl get_app_container "$DISPOSITIVO" "$BUNDLE" data)"
 DOMINIO="$CONTENEDOR/Library/Preferences/$BUNDLE"
 
-JUGADORES='[{"id":"j1","nombre":"Ana"},{"id":"j2","nombre":"Luis"},{"id":"j3","nombre":"Sofi"},{"id":"j4","nombre":"Beto"}]'
+JUGADORES='[{"id":"j1","nombre":"Ana"},{"id":"j2","nombre":"Luis"},{"id":"j3","nombre":"Sofi"},{"id":"j4","nombre":"Beto"},{"id":"j5","nombre":"Abuela Rosa"},{"id":"j6","nombre":"Tío Memo"}]'
 AJUSTES='{"numImpostores":1,"conPista":true,"categoriasActivas":["animales","comida","frutas-verduras","casa","escuela","profesiones","deportes","transporte","lugares","naturaleza","fiestas","musica"]}'
 PALABRA='{"texto":"Pizza","pista":"Italia","categoriaId":"comida","categoriaNombre":"Comida","categoriaEmoji":"🌮"}'
-ROLES='{"j1":"civil","j2":"impostor","j3":"civil","j4":"civil"}'
+ROLES='{"j1":"civil","j2":"impostor","j3":"civil","j4":"civil","j5":"civil","j6":"civil"}'
 
 # estado <fase> <indiceReparto> <acusaciones-json>
 estado() {
@@ -31,7 +34,7 @@ estado() {
   if [[ "$fase" == "inicio" ]]; then
     echo "{\"fase\":\"inicio\",\"jugadores\":$JUGADORES,\"ajustes\":$AJUSTES,\"ronda\":null,\"indiceReparto\":0,\"palabrasUsadas\":[]}"
   else
-    echo "{\"fase\":\"$fase\",\"jugadores\":$JUGADORES,\"ajustes\":$AJUSTES,\"ronda\":{\"palabra\":$PALABRA,\"roles\":$ROLES,\"orden\":[\"j3\",\"j4\",\"j1\",\"j2\"],\"acusaciones\":$acusaciones,\"vuelta\":1},\"indiceReparto\":$indice,\"palabrasUsadas\":[\"comida:Pizza\"]}"
+    echo "{\"fase\":\"$fase\",\"jugadores\":$JUGADORES,\"ajustes\":$AJUSTES,\"ronda\":{\"palabra\":$PALABRA,\"roles\":$ROLES,\"orden\":[\"j3\",\"j4\",\"j5\",\"j6\",\"j1\",\"j2\"],\"acusaciones\":$acusaciones,\"vuelta\":1},\"indiceReparto\":$indice,\"palabrasUsadas\":[\"comida:Pizza\"]}"
   fi
 }
 
