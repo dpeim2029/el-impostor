@@ -199,7 +199,8 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   de X. **Nunca "Gratis" en nombre, subtítulo ni capturas** (regla 2.3.7).
 - Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max" ios/DerivedData/capturas-tienda`
   y luego `ios/scripts/capturas_tienda.py` (títulos por idioma en el script) → `ios/tienda/es-MX/`.
-- Pendiente: elegir build en la versión 1.0 y enviarla a revisión (publicación manual).
+- Versión 1.0 (build 4) enviada a revisión de la App Store el 23-sep-2026, con publicación manual:
+  al aprobarse queda en "Pendiente de liberación del desarrollador" hasta que Daniel la libere.
 
 ## Comandos web
 
