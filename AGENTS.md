@@ -179,6 +179,8 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   `xcode-select` debe apuntar a Xcode (`sudo xcode-select -s /Applications/Xcode.app`) o exportar
   `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`. Con XcodeGen + Xcode 27 locales, los
   targets de pruebas necesitan `GENERATE_INFOPLIST_FILE: YES` (el CI pasaba sin él).
+  `TARGETED_DEVICE_FAMILY: "1"` (solo iPhone) va en el target de la app: XcodeGen pone "1,2" a
+  nivel de target y tapa el valor del proyecto.
 - CI: `.github/workflows/ios.yml` (runner macOS, XcodeGen + swift test + xcodebuild test).
 
 ## Publicación (App Store Connect)
