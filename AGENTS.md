@@ -185,8 +185,9 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
 
 - App "El Impostor: Palabras", id `6814065408`, SKU `elimpostor-ios`, idioma principal es-MX.
 - `ios/scripts/asc.py`: cliente mínimo de la API (llave en `~/.appstoreconnect/private_keys/`,
-  IDs en `ios/.asc.env`, no versionado). `ios/scripts/publicar.sh` archiva y sube; subir antes
-  `CURRENT_PROJECT_VERSION` en `project.yml` (cada build necesita número nuevo).
+  IDs en `ios/.asc.env`, no versionado). `ios/scripts/publicar.sh` archiva y sube; el número de
+  build lo asigna Xcode al exportar (`manageAppVersionAndBuildNumber` en `ExportOptions.plist`), no
+  hace falta tocar `CURRENT_PROJECT_VERSION`.
 - TestFlight: grupo interno "Equipo" (Daniel) y externo "Familia y amigos" con link público
   https://testflight.apple.com/join/ZnsnKG1C (límite 200). Solo un build por versión puede estar
   en revisión beta a la vez; los siguientes de la misma versión se aprueban casi al instante.
