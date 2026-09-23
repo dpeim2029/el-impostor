@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 # Llave de App Store Connect (no versionar)
 ios/.asc.env
+__pycache__/

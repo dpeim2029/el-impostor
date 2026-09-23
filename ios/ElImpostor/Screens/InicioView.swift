@@ -70,6 +70,15 @@ struct InicioView: View {
             }
 
             Spacer(minLength: 8)
+        } pie: {
+            Link(destination: URL(string: "https://x.com/danielpeimbert")!) {
+                Text("Hecho por **@danielpeimbert**")
+                    .font(.apoyo)
+                    .foregroundStyle(Color.textoSecundario)
+                    .frame(minHeight: 44)
+            }
+            .accessibilityLabel("Hecho por Daniel Peimbert. Abre su perfil en X.")
+            .accessibilityIdentifier("credito")
         }
         .sheet(isPresented: mostrandoComoJugar) {
             ComoJugarView()

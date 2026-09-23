@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// El logo: sombrero de detective sobre unos lentes redondos. Misma geometría que `public/favicon.svg`
-/// (lienzo de 512), dibujada como vector para escalar sin pérdida.
+/// El logo: sombrero de detective sobre unos lentes redondos, en un lienzo de 512 (la geometría del
+/// favicon anterior), dibujado como vector para escalar sin pérdida.
 struct LogoImpostor: View {
     var color: Color = .tinta
 

@@ -72,6 +72,16 @@ export function Inicio() {
       </div>
 
       <AvisoInstalarIOS />
+
+      <a
+        href="https://x.com/danielpeimbert"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Hecho por Daniel Peimbert. Abre su perfil en X."
+        className="text-center text-sm text-muted-foreground"
+      >
+        Hecho por <span className="font-semibold">@danielpeimbert</span>
+      </a>
     </Pantalla>
   )
 }
