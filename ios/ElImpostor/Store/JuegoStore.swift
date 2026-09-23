@@ -15,7 +15,8 @@ final class JuegoStore {
         self.banco = banco
         self.almacen = almacen
         self.contexto = ContextoJuego(categorias: banco.categorias, rng: AleatoriaSistema())
-        self.estado = cargarEstado(almacen, categorias: banco.categorias)
+        // La región del iPhone decide las categorías regionales por defecto (México solo en MX).
+        self.estado = cargarEstado(almacen, categorias: banco.categorias, region: Locale.current.region?.identifier)
     }
 
     func enviar(_ accion: Accion) {

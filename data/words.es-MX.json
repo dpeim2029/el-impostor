@@ -32,13 +32,13 @@
           ]
         },
         {
-          "pista": "Rancho",
+          "pista": "Granja",
           "palabras": [
             "Vaca",
             "Caballo",
             "Gallina",
             "Cerdo",
-            "Borrego",
+            "Oveja",
             "Burro"
           ]
         },
@@ -135,28 +135,26 @@
         {
           "pista": "Abuelita",
           "palabras": [
-            "Mole",
-            "Pozole",
             "Tamales",
-            "Enchiladas",
-            "Sopes"
+            "Arroz con leche",
+            "Flan"
           ]
         },
         {
           "pista": "Puesto",
           "palabras": [
             "Tacos",
-            "Elote",
-            "Esquites",
-            "Churros"
+            "Churros",
+            "Empanadas",
+            "Arepas"
           ]
         },
         {
           "pista": "Domingo",
           "palabras": [
-            "Hot cakes",
-            "Chilaquiles",
-            "Barbacoa"
+            "Panqueques",
+            "Asado",
+            "Paella"
           ]
         },
         {
@@ -178,39 +176,32 @@
           "pista": "Verano",
           "palabras": [
             "Helado",
-            "Paleta de hielo",
-            "Raspado"
-          ]
-        },
-        {
-          "pista": "Oaxaca",
-          "palabras": [
-            "Tlayuda",
-            "Chapulines"
+            "Limonada",
+            "Granizado"
           ]
         },
         {
           "pista": "Vaca",
           "palabras": [
             "Queso",
-            "Yogurt",
+            "Yogur",
             "Mantequilla"
           ]
         },
         {
           "pista": "Panadero",
           "palabras": [
-            "Concha",
-            "Bolillo",
             "Galletas",
-            "Dona"
+            "Dona",
+            "Croissant",
+            "Pan dulce"
           ]
         },
         {
           "pista": "Enfermo",
           "palabras": [
             "Caldo de pollo",
-            "Sopa de fideo"
+            "Sopa de fideos"
           ]
         },
         {
@@ -219,19 +210,19 @@
             "Chocolate",
             "Chicle",
             "Algodón de azúcar",
-            "Paleta de caramelo"
+            "Caramelo"
           ]
         },
         {
-          "pista": "Lonchera",
+          "pista": "Recreo",
           "palabras": [
             "Sándwich",
             "Quesadilla",
-            "Torta"
+            "Jugo"
           ]
         },
         {
-          "pista": "Fonda",
+          "pista": "Almuerzo",
           "palabras": [
             "Arroz",
             "Frijoles",
@@ -246,7 +237,7 @@
       "emoji": "🍓",
       "grupos": [
         {
-          "pista": "Licuado",
+          "pista": "Batido",
           "palabras": [
             "Plátano",
             "Fresa",
@@ -264,78 +255,64 @@
         {
           "pista": "Mermelada",
           "palabras": [
-            "Zarzamora",
-            "Chabacano",
-            "Durazno"
+            "Mora",
+            "Frambuesa",
+            "Arándano"
           ]
         },
         {
-          "pista": "Gripa",
+          "pista": "Resfriado",
           "palabras": [
             "Naranja",
             "Mandarina",
-            "Toronja",
+            "Kiwi",
             "Guayaba"
           ]
         },
         {
-          "pista": "Taquería",
+          "pista": "Ceviche",
           "palabras": [
             "Limón",
             "Cebolla",
-            "Cilantro",
-            "Rábano",
-            "Aguacate"
+            "Cilantro"
           ]
         },
         {
           "pista": "Cuento",
           "palabras": [
             "Manzana",
-            "Calabaza",
-            "Chícharo"
+            "Calabaza"
           ]
         },
         {
-          "pista": "Conejo",
+          "pista": "Hámster",
           "palabras": [
             "Lechuga",
-            "Zanahoria",
-            "Apio"
+            "Zanahoria"
           ]
         },
         {
           "pista": "Ensalada",
           "palabras": [
-            "Jitomate",
+            "Tomate",
             "Pepino",
-            "Espinaca"
+            "Espinaca",
+            "Rábano"
           ]
         },
         {
           "pista": "Caldo",
           "palabras": [
             "Papa",
-            "Chayote",
-            "Calabacita",
-            "Ejote"
+            "Maíz",
+            "Apio"
           ]
         },
         {
-          "pista": "Molcajete",
+          "pista": "Mortero",
           "palabras": [
-            "Chile",
-            "Tomate verde",
-            "Ajo"
-          ]
-        },
-        {
-          "pista": "Posada",
-          "palabras": [
-            "Tejocote",
-            "Cacahuate",
-            "Caña",
-            "Jícama"
+            "Ajo",
+            "Jengibre"
           ]
         },
         {
@@ -366,14 +343,13 @@
           "palabras": [
             "Brócoli",
             "Coliflor",
-            "Betabel"
+            "Remolacha"
           ]
         },
         {
           "pista": "Desierto",
           "palabras": [
-            "Nopal",
-            "Tuna",
+            "Dátil",
             "Pitaya"
           ]
         }
@@ -391,7 +367,7 @@
             "Olla",
             "Licuadora",
             "Cuchillo",
-            "Estufa"
+            "Horno"
           ]
         },
         {
@@ -410,18 +386,18 @@
           "palabras": [
             "Cama",
             "Almohada",
-            "Cobija",
+            "Manta",
             "Toalla",
             "Jabón"
           ]
         },
         {
-          "pista": "Plomero",
+          "pista": "Gotera",
           "palabras": [
-            "Regadera",
+            "Ducha",
             "Lavabo",
-            "Escusado",
-            "Tinaco"
+            "Inodoro",
+            "Tubería"
           ]
         },
         {
@@ -430,7 +406,7 @@
             "Cepillo de dientes",
             "Peine",
             "Espejo",
-            "Shampoo"
+            "Champú"
           ]
         },
         {
@@ -458,9 +434,9 @@
           "pista": "Cenicienta",
           "palabras": [
             "Escoba",
-            "Trapeador",
-            "Cubeta",
-            "Trapo"
+            "Balde",
+            "Trapo",
+            "Recogedor"
           ]
         },
         {
@@ -468,7 +444,7 @@
           "palabras": [
             "Escritorio",
             "Computadora",
-            "Librero"
+            "Estante"
           ]
         },
         {
@@ -501,7 +477,6 @@
           "palabras": [
             "Manguera",
             "Maceta",
-            "Podadora",
             "Pala"
           ]
         },
@@ -511,8 +486,8 @@
             "Cuna",
             "Biberón",
             "Pañal",
-            "Chupón",
-            "Sonaja"
+            "Chupete",
+            "Sonajero"
           ]
         },
         {
@@ -520,7 +495,7 @@
           "palabras": [
             "Televisión",
             "Control remoto",
-            "Bocina"
+            "Consola"
           ]
         }
       ]
@@ -535,11 +510,10 @@
           "palabras": [
             "Cuaderno",
             "Lápiz",
-            "Pluma",
-            "Borrador",
+            "Bolígrafo",
+            "Goma de borrar",
             "Sacapuntas",
             "Regla",
-            "Colores",
             "Tijeras",
             "Pegamento",
             "Cartulina"
@@ -548,7 +522,6 @@
         {
           "pista": "Recreo",
           "palabras": [
-            "Lonchera",
             "Patio",
             "Campana",
             "Columpio"
@@ -566,17 +539,16 @@
           "pista": "Calificación",
           "palabras": [
             "Examen",
-            "Boleta",
-            "Tarea"
+            "Tarea",
+            "Diploma"
           ]
         },
         {
           "pista": "Maestra",
           "palabras": [
-            "Pizarrón",
-            "Gis",
-            "Lista",
-            "Escritorio"
+            "Pizarra",
+            "Tiza",
+            "Lista"
           ]
         },
         {
@@ -593,7 +565,6 @@
           "palabras": [
             "Microscopio",
             "Bata",
-            "Probeta",
             "Lupa"
           ]
         },
@@ -609,10 +580,9 @@
         {
           "pista": "Festival",
           "palabras": [
-            "Disfraz",
             "Escenario",
-            "Micrófono",
-            "Bailable"
+            "Telón",
+            "Micrófono"
           ]
         },
         {
@@ -630,7 +600,7 @@
             "Pincel",
             "Acuarelas",
             "Plastilina",
-            "Crayolas"
+            "Crayones"
           ]
         },
         {
@@ -705,7 +675,7 @@
           "pista": "Cielo",
           "palabras": [
             "Piloto",
-            "Sobrecargo",
+            "Paracaidista",
             "Astronauta"
           ]
         },
@@ -715,7 +685,7 @@
             "Chef",
             "Panadero",
             "Mesero",
-            "Taquero"
+            "Carnicero"
           ]
         },
         {
@@ -738,19 +708,18 @@
         {
           "pista": "Propina",
           "palabras": [
-            "Bolero",
-            "Cerillo",
             "Taxista",
-            "Repartidor"
+            "Repartidor",
+            "Botones"
           ]
         },
         {
-          "pista": "Quinceañera",
+          "pista": "Boda",
           "palabras": [
             "Peluquero",
-            "Modista",
             "Fotógrafo",
-            "DJ"
+            "DJ",
+            "Florista"
           ]
         },
         {
@@ -782,7 +751,7 @@
           "palabras": [
             "Futbolista",
             "Portero",
-            "Porrista"
+            "Beisbolista"
           ]
         },
         {
@@ -790,8 +759,7 @@
           "palabras": [
             "Abogado",
             "Juez",
-            "Contador",
-            "Gerente"
+            "Banquero"
           ]
         },
         {
@@ -815,8 +783,7 @@
           "pista": "Desfile",
           "palabras": [
             "Soldado",
-            "Charro",
-            "Bastonera"
+            "Abanderado"
           ]
         }
       ]
@@ -827,12 +794,12 @@
       "emoji": "⚽",
       "grupos": [
         {
-          "pista": "Pasto",
+          "pista": "Césped",
           "palabras": [
-            "Futbol",
+            "Fútbol",
             "Golf",
-            "Beisbol",
-            "Futbol americano"
+            "Béisbol",
+            "Fútbol americano"
           ]
         },
         {
@@ -848,15 +815,14 @@
           "pista": "Cloro",
           "palabras": [
             "Natación",
-            "Clavados",
             "Waterpolo",
-            "Nado sincronizado"
+            "Clavados"
           ]
         },
         {
           "pista": "Cinturón",
           "palabras": [
-            "Box",
+            "Boxeo",
             "Lucha libre",
             "Karate",
             "Judo",
@@ -876,11 +842,11 @@
           "palabras": [
             "Gimnasia",
             "Yoga",
-            "Porristas"
+            "Acrobacia"
           ]
         },
         {
-          "pista": "Chamarra",
+          "pista": "Guantes",
           "palabras": [
             "Esquí",
             "Snowboard",
@@ -891,7 +857,7 @@
           "pista": "Casco",
           "palabras": [
             "Ciclismo",
-            "Patineta",
+            "Skate",
             "Patines",
             "Motociclismo"
           ]
@@ -900,8 +866,8 @@
           "pista": "Herradura",
           "palabras": [
             "Equitación",
-            "Charrería",
-            "Polo"
+            "Polo",
+            "Rodeo"
           ]
         },
         {
@@ -909,7 +875,7 @@
           "palabras": [
             "Tiro con arco",
             "Dardos",
-            "Boliche",
+            "Bolos",
             "Billar"
           ]
         },
@@ -924,13 +890,13 @@
         {
           "pista": "Rebote",
           "palabras": [
-            "Basquetbol",
+            "Básquetbol",
             "Frontón",
             "Squash"
           ]
         },
         {
-          "pista": "Bloqueador",
+          "pista": "Protector solar",
           "palabras": [
             "Surf",
             "Vela",
@@ -949,8 +915,8 @@
           "pista": "Proteína",
           "palabras": [
             "Levantamiento de pesas",
-            "Crossfit",
-            "Fisicoculturismo"
+            "Culturismo",
+            "Remo"
           ]
         }
       ]
@@ -982,9 +948,8 @@
           "pista": "Parque",
           "palabras": [
             "Bicicleta",
-            "Patineta",
-            "Patines",
-            "Scooter"
+            "Scooter",
+            "Triciclo"
           ]
         },
         {
@@ -1002,18 +967,18 @@
           ]
         },
         {
-          "pista": "Xochimilco",
+          "pista": "Lago",
           "palabras": [
-            "Trajinera",
             "Lancha",
-            "Canoa"
+            "Canoa",
+            "Bote"
           ]
         },
         {
-          "pista": "Torniquete",
+          "pista": "Andén",
           "palabras": [
             "Metro",
-            "Metrobús",
+            "Tranvía",
             "Tren ligero"
           ]
         },
@@ -1029,8 +994,7 @@
           "pista": "Cuenta regresiva",
           "palabras": [
             "Cohete",
-            "Nave espacial",
-            "Transbordador"
+            "Nave espacial"
           ]
         },
         {
@@ -1052,20 +1016,19 @@
           ]
         },
         {
-          "pista": "Rancho",
+          "pista": "Granja",
           "palabras": [
             "Tractor",
-            "Cuatrimoto",
-            "Caballo",
-            "Burro"
+            "Carreta",
+            "Carretilla"
           ]
         },
         {
           "pista": "Centro comercial",
           "palabras": [
-            "Elevador",
+            "Ascensor",
             "Escaleras eléctricas",
-            "Carrito de súper"
+            "Carrito de compras"
           ]
         },
         {
@@ -1076,11 +1039,10 @@
           ]
         },
         {
-          "pista": "Colonia",
+          "pista": "Barrio",
           "palabras": [
             "Camión de basura",
-            "Camión de gas",
-            "Pesero"
+            "Camión de mudanzas"
           ]
         }
       ]
@@ -1091,7 +1053,7 @@
       "emoji": "🗺️",
       "grupos": [
         {
-          "pista": "Palomitas",
+          "pista": "Taquilla",
           "palabras": [
             "Cine",
             "Circo",
@@ -1128,7 +1090,7 @@
           "pista": "Toalla",
           "palabras": [
             "Playa",
-            "Alberca",
+            "Piscina",
             "Gimnasio"
           ]
         },
@@ -1141,14 +1103,14 @@
           ]
         },
         {
-          "pista": "Camello",
+          "pista": "Sed",
           "palabras": [
             "Desierto",
             "Oasis"
           ]
         },
         {
-          "pista": "Princesa",
+          "pista": "Dragón",
           "palabras": [
             "Castillo",
             "Palacio",
@@ -1156,11 +1118,11 @@
           ]
         },
         {
-          "pista": "Boleta",
+          "pista": "Mochila",
           "palabras": [
             "Escuela",
             "Universidad",
-            "Kínder"
+            "Guardería"
           ]
         },
         {
@@ -1180,7 +1142,7 @@
           ]
         },
         {
-          "pista": "Astronauta",
+          "pista": "Cohete",
           "palabras": [
             "Luna",
             "Marte",
@@ -1188,12 +1150,10 @@
           ]
         },
         {
-          "pista": "Pez",
+          "pista": "Nemo",
           "palabras": [
             "Acuario",
-            "Océano",
-            "Río",
-            "Lago"
+            "Océano"
           ]
         },
         {
@@ -1201,15 +1161,15 @@
           "palabras": [
             "Restaurante",
             "Cafetería",
-            "Taquería"
+            "Heladería"
           ]
         },
         {
           "pista": "Vecinos",
           "palabras": [
-            "Departamento",
+            "Apartamento",
             "Edificio",
-            "Colonia"
+            "Barrio"
           ]
         },
         {
@@ -1222,7 +1182,7 @@
           ]
         },
         {
-          "pista": "Fantasma",
+          "pista": "Halloween",
           "palabras": [
             "Cementerio",
             "Casa embrujada"
@@ -1240,9 +1200,8 @@
         {
           "pista": "Paloma",
           "palabras": [
-            "Zócalo",
             "Catedral",
-            "Alameda"
+            "Fuente"
           ]
         },
         {
@@ -1257,7 +1216,7 @@
           "pista": "Piñata",
           "palabras": [
             "Salón de fiestas",
-            "Dulcería"
+            "Tienda de dulces"
           ]
         },
         {
@@ -1272,8 +1231,8 @@
           "pista": "Vaca",
           "palabras": [
             "Granja",
-            "Rancho",
-            "Establo"
+            "Establo",
+            "Corral"
           ]
         },
         {
@@ -1311,7 +1270,7 @@
           ]
         },
         {
-          "pista": "Bloqueador",
+          "pista": "Abanico",
           "palabras": [
             "Sol",
             "Calor",
@@ -1320,7 +1279,7 @@
           ]
         },
         {
-          "pista": "Papalote",
+          "pista": "Molino",
           "palabras": [
             "Viento",
             "Brisa",
@@ -1368,7 +1327,7 @@
           ]
         },
         {
-          "pista": "Abeja",
+          "pista": "Perfume",
           "palabras": [
             "Flor",
             "Primavera",
@@ -1396,7 +1355,7 @@
           ]
         },
         {
-          "pista": "Camello",
+          "pista": "Sed",
           "palabras": [
             "Desierto",
             "Duna",
@@ -1444,7 +1403,7 @@
           "palabras": [
             "Inundación",
             "Tsunami",
-            "Deslave"
+            "Derrumbe"
           ]
         }
       ]
@@ -1459,11 +1418,7 @@
           "palabras": [
             "Día de Muertos",
             "Altar",
-            "Cempasúchil",
-            "Pan de muerto",
-            "Alebrije",
-            "Catrina",
-            "Calaverita"
+            "Catrina"
           ]
         },
         {
@@ -1476,12 +1431,12 @@
           ]
         },
         {
-          "pista": "Vela",
+          "pista": "Diciembre",
           "palabras": [
-            "Posadas",
+            "Nacimiento",
+            "Árbol de Navidad",
             "Villancicos",
-            "Ponche",
-            "Luces de bengala"
+            "Amigo secreto"
           ]
         },
         {
@@ -1490,32 +1445,22 @@
             "Año Nuevo",
             "Día de Reyes",
             "Reyes Magos",
-            "Uvas de la suerte"
+            "Uvas de la suerte",
+            "Rosca de Reyes"
           ]
         },
         {
-          "pista": "Muñequito",
+          "pista": "Chispas",
           "palabras": [
-            "Rosca de Reyes",
-            "Día de la Candelaria",
-            "Tamales"
-          ]
-        },
-        {
-          "pista": "Zócalo",
-          "palabras": [
-            "Grito de Independencia",
-            "Desfile",
-            "Noche mexicana",
             "Fuegos artificiales",
-            "Mariachi"
+            "Luces de bengala"
           ]
         },
         {
-          "pista": "Febrero",
+          "pista": "Plaza",
           "palabras": [
-            "Día del Amor y la Amistad",
-            "Día de la Bandera",
+            "Desfile",
+            "Mariachi",
             "Carnaval"
           ]
         },
@@ -1529,16 +1474,16 @@
           ]
         },
         {
-          "pista": "Mordida",
+          "pista": "Invitación",
           "palabras": [
             "Cumpleaños",
             "Piñata",
             "Globos",
-            "Las Mañanitas"
+            "Serpentinas"
           ]
         },
         {
-          "pista": "Conejo",
+          "pista": "Canasta",
           "palabras": [
             "Pascua",
             "Huevos de Pascua"
@@ -1552,7 +1497,7 @@
           ]
         },
         {
-          "pista": "Bruja",
+          "pista": "Octubre",
           "palabras": [
             "Halloween",
             "Disfraz",
@@ -1561,11 +1506,12 @@
           ]
         },
         {
-          "pista": "Serenata",
+          "pista": "Tarjeta",
           "palabras": [
-            "Día de las Madres",
+            "Día de la Madre",
             "Día del Maestro",
-            "Aniversario"
+            "Aniversario",
+            "San Valentín"
           ]
         },
         {
@@ -1581,31 +1527,6 @@
             "Día del Padre",
             "Boda"
           ]
-        },
-        {
-          "pista": "Diciembre",
-          "palabras": [
-            "Día de la Virgen de Guadalupe",
-            "Nacimiento",
-            "Árbol de Navidad",
-            "Esferas",
-            "Intercambio"
-          ]
-        },
-        {
-          "pista": "Noviembre",
-          "palabras": [
-            "Día de la Revolución",
-            "Buen Fin"
-          ]
-        },
-        {
-          "pista": "Confeti",
-          "palabras": [
-            "Cascarones",
-            "Serpentinas",
-            "Espantasuegras"
-          ]
         }
       ]
     },
@@ -1617,8 +1538,6 @@
         {
           "pista": "Mariachi",
           "palabras": [
-            "Guitarrón",
-            "Vihuela",
             "Trompeta",
             "Violín"
           ]
@@ -1632,7 +1551,7 @@
           ]
         },
         {
-          "pista": "Kínder",
+          "pista": "Preescolar",
           "palabras": [
             "Xilófono",
             "Triángulo",
@@ -1681,12 +1600,10 @@
           ]
         },
         {
-          "pista": "Norteño",
+          "pista": "Calle",
           "palabras": [
             "Acordeón",
-            "Bajo sexto",
-            "Tololoche",
-            "Corrido"
+            "Organillo"
           ]
         },
         {
@@ -1695,8 +1612,7 @@
             "Cumbia",
             "Salsa",
             "Reggaetón",
-            "Vals",
-            "DJ"
+            "Vals"
           ]
         },
         {
@@ -1718,17 +1634,16 @@
           ]
         },
         {
-          "pista": "España",
+          "pista": "Sevilla",
           "palabras": [
             "Castañuelas",
             "Flamenco"
           ]
         },
         {
-          "pista": "Regadera",
+          "pista": "Ducha",
           "palabras": [
             "Karaoke",
-            "Micrófono",
             "Canción"
           ]
         },
@@ -1736,12 +1651,12 @@
           "pista": "Celular",
           "palabras": [
             "Audífonos",
-            "Bocina",
+            "Altavoz",
             "Playlist"
           ]
         },
         {
-          "pista": "Bellas Artes",
+          "pista": "Teatro",
           "palabras": [
             "Ópera",
             "Ballet",
@@ -1751,8 +1666,8 @@
         {
           "pista": "Abuelita",
           "palabras": [
-            "Las Mañanitas",
-            "Cielito Lindo",
+            "Bolero",
+            "Tango",
             "Villancico"
           ]
         },
@@ -1760,11 +1675,172 @@
           "pista": "Bandera",
           "palabras": [
             "Himno Nacional",
-            "Banda de guerra"
+            "Banda marcial"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mexico",
+      "nombre": "México",
+      "emoji": "🇲🇽",
+      "regiones": [
+        "MX"
+      ],
+      "grupos": [
+        {
+          "pista": "Fonda",
+          "palabras": [
+            "Mole",
+            "Pozole",
+            "Sopes",
+            "Enchiladas"
+          ]
+        },
+        {
+          "pista": "Domingo",
+          "palabras": [
+            "Chilaquiles",
+            "Barbacoa",
+            "Menudo"
+          ]
+        },
+        {
+          "pista": "Triciclo",
+          "palabras": [
+            "Esquites",
+            "Elote",
+            "Raspado"
+          ]
+        },
+        {
+          "pista": "Oaxaca",
+          "palabras": [
+            "Tlayuda",
+            "Chapulines",
+            "Alebrije"
+          ]
+        },
+        {
+          "pista": "Merienda",
+          "palabras": [
+            "Concha",
+            "Bolillo",
+            "Cuernito"
+          ]
+        },
+        {
+          "pista": "Esquina",
+          "palabras": [
+            "Torta",
+            "Gordita",
+            "Tacos de canasta"
+          ]
+        },
+        {
+          "pista": "Mercado",
+          "palabras": [
+            "Nopal",
+            "Tuna",
+            "Jícama",
+            "Chayote",
+            "Ejote",
+            "Tomate verde"
+          ]
+        },
+        {
+          "pista": "Capital",
+          "palabras": [
+            "Trajinera",
+            "Pesero",
+            "Metrobús",
+            "Zócalo"
+          ]
+        },
+        {
+          "pista": "Colonia",
+          "palabras": [
+            "Camión de gas",
+            "Tortillería",
+            "Tiendita"
+          ]
+        },
+        {
+          "pista": "Propina",
+          "palabras": [
+            "Bolero",
+            "Cerillo",
+            "Taquero"
+          ]
+        },
+        {
+          "pista": "Jalisco",
+          "palabras": [
+            "Charro",
+            "Charrería",
+            "Guitarrón",
+            "Vihuela"
+          ]
+        },
+        {
+          "pista": "Norteño",
+          "palabras": [
+            "Tololoche",
+            "Bajo sexto",
+            "Corrido"
+          ]
+        },
+        {
+          "pista": "Serenata",
+          "palabras": [
+            "Las Mañanitas",
+            "Cielito Lindo"
+          ]
+        },
+        {
+          "pista": "Confeti",
+          "palabras": [
+            "Cascarones",
+            "Espantasuegras"
+          ]
+        },
+        {
+          "pista": "Diciembre",
+          "palabras": [
+            "Día de la Virgen de Guadalupe",
+            "Posadas",
+            "Ponche",
+            "Tejocote"
+          ]
+        },
+        {
+          "pista": "Noviembre",
+          "palabras": [
+            "Cempasúchil",
+            "Pan de muerto",
+            "Calaverita",
+            "Día de la Revolución",
+            "Buen Fin"
+          ]
+        },
+        {
+          "pista": "Septiembre",
+          "palabras": [
+            "Grito de Independencia",
+            "Noche mexicana",
+            "Chiles en nogada"
+          ]
+        },
+        {
+          "pista": "Febrero",
+          "palabras": [
+            "Día de la Candelaria",
+            "Día de la Bandera",
+            "Día del Amor y la Amistad"
           ]
         }
       ]
     }
   ],
-  "totalPalabras": 701
+  "totalPalabras": 707
 }

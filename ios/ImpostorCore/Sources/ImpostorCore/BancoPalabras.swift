@@ -54,6 +54,22 @@ public func palabrasDeCategoria(_ categoria: Categoria) -> [Palabra] {
     }
 }
 
+/// Categorías del banco original (versión 1), para saber cuáles son nuevas en datos guardados.
+public let idsBancoV1 = [
+    "animales", "comida", "frutas-verduras", "casa", "escuela", "profesiones",
+    "deportes", "transporte", "lugares", "naturaleza", "fiestas", "musica",
+]
+
+/// Categorías activas por defecto: todas, menos las regionales fuera de su región.
+public func categoriasPorDefecto(_ categorias: [Categoria], region: String?) -> [String] {
+    categorias
+        .filter { categoria in
+            guard let regiones = categoria.regiones else { return true }
+            return region.map(regiones.contains) ?? false
+        }
+        .map(\.id)
+}
+
 /// Clave con la que se registra una palabra ya jugada: `categoriaId:texto`.
 public func clavePalabra(categoriaId: String, texto: String) -> String {
     "\(categoriaId):\(texto)"

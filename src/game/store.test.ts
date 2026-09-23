@@ -3,6 +3,7 @@ import {
   CLAVE_ALMACEN,
   ajustesIniciales,
   cargarEstado,
+  crearAjustesIniciales,
   estadoInicial,
   guardarEstado,
   reducer,
@@ -142,10 +143,10 @@ describe('reducer: flujo de una ronda', () => {
 
 describe('persistencia', () => {
   it('devuelve el estado inicial sin almacén o con datos corruptos', () => {
-    expect(cargarEstado(undefined)).toBe(estadoInicial)
+    expect(cargarEstado(undefined)).toEqual(estadoInicial)
     const almacen = new AlmacenFalso()
     almacen.setItem(CLAVE_ALMACEN, '{no es json')
-    expect(cargarEstado(almacen)).toBe(estadoInicial)
+    expect(cargarEstado(almacen)).toEqual(estadoInicial)
   })
 
   it('guarda y recupera jugadores, ajustes y palabras usadas', () => {
@@ -189,5 +190,34 @@ describe('persistencia', () => {
     expect(recuperado.ajustes.categoriasActivas).toEqual(ajustesIniciales.categoriasActivas)
     expect(recuperado.ajustes.numImpostores).toBe(1)
     expect(recuperado.ajustes.conPista).toBe(true)
+  })
+})
+
+describe('categorías por región', () => {
+  it('la categoría México viene activa solo en México', () => {
+    expect(crearAjustesIniciales('MX').categoriasActivas).toContain('mexico')
+    expect(crearAjustesIniciales('AR').categoriasActivas).not.toContain('mexico')
+    expect(crearAjustesIniciales(undefined).categoriasActivas).not.toContain('mexico')
+    expect(crearAjustesIniciales('AR').categoriasActivas).toContain('comida')
+  })
+
+  it('al pasar de la versión 1 se suma México a quien juega en México', () => {
+    const almacen = new AlmacenFalso()
+    const v1 = { ajustes: { numImpostores: 1, conPista: true, categoriasActivas: ['comida'] } }
+    almacen.setItem(CLAVE_ALMACEN, JSON.stringify(v1))
+    expect(cargarEstado(almacen, 'MX').ajustes.categoriasActivas).toEqual(['comida', 'mexico'])
+    expect(cargarEstado(almacen, 'CL').ajustes.categoriasActivas).toEqual(['comida'])
+  })
+
+  it('respeta que el jugador haya apagado una categoría que ya conocía', () => {
+    const almacen = new AlmacenFalso()
+    const estado = aplicar(
+      { ...estadoInicial, ajustes: crearAjustesIniciales('MX') },
+      { tipo: 'toggleCategoria', id: 'mexico' },
+    )
+    guardarEstado(almacen, estado)
+    const recuperado = cargarEstado(almacen, 'MX')
+    expect(recuperado.ajustes.categoriasActivas).not.toContain('mexico')
+    expect(recuperado.ajustes.categoriasConocidas).toContain('mexico')
   })
 })

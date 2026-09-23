@@ -22,11 +22,26 @@ private func raiz(_ texto: String) -> String {
 struct BancoPalabrasTests {
     let banco = BancoDelRepo.banco
 
-    @Test("tiene 12 categorías con ids únicos")
-    func doceCategorias() {
-        #expect(banco.categorias.count == 12)
+    @Test("tiene 13 categorías con ids únicos")
+    func treceCategorias() {
+        #expect(banco.categorias.count == 13)
         #expect(Set(banco.idsDeCategorias).count == banco.categorias.count)
         #expect(banco.idioma == "es-MX")
+    }
+
+    @Test("las categorías de la versión 1 siguen existiendo")
+    func categoriasV1() {
+        for id in idsBancoV1 {
+            #expect(banco.idsDeCategorias.contains(id), "\(id)")
+        }
+    }
+
+    @Test("la categoría México viene activa por defecto solo en México")
+    func categoriaRegional() {
+        #expect(categoriasPorDefecto(banco.categorias, region: "MX").contains("mexico"))
+        #expect(!categoriasPorDefecto(banco.categorias, region: "AR").contains("mexico"))
+        #expect(!categoriasPorDefecto(banco.categorias, region: nil).contains("mexico"))
+        #expect(categoriasPorDefecto(banco.categorias, region: "AR").contains("comida"))
     }
 
     @Test("cada categoría tiene al menos 25 palabras")

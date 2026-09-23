@@ -1,4 +1,4 @@
-import { categorias } from '@/data/words'
+import { categorias, categoriasPorDefecto, IDS_BANCO_V1 } from '@/data/words'
 import { crearRonda, maxImpostores } from './engine'
 import {
   MAX_JUGADORES,
@@ -11,11 +11,30 @@ import {
 
 export const CLAVE_ALMACEN = 'el-impostor:v1'
 
-export const ajustesIniciales: Ajustes = {
-  numImpostores: 1,
-  conPista: true,
-  categoriasActivas: categorias.map((c) => c.id),
+/** Región del navegador ("MX" de "es-MX"), para activar las categorías regionales. */
+export function regionDelNavegador(): string | undefined {
+  if (typeof navigator === 'undefined') return undefined
+  for (const idioma of navigator.languages ?? [navigator.language]) {
+    try {
+      const region = new Intl.Locale(idioma).region
+      if (region) return region
+    } catch {
+      // Etiqueta de idioma inválida: se prueba la siguiente.
+    }
+  }
+  return undefined
 }
+
+export function crearAjustesIniciales(region: string | undefined): Ajustes {
+  return {
+    numImpostores: 1,
+    conPista: true,
+    categoriasActivas: categoriasPorDefecto(region),
+    categoriasConocidas: categorias.map((c) => c.id),
+  }
+}
+
+export const ajustesIniciales: Ajustes = crearAjustesIniciales(regionDelNavegador())
 
 export const estadoInicial: EstadoJuego = {
   fase: 'inicio',
@@ -163,16 +182,30 @@ export function reducer(estado: EstadoJuego, accion: Accion): EstadoJuego {
 
 const fasesDeJuego: Fase[] = ['reparto', 'ronda', 'votacion', 'resultado']
 
-export function cargarEstado(almacen: Pick<Storage, 'getItem'> | undefined): EstadoJuego {
-  if (!almacen) return estadoInicial
+export function cargarEstado(
+  almacen: Pick<Storage, 'getItem'> | undefined,
+  region: string | undefined = regionDelNavegador(),
+): EstadoJuego {
+  const iniciales = crearAjustesIniciales(region)
+  const inicial: EstadoJuego = { ...estadoInicial, ajustes: iniciales }
+  if (!almacen) return inicial
   try {
     const crudo = almacen.getItem(CLAVE_ALMACEN)
-    if (!crudo) return estadoInicial
+    if (!crudo) return inicial
     const guardado = JSON.parse(crudo) as Partial<EstadoJuego>
     const idsValidos = new Set(categorias.map((c) => c.id))
-    const activas = Array.isArray(guardado.ajustes?.categoriasActivas)
+    const guardadas = Array.isArray(guardado.ajustes?.categoriasActivas)
       ? guardado.ajustes!.categoriasActivas.filter((id) => idsValidos.has(id))
-      : ajustesIniciales.categoriasActivas
+      : iniciales.categoriasActivas
+    // Las categorías que no existían al guardar se suman si tocan por región (p. ej. "México"
+    // para quien jugaba la versión 1 en México); las que el jugador ya conocía se respetan.
+    const conocidas = Array.isArray(guardado.ajustes?.categoriasConocidas)
+      ? guardado.ajustes!.categoriasConocidas.filter((id) => typeof id === 'string')
+      : IDS_BANCO_V1
+    const nuevas = iniciales.categoriasActivas.filter(
+      (id) => !conocidas.includes(id) && !guardadas.includes(id),
+    )
+    const activas = guardadas.length > 0 ? [...guardadas, ...nuevas] : iniciales.categoriasActivas
 
     const estado: EstadoJuego = {
       ...estadoInicial,
@@ -184,7 +217,8 @@ export function cargarEstado(almacen: Pick<Storage, 'getItem'> | undefined): Est
       ajustes: {
         numImpostores: guardado.ajustes?.numImpostores === 2 ? 2 : 1,
         conPista: guardado.ajustes?.conPista !== false,
-        categoriasActivas: activas.length > 0 ? activas : ajustesIniciales.categoriasActivas,
+        categoriasActivas: activas,
+        categoriasConocidas: iniciales.categoriasConocidas,
       },
       palabrasUsadas: Array.isArray(guardado.palabrasUsadas)
         ? guardado.palabrasUsadas.filter((p) => typeof p === 'string')
@@ -220,7 +254,7 @@ export function cargarEstado(almacen: Pick<Storage, 'getItem'> | undefined): Est
 
     return estado
   } catch {
-    return estadoInicial
+    return inicial
   }
 }
 

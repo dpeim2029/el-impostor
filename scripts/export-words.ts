@@ -14,6 +14,7 @@ const salida = {
     id: c.id,
     nombre: c.nombre,
     emoji: c.emoji,
+    ...(c.regiones ? { regiones: c.regiones } : {}),
     grupos: c.grupos.map((g) => ({ pista: g.pista, palabras: g.palabras })),
   })),
   totalPalabras: categorias.reduce((n, c) => n + palabrasDeCategoria(c).length, 0),

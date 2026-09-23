@@ -8,6 +8,9 @@ export interface Categoria {
   id: string
   nombre: string
   emoji: string
+  /** Códigos de región (ISO 3166, p. ej. "MX") donde la categoría viene activa por defecto; sin
+   *  este campo, en todas partes. */
+  regiones?: string[]
   grupos: GrupoPista[]
 }
 
@@ -31,6 +34,9 @@ export interface Ajustes {
   /** Si el impostor recibe la pista lejana o entra a ciegas. */
   conPista: boolean
   categoriasActivas: string[]
+  /** Categorías que ya existían la última vez que se guardó; las nuevas se activan al cargar si
+   *  corresponden a la región. Falta en datos de la versión 1 (ver `IDS_BANCO_V1`). */
+  categoriasConocidas?: string[]
 }
 
 export type Rol = 'civil' | 'impostor'

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { categorias, palabrasDeCategoria } from './words'
+import { categorias, categoriasPorDefecto, IDS_BANCO_V1, palabrasDeCategoria } from './words'
 
 function normalizar(texto: string): string {
   return texto
@@ -15,10 +15,23 @@ function raiz(texto: string): string {
 }
 
 describe('banco de palabras', () => {
-  it('tiene 12 categorías con ids únicos', () => {
-    expect(categorias).toHaveLength(12)
+  it('tiene 13 categorías con ids únicos', () => {
+    expect(categorias).toHaveLength(13)
     const ids = categorias.map((c) => c.id)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('las categorías de la versión 1 siguen existiendo', () => {
+    const ids = categorias.map((c) => c.id)
+    for (const id of IDS_BANCO_V1) expect(ids, id).toContain(id)
+  })
+
+  it('las categorías regionales usan códigos de región de dos letras', () => {
+    for (const { nombre, regiones } of categorias) {
+      for (const region of regiones ?? []) expect(region, nombre).toMatch(/^[A-Z]{2}$/)
+    }
+    expect(categoriasPorDefecto('MX')).toContain('mexico')
+    expect(categoriasPorDefecto('ES')).not.toContain('mexico')
   })
 
   it('cada categoría tiene al menos 25 palabras', () => {
