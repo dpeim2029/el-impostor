@@ -212,8 +212,14 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   categoría Juegos › Palabras + Familia, gratis, 19 países hispanohablantes + EE. UU., edad 4+,
   privacidad "No se recopilan datos", copyright "2026 Daniel Peimbert", URL de marketing = perfil
   de X. **Nunca "Gratis" en nombre, subtítulo ni capturas** (regla 2.3.7).
-- Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max" ios/DerivedData/capturas-tienda`
-  y luego `ios/scripts/capturas_tienda.py` (títulos por idioma en el script) → `ios/tienda/es-MX/`.
+- Ficha por idioma en `ios/tienda/<ficha>/` (`es-MX`, `en-US`): `ficha.json` (nombre, subtítulo,
+  textos, palabras clave, novedades y los `locales` de App Store Connect a los que se copia; la
+  inglesa va a en-US, en-GB, en-AU y en-CA porque cada tienda solo muestra sus idiomas) y las 6
+  capturas. `ios/scripts/ficha.py <versión> [--crear] [--simular]` valida y sube todo.
+- Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max"
+  ios/DerivedData/capturas-tienda/<ficha> <es-MX|en>` y luego `ios/scripts/capturas_tienda.py <ficha>`
+  (títulos por idioma en el script) → `ios/tienda/<ficha>/`.
+- Nombre en inglés: "The Impostor: Word Game", subtítulo "Party game for families".
 - Versión 1.0 (build 4) enviada a revisión de la App Store el 23-sep-2026, con publicación manual:
   al aprobarse queda en "Pendiente de liberación del desarrollador" hasta que Daniel la libere.
 

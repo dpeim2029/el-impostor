@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Arma las capturas de la App Store: título + pantalla real en un iPhone sobre fondo de color.
 
-Uso: ios/scripts/capturas.sh "iPhone 18 Pro Max" ios/DerivedData/capturas-tienda
-     ios/scripts/capturas_tienda.py [idioma]
+Uso: ios/scripts/capturas.sh "iPhone 18 Pro Max" ios/DerivedData/capturas-tienda/<ficha> <idioma de la app>
+     ios/scripts/capturas_tienda.py [ficha]
 
-Toma las capturas crudas de ios/DerivedData/capturas-tienda, las compone con Chrome sin ventana
-y deja PNG de 1320×2868 (6.9") sin transparencia en ios/tienda/<idioma>/.
+<ficha> es el idioma de App Store Connect (es-MX, en-US); el idioma de la app es es-MX o en.
+Toma las capturas crudas de ios/DerivedData/capturas-tienda/<ficha>, las compone con Chrome sin
+ventana y deja PNG de 1320×2868 (6.9") sin transparencia en ios/tienda/<ficha>/.
 """
 import html, pathlib, subprocess, sys, tempfile
 from PIL import Image
@@ -27,6 +28,14 @@ CAPTURAS = {
         ("4-ronda", "07-ronda", MENTA, AMARILLO, ["*Finge bien.*", "Alguien te está", "escuchando."]),
         ("5-votacion", "09-resultado-ganan", DURAZNO, BLANCO, ["Voten.", "*¿Lo atraparon?*"]),
         ("6-familia", "03-ajustes", LILA, AMARILLO, ["Toda la familia,", "*un solo teléfono*"]),
+    ],
+    "en-US": [
+        ("1-palabra", "05-reparto-civil", LILA, AMARILLO, ["Everyone knows", "the word.", "*Except one.*"]),
+        ("2-impostor", "06-reparto-impostor", CIELO, AMARILLO, ["What if the", "impostor", "*is you?*"]),
+        ("3-sin-anuncios", "01-inicio", AMARILLO, BLANCO, ["No ads.", "No subscription.", "*Ever.*"]),
+        ("4-ronda", "07-ronda", MENTA, AMARILLO, ["*Fake it well.*", "Someone's", "listening."]),
+        ("5-votacion", "09-resultado-ganan", DURAZNO, BLANCO, ["Vote.", "*Caught them?*"]),
+        ("6-familia", "03-ajustes", LILA, AMARILLO, ["The whole family,", "*one phone*"]),
     ],
 }
 
@@ -69,7 +78,7 @@ def componer(idioma: str):
                 for r in renglones)
             pagina = pathlib.Path(tmp) / f"{nombre}.html"
             pagina.write_text(PLANTILLA.format(
-                ancho=ANCHO, alto=ALTO, fondo=fondo, marca=marca, titulo=titulo, imagen=(CRUDAS / f"{cruda}.png").as_uri()))
+                ancho=ANCHO, alto=ALTO, fondo=fondo, marca=marca, titulo=titulo, imagen=(CRUDAS / idioma / f"{cruda}.png").as_uri()))
             png = pathlib.Path(tmp) / f"{nombre}.png"
             subprocess.run([CHROME, "--headless=new", "--hide-scrollbars", "--force-device-scale-factor=1",
                             f"--window-size={ANCHO},{ALTO}", f"--screenshot={png}", "--allow-file-access-from-files",
