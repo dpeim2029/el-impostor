@@ -19,7 +19,7 @@ struct RondaView: View {
                         .marcador(.amarillo)
                         .padding(.vertical, 4)
                         .accessibilityIdentifier("empieza")
-                    Text("Una palabra cada quien, en este orden.")
+                    Text("Una palabra cada uno, en este orden.")
                         .font(.apoyo)
                         .foregroundStyle(Color.textoSecundario)
                         .padding(.top, 2)

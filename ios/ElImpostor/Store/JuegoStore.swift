@@ -11,12 +11,17 @@ final class JuegoStore {
     private let almacen: any Almacen
     private var contexto: ContextoJuego<AleatoriaSistema>
 
+    /// Categorías activas cuando el jugador no elige: todas menos las regionales de otro país.
+    let idsPorDefecto: [String]
+
     init(banco: BancoPalabras, almacen: any Almacen = AlmacenUserDefaults()) {
         self.banco = banco
         self.almacen = almacen
         self.contexto = ContextoJuego(categorias: banco.categorias, rng: AleatoriaSistema())
         // La región del iPhone decide las categorías regionales por defecto (México solo en MX).
-        self.estado = cargarEstado(almacen, categorias: banco.categorias, region: Locale.current.region?.identifier)
+        let region = Locale.current.region?.identifier
+        self.idsPorDefecto = categoriasPorDefecto(banco.categorias, region: region)
+        self.estado = cargarEstado(almacen, categorias: banco.categorias, region: region)
     }
 
     func enviar(_ accion: Accion) {

@@ -38,8 +38,10 @@ targets:
     platform: iOS
     sources:
       - path: ElImpostor
-      # El banco de palabras se referencia desde la raíz del repo; no se copia.
+      # Los bancos de palabras se referencian desde la raíz del repo; no se copian.
       - path: ../data/words.es-MX.json
+        buildPhase: resources
+      - path: ../data/words.en.json
         buildPhase: resources
     dependencies:
       - package: ImpostorCore
@@ -49,7 +51,7 @@ targets:
         CFBundleDisplayName: El Impostor
         CFBundleName: El Impostor
         CFBundleDevelopmentRegion: es-MX
-        CFBundleLocalizations: [es-MX]
+        CFBundleLocalizations: [es-MX, en]
         UILaunchScreen:
           UIColorName: Papel
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]

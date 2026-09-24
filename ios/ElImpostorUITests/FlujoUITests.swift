@@ -4,11 +4,13 @@ import XCTest
 /// ronda, votación, resultado y otra ronda. También comprueba que la partida sobrevive a relanzar la app.
 final class FlujoUITests: XCTestCase {
     private var app: XCUIApplication!
+    /// Las pruebas buscan textos en español; el simulador puede estar en otro idioma.
+    private let enEspanol = ["-AppleLanguages", "(es-MX)", "-AppleLocale", "es_MX"]
 
     override func setUp() {
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launchArguments = ["--reiniciar"]
+        app.launchArguments = ["--reiniciar"] + enEspanol
         app.launch()
     }
 
@@ -67,7 +69,7 @@ final class FlujoUITests: XCTestCase {
 
         // La partida sobrevive a cerrar y reabrir la app
         app.terminate()
-        app.launchArguments = []
+        app.launchArguments = enEspanol
         app.launch()
         XCTAssertTrue(app.staticTexts["1 de 3"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["nombreEnTurno"].exists)

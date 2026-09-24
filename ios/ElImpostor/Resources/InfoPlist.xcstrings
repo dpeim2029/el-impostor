@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "es-MX",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Impostor"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "El Impostor"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Impostor"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "El Impostor"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.3"
+}

@@ -167,7 +167,13 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   `TarjetaModal` + `ModalSobreFondo` para acusación y resultado; `AjustesView` usa `List` nativa.
   `CartaJugadorView` implementa el gesto de mantener con `DragGesture(minimumDistance: 0)` y se
   oculta al perder foco. Tipografía SF Pro escalada con Dynamic Type (tope accessibility2).
-  Textos como `LocalizedStringKey` literales en español; catálogo `Localizable.xcstrings` base es-MX.
+  Textos como `LocalizedStringKey` literales en español; catálogos `Localizable.xcstrings` e
+  `InfoPlist.xcstrings` con base es-MX y traducción `en` (nombre en el iPhone: "The Impostor").
+  El banco sigue al idioma en que iOS muestra la app (`Bundle.main.preferredLocalizations`): "en"
+  carga `words.en.json`, cualquier otro `words.es-MX.json`. `JuegoStore.idsPorDefecto` = categorías
+  sin elegir para la región (el interruptor "Elegir categorías" se compara contra eso).
+  Para traducir: `xcodebuild -exportLocalizations ... -exportLanguage en`, llenar el XLIFF y
+  `-importLocalizations`.
 - **Ícono**: `Resources/AppIcon.icon` (Icon Composer) = relleno azul noche en `icon.json` + una capa
   `Assets/cartas.png` (cartas con sombra horneada, fondo transparente; sin vidrio). Al ir en capas,
   iOS 26 genera bien las variantes oscura y con tinte. `ios/scripts/icono.py` compone desde esa capa
@@ -175,10 +181,12 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
 - **Banco de palabras**: la app referencia `../data/words.es-MX.json` como recurso; no se copia.
 - **Verificación solo por CLI** (Xcode 27 ya no trae Simulator.app; el panel de simulador de
   Claude Code Desktop no lo soporta): `xcodebuild test` (unit + UI) y `ios/scripts/capturas.sh`,
-  que siembra estados en UserDefaults del contenedor y captura las 10 pantallas. Argumentos de
+  que siembra estados en UserDefaults del contenedor y captura las 10 pantallas (tercer argumento:
+  `es-MX` o `en`, con jugadores y palabra de ejemplo en ese idioma). Argumentos de
   depuración (solo Debug): `--reiniciar`, `--fase <inicio|como-jugar|ajustes>`, `--mostrar-carta`.
 - **UI tests** (`ElImpostorUITests/FlujoUITests`): partida completa con el gesto, cancelar ronda,
   persistencia al relanzar. Los identificadores de accesibilidad son la API de los tests.
+  Se lanzan con `-AppleLanguages (es-MX)` porque buscan textos en español y el simulador está en inglés.
 - **Gotchas**: el vidrio (`glassEffect`) ignora `.opacity` del ancestro. Un
   `accessibilityIdentifier` en una tarjeta se hereda a su único botón salvo que la tarjeta sea
   `accessibilityElement(children: .contain)`. `UserDefaults` no es `Sendable` en el SDK 27
