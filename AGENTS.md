@@ -219,7 +219,8 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
 - Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max"
   ios/DerivedData/capturas-tienda/<ficha> <es-MX|en>` y luego `ios/scripts/capturas_tienda.py <ficha>`
   (títulos por idioma en el script) → `ios/tienda/<ficha>/`.
-- Nombre en inglés: "The Impostor: Word Game", subtítulo "Party game for families".
+- Nombre en inglés: "The Impostor: Pass the Phone" (decidido el 23-sep-2026; "Word Game" se descartó
+  por parecerse a "Imposter Who? - Word Game"), subtítulo "Party game for families".
 - Versión 1.0 (build 4) enviada a revisión de la App Store el 23-sep-2026, con publicación manual:
   al aprobarse queda en "Pendiente de liberación del desarrollador" hasta que Daniel la libere.
 
