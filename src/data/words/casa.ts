@@ -10,7 +10,7 @@ export const casa: Categoria = {
       pista: 'Electricista',
       palabras: ['Refrigerador', 'Microondas', 'Lavadora', 'Lámpara', 'Ventilador', 'Plancha'],
     },
-    { pista: 'Hotel', palabras: ['Cama', 'Almohada', 'Manta', 'Toalla', 'Jabón'] },
+    { pista: 'Hotel', palabras: ['Cama', 'Almohada', 'Sábana', 'Toalla', 'Jabón'] },
     { pista: 'Gotera', palabras: ['Ducha', 'Lavabo', 'Inodoro', 'Tubería'] },
     { pista: 'Mañana', palabras: ['Cepillo de dientes', 'Peine', 'Espejo', 'Champú'] },
     { pista: 'Visitas', palabras: ['Sofá', 'Cojín', 'Alfombra', 'Cortina'] },

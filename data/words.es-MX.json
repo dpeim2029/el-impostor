@@ -26,7 +26,7 @@
           "palabras": [
             "Mono",
             "Serpiente",
-            "Tigre",
+            "Leopardo",
             "Loro",
             "Cocodrilo"
           ]
@@ -52,7 +52,7 @@
           ]
         },
         {
-          "pista": "Buzo",
+          "pista": "Submarino",
           "palabras": [
             "Tiburón",
             "Delfín",
@@ -89,7 +89,7 @@
           ]
         },
         {
-          "pista": "Iglú",
+          "pista": "Iceberg",
           "palabras": [
             "Pingüino",
             "Oso polar",
@@ -135,7 +135,6 @@
         {
           "pista": "Abuelita",
           "palabras": [
-            "Tamales",
             "Arroz con leche",
             "Flan"
           ]
@@ -155,13 +154,6 @@
             "Panqueques",
             "Asado",
             "Paella"
-          ]
-        },
-        {
-          "pista": "Cumpleaños",
-          "palabras": [
-            "Pastel",
-            "Gelatina"
           ]
         },
         {
@@ -194,14 +186,16 @@
             "Galletas",
             "Dona",
             "Croissant",
-            "Pan dulce"
+            "Pan dulce",
+            "Pastel"
           ]
         },
         {
           "pista": "Enfermo",
           "palabras": [
             "Caldo de pollo",
-            "Sopa de fideos"
+            "Sopa de fideos",
+            "Gelatina"
           ]
         },
         {
@@ -217,7 +211,6 @@
           "pista": "Recreo",
           "palabras": [
             "Sándwich",
-            "Quesadilla",
             "Jugo"
           ]
         },
@@ -225,7 +218,7 @@
           "pista": "Almuerzo",
           "palabras": [
             "Arroz",
-            "Frijoles",
+            "Puré",
             "Milanesa"
           ]
         }
@@ -241,8 +234,7 @@
           "palabras": [
             "Plátano",
             "Fresa",
-            "Mango",
-            "Papaya"
+            "Mango"
           ]
         },
         {
@@ -257,7 +249,8 @@
           "palabras": [
             "Mora",
             "Frambuesa",
-            "Arándano"
+            "Arándano",
+            "Uva"
           ]
         },
         {
@@ -270,7 +263,7 @@
           ]
         },
         {
-          "pista": "Ceviche",
+          "pista": "Guacamole",
           "palabras": [
             "Limón",
             "Cebolla",
@@ -305,14 +298,9 @@
           "palabras": [
             "Papa",
             "Maíz",
-            "Apio"
-          ]
-        },
-        {
-          "pista": "Mortero",
-          "palabras": [
-            "Ajo",
-            "Jengibre"
+            "Apio",
+            "Lenteja",
+            "Ajo"
           ]
         },
         {
@@ -320,13 +308,6 @@
           "palabras": [
             "Sandía",
             "Melón"
-          ]
-        },
-        {
-          "pista": "Año Nuevo",
-          "palabras": [
-            "Uva",
-            "Lenteja"
           ]
         },
         {
@@ -343,14 +324,7 @@
           "palabras": [
             "Brócoli",
             "Coliflor",
-            "Remolacha"
-          ]
-        },
-        {
-          "pista": "Desierto",
-          "palabras": [
-            "Dátil",
-            "Pitaya"
+            "Coles de Bruselas"
           ]
         }
       ]
@@ -386,7 +360,7 @@
           "palabras": [
             "Cama",
             "Almohada",
-            "Manta",
+            "Sábana",
             "Toalla",
             "Jabón"
           ]
@@ -528,11 +502,10 @@
           ]
         },
         {
-          "pista": "Lunes",
+          "pista": "Primer día",
           "palabras": [
             "Uniforme",
-            "Mochila",
-            "Bandera"
+            "Mochila"
           ]
         },
         {
@@ -556,7 +529,7 @@
           "palabras": [
             "Libro",
             "Diccionario",
-            "Enciclopedia",
+            "Cuento",
             "Atlas"
           ]
         },
@@ -569,16 +542,15 @@
           ]
         },
         {
-          "pista": "Ingeniero",
+          "pista": "Tablas de multiplicar",
           "palabras": [
             "Calculadora",
             "Compás",
-            "Escuadra",
-            "Transportador"
+            "Ábaco"
           ]
         },
         {
-          "pista": "Festival",
+          "pista": "Fin de curso",
           "palabras": [
             "Escenario",
             "Telón",
@@ -595,7 +567,7 @@
           ]
         },
         {
-          "pista": "Museo",
+          "pista": "Artista",
           "palabras": [
             "Pincel",
             "Acuarelas",
@@ -647,7 +619,6 @@
         {
           "pista": "Silbato",
           "palabras": [
-            "Árbitro",
             "Entrenador",
             "Salvavidas"
           ]
@@ -684,7 +655,7 @@
           "palabras": [
             "Chef",
             "Panadero",
-            "Mesero",
+            "Heladero",
             "Carnicero"
           ]
         },
@@ -702,7 +673,7 @@
           "palabras": [
             "Maestro",
             "Director",
-            "Conserje"
+            "Bibliotecario"
           ]
         },
         {
@@ -710,7 +681,7 @@
           "palabras": [
             "Taxista",
             "Repartidor",
-            "Botones"
+            "Guía de turistas"
           ]
         },
         {
@@ -750,8 +721,8 @@
           "pista": "Estadio",
           "palabras": [
             "Futbolista",
-            "Portero",
-            "Beisbolista"
+            "Beisbolista",
+            "Árbitro"
           ]
         },
         {
@@ -766,7 +737,7 @@
           "pista": "Timbre",
           "palabras": [
             "Cartero",
-            "Plomero",
+            "Pintor",
             "Electricista",
             "Cerrajero"
           ]
@@ -807,7 +778,7 @@
           "palabras": [
             "Voleibol",
             "Tenis",
-            "Ping pong",
+            "Ping-pong",
             "Bádminton"
           ]
         },
@@ -820,7 +791,7 @@
           ]
         },
         {
-          "pista": "Cinturón",
+          "pista": "Medalla",
           "palabras": [
             "Boxeo",
             "Lucha libre",
@@ -846,7 +817,7 @@
           ]
         },
         {
-          "pista": "Guantes",
+          "pista": "Chocolate caliente",
           "palabras": [
             "Esquí",
             "Snowboard",
@@ -866,7 +837,7 @@
           "pista": "Herradura",
           "palabras": [
             "Equitación",
-            "Polo",
+            "Carreras de caballos",
             "Rodeo"
           ]
         },
@@ -891,17 +862,17 @@
           "pista": "Rebote",
           "palabras": [
             "Básquetbol",
-            "Frontón",
-            "Squash"
+            "Trampolín"
           ]
         },
         {
           "pista": "Protector solar",
           "palabras": [
             "Surf",
-            "Vela",
+            "Esquí acuático",
             "Voleibol de playa",
-            "Kayak"
+            "Kayak",
+            "Remo"
           ]
         },
         {
@@ -915,8 +886,7 @@
           "pista": "Proteína",
           "palabras": [
             "Levantamiento de pesas",
-            "Culturismo",
-            "Remo"
+            "Culturismo"
           ]
         }
       ]
@@ -938,7 +908,7 @@
         {
           "pista": "Semáforo",
           "palabras": [
-            "Coche",
+            "Auto",
             "Moto",
             "Taxi",
             "Camioneta"
@@ -970,16 +940,14 @@
           "pista": "Lago",
           "palabras": [
             "Lancha",
-            "Canoa",
-            "Bote"
+            "Canoa"
           ]
         },
         {
           "pista": "Andén",
           "palabras": [
             "Metro",
-            "Tranvía",
-            "Tren ligero"
+            "Tranvía"
           ]
         },
         {
@@ -1003,7 +971,8 @@
             "Helicóptero",
             "Avioneta",
             "Globo aerostático",
-            "Paracaídas"
+            "Paracaídas",
+            "Teleférico"
           ]
         },
         {
@@ -1019,8 +988,7 @@
           "pista": "Granja",
           "palabras": [
             "Tractor",
-            "Carreta",
-            "Carretilla"
+            "Carreta"
           ]
         },
         {
@@ -1029,13 +997,6 @@
             "Ascensor",
             "Escaleras eléctricas",
             "Carrito de compras"
-          ]
-        },
-        {
-          "pista": "Montaña",
-          "palabras": [
-            "Teleférico",
-            "Funicular"
           ]
         },
         {
@@ -1097,16 +1058,8 @@
         {
           "pista": "Fogata",
           "palabras": [
-            "Bosque",
-            "Montaña",
-            "Campamento"
-          ]
-        },
-        {
-          "pista": "Sed",
-          "palabras": [
-            "Desierto",
-            "Oasis"
+            "Campamento",
+            "Cabaña"
           ]
         },
         {
@@ -1137,14 +1090,12 @@
           "pista": "Elefante",
           "palabras": [
             "Zoológico",
-            "Safari",
-            "Selva"
+            "Safari"
           ]
         },
         {
           "pista": "Cohete",
           "palabras": [
-            "Luna",
             "Marte",
             "Estación espacial"
           ]
@@ -1177,7 +1128,7 @@
           "palabras": [
             "Parque",
             "Plaza",
-            "Malecón",
+            "Mirador",
             "Jardín"
           ]
         },
@@ -1209,39 +1160,35 @@
           "palabras": [
             "Oficina",
             "Fábrica",
-            "Bodega"
+            "Taller"
           ]
         },
         {
           "pista": "Piñata",
           "palabras": [
             "Salón de fiestas",
-            "Tienda de dulces"
+            "Pastelería"
           ]
         },
         {
           "pista": "Maleta",
           "palabras": [
             "Hotel",
-            "Cabaña",
             "Terminal de autobuses"
           ]
         },
         {
-          "pista": "Vaca",
+          "pista": "Tractor",
           "palabras": [
             "Granja",
-            "Establo",
-            "Corral"
+            "Huerto"
           ]
         },
         {
           "pista": "Explorador",
           "palabras": [
-            "Volcán",
             "Cueva",
-            "Isla",
-            "Cascada"
+            "Selva"
           ]
         }
       ]
@@ -1319,7 +1266,6 @@
           "pista": "Ardilla",
           "palabras": [
             "Árbol",
-            "Rama",
             "Hoja",
             "Bosque",
             "Semilla",
@@ -1329,7 +1275,6 @@
         {
           "pista": "Perfume",
           "palabras": [
-            "Flor",
             "Primavera",
             "Girasol",
             "Rosa"
@@ -1339,7 +1284,6 @@
           "pista": "Sirena",
           "palabras": [
             "Mar",
-            "Océano",
             "Ola",
             "Isla"
           ]
@@ -1349,7 +1293,6 @@
           "palabras": [
             "Río",
             "Lago",
-            "Laguna",
             "Cascada",
             "Pantano"
           ]
@@ -1367,15 +1310,13 @@
           "pista": "Algodón",
           "palabras": [
             "Nube",
-            "Niebla",
-            "Neblina"
+            "Niebla"
           ]
         },
         {
           "pista": "Alpinista",
           "palabras": [
             "Montaña",
-            "Cerro",
             "Volcán",
             "Glaciar"
           ]
@@ -1385,12 +1326,11 @@
           "palabras": [
             "Piedra",
             "Tierra",
-            "Arena",
-            "Polvo"
+            "Arena"
           ]
         },
         {
-          "pista": "Bombero",
+          "pista": "Dragón",
           "palabras": [
             "Fuego",
             "Humo",
@@ -1414,14 +1354,6 @@
       "emoji": "🎉",
       "grupos": [
         {
-          "pista": "Coco",
-          "palabras": [
-            "Día de Muertos",
-            "Altar",
-            "Catrina"
-          ]
-        },
-        {
           "pista": "Chimenea",
           "palabras": [
             "Navidad",
@@ -1436,7 +1368,8 @@
             "Nacimiento",
             "Árbol de Navidad",
             "Villancicos",
-            "Amigo secreto"
+            "Amigo secreto",
+            "Uvas de la suerte"
           ]
         },
         {
@@ -1444,8 +1377,6 @@
           "palabras": [
             "Año Nuevo",
             "Día de Reyes",
-            "Reyes Magos",
-            "Uvas de la suerte",
             "Rosca de Reyes"
           ]
         },
@@ -1460,14 +1391,14 @@
           "pista": "Plaza",
           "palabras": [
             "Desfile",
-            "Mariachi",
-            "Carnaval"
+            "Carnaval",
+            "Fiesta patronal"
           ]
         },
         {
           "pista": "Fotógrafo",
           "palabras": [
-            "Quinceañera",
+            "Fiesta de quince",
             "Graduación",
             "Bautizo",
             "Primera comunión"
@@ -1490,10 +1421,10 @@
           ]
         },
         {
-          "pista": "Playa",
+          "pista": "Carretera",
           "palabras": [
             "Semana Santa",
-            "Puente"
+            "Fin de semana largo"
           ]
         },
         {
@@ -1501,7 +1432,6 @@
           "palabras": [
             "Halloween",
             "Disfraz",
-            "Calabaza",
             "Dulce o truco"
           ]
         },
@@ -1536,17 +1466,10 @@
       "emoji": "🎸",
       "grupos": [
         {
-          "pista": "Mariachi",
-          "palabras": [
-            "Trompeta",
-            "Violín"
-          ]
-        },
-        {
           "pista": "Fogata",
           "palabras": [
             "Guitarra",
-            "Ukulele",
+            "Ukelele",
             "Armónica"
           ]
         },
@@ -1574,8 +1497,7 @@
           "palabras": [
             "Piano",
             "Orquesta",
-            "Partitura",
-            "Sinfonía"
+            "Partitura"
           ]
         },
         {
@@ -1587,7 +1509,8 @@
             "Clarinete",
             "Platillos",
             "Corneta",
-            "Saxofón"
+            "Saxofón",
+            "Trompeta"
           ]
         },
         {
@@ -1603,15 +1526,15 @@
           "pista": "Calle",
           "palabras": [
             "Acordeón",
-            "Organillo"
+            "Violín"
           ]
         },
         {
-          "pista": "Quinceañera",
+          "pista": "Pista de baile",
           "palabras": [
             "Cumbia",
             "Salsa",
-            "Reggaetón",
+            "Reguetón",
             "Vals"
           ]
         },
@@ -1629,7 +1552,6 @@
           "palabras": [
             "Marimba",
             "Bongó",
-            "Güiro",
             "Congas"
           ]
         },
@@ -1650,7 +1572,7 @@
         {
           "pista": "Celular",
           "palabras": [
-            "Audífonos",
+            "Auriculares",
             "Altavoz",
             "Playlist"
           ]
@@ -1668,13 +1590,13 @@
           "palabras": [
             "Bolero",
             "Tango",
-            "Villancico"
+            "Canción de cuna"
           ]
         },
         {
           "pista": "Bandera",
           "palabras": [
-            "Himno Nacional",
+            "Himno nacional",
             "Banda marcial"
           ]
         }
@@ -1734,7 +1656,8 @@
           "palabras": [
             "Torta",
             "Gordita",
-            "Tacos de canasta"
+            "Tacos de canasta",
+            "Quesadilla"
           ]
         },
         {
@@ -1768,7 +1691,7 @@
         {
           "pista": "Propina",
           "palabras": [
-            "Bolero",
+            "Viene-viene",
             "Cerillo",
             "Taquero"
           ]
@@ -1779,7 +1702,8 @@
             "Charro",
             "Charrería",
             "Guitarrón",
-            "Vihuela"
+            "Vihuela",
+            "Mariachi"
           ]
         },
         {
@@ -1787,18 +1711,18 @@
           "palabras": [
             "Tololoche",
             "Bajo sexto",
-            "Corrido"
+            "Cabrito"
           ]
         },
         {
           "pista": "Serenata",
           "palabras": [
-            "Las Mañanitas",
-            "Cielito Lindo"
+            "Las mañanitas",
+            "Cielito lindo"
           ]
         },
         {
-          "pista": "Confeti",
+          "pista": "Kermés",
           "palabras": [
             "Cascarones",
             "Espantasuegras"
@@ -1820,7 +1744,10 @@
             "Pan de muerto",
             "Calaverita",
             "Día de la Revolución",
-            "Buen Fin"
+            "Buen Fin",
+            "Día de Muertos",
+            "Altar",
+            "Catrina"
           ]
         },
         {
@@ -1836,11 +1763,11 @@
           "palabras": [
             "Día de la Candelaria",
             "Día de la Bandera",
-            "Día del Amor y la Amistad"
+            "Tamales"
           ]
         }
       ]
     }
   ],
-  "totalPalabras": 707
+  "totalPalabras": 674
 }

@@ -6,7 +6,7 @@ export const school: Categoria = {
   emoji: '🎒',
   grupos: [
     {
-      pista: 'Back to school',
+      pista: 'Desk',
       palabras: [
         'Notebook',
         'Pencil',
@@ -19,16 +19,16 @@ export const school: Categoria = {
         'Crayons',
       ],
     },
-    { pista: 'Lunchtime', palabras: ['Playground', 'Swing', 'Slide'] },
-    { pista: 'Monday', palabras: ['Uniform', 'Backpack'] },
-    { pista: 'Report card', palabras: ['Exam', 'Quiz', 'Homework'] },
+    { pista: 'Lunchtime', palabras: ['Hopscotch', 'Swing', 'Slide'] },
+    { pista: 'First day', palabras: ['Uniform', 'Backpack'] },
+    { pista: 'Gold star', palabras: ['Exam', 'Homework'] },
     { pista: 'Teacher', palabras: ['Whiteboard', 'Chalk', 'Marker'] },
-    { pista: 'Library', palabras: ['Book', 'Dictionary', 'Encyclopedia', 'Atlas'] },
-    { pista: 'Laboratory', palabras: ['Microscope', 'Lab coat', 'Magnifying glass', 'Test tube'] },
-    { pista: 'Engineer', palabras: ['Calculator', 'Compass', 'Protractor'] },
-    { pista: 'School play', palabras: ['Stage', 'Costume', 'Microphone'] },
+    { pista: 'Library', palabras: ['Bookmark', 'Dictionary', 'Atlas'] },
+    { pista: 'Laboratory', palabras: ['Microscope', 'Goggles', 'Magnifying glass', 'Test tube'] },
+    { pista: 'Times tables', palabras: ['Calculator', 'Abacus'] },
+    { pista: 'Talent show', palabras: ['Stage', 'Spotlight', 'Microphone'] },
     { pista: 'Coach', palabras: ['Ball', 'Whistle', 'Cone', 'Gym'] },
-    { pista: 'Museum', palabras: ['Paintbrush', 'Clay', 'Easel', 'Paint'] },
+    { pista: 'Artist', palabras: ['Paintbrush', 'Clay', 'Easel', 'Palette'] },
     { pista: 'Internet', palabras: ['Keyboard', 'Mouse', 'Tablet', 'Projector'] },
   ],
 }

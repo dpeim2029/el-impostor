@@ -4,7 +4,7 @@ import { home } from './casa'
 import { food } from './comida'
 import { sports } from './deportes'
 import { school } from './escuela'
-import { holidays } from './fiestas'
+import { celebrations } from './fiestas'
 import { fruitsVeggies } from './frutas-verduras'
 import { places } from './lugares'
 import { music } from './musica'
@@ -26,7 +26,7 @@ export const categoriasEn: Categoria[] = [
   transport,
   places,
   nature,
-  holidays,
+  celebrations,
   music,
   usa,
 ]

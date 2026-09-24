@@ -48,6 +48,20 @@ describe.each(bancos)('banco en %s', (_idioma, categorias) => {
     }
   })
 
+  it('ninguna palabra se repite entre categorías (salvo en las regionales)', () => {
+    // El juego lleva las usadas como "categoriaId:texto": una repetida saldría dos veces por ciclo.
+    const vistas = new Map<string, string>()
+    for (const categoria of categorias.filter((c) => !c.regiones)) {
+      for (const { texto } of palabrasDeCategoria(categoria)) {
+        const clave = normalizar(texto)
+        expect(vistas.get(clave), `"${texto}" está en ${vistas.get(clave)} y ${categoria.nombre}`).toBe(
+          undefined,
+        )
+        vistas.set(clave, categoria.nombre)
+      }
+    }
+  })
+
   it('cada categoría tiene al menos 25 palabras', () => {
     for (const categoria of categorias) {
       expect(palabrasDeCategoria(categoria).length, categoria.nombre).toBeGreaterThanOrEqual(25)
