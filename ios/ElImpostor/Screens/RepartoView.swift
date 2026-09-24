@@ -37,7 +37,7 @@ private struct RepartoJugadorView: View {
     var body: some View {
         Pantalla(titulo: "\(posicion) de \(total)", desplazable: false) {
             VStack(spacing: 8) {
-                EtiquetaSeccion(texto: "Pásale el teléfono a")
+                EtiquetaSeccion(texto: "Pasa el teléfono a")
                 Text(nombre)
                     .font(.nombre)
                     .textCase(.uppercase)

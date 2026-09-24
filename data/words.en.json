@@ -1,0 +1,1700 @@
+{
+  "idioma": "en",
+  "version": 1,
+  "reglas": {
+    "pista": "Cada pista es lejana (segundo grado: origen, contexto, oficio, lugar), no es sinónimo ni parte de la palabra, y la comparten 2 o más palabras del mismo grupo."
+  },
+  "categorias": [
+    {
+      "id": "animales",
+      "nombre": "Animals",
+      "emoji": "🦁",
+      "grupos": [
+        {
+          "pista": "Safari",
+          "palabras": [
+            "Lion",
+            "Elephant",
+            "Giraffe",
+            "Zebra",
+            "Hippo",
+            "Rhino"
+          ]
+        },
+        {
+          "pista": "Rainforest",
+          "palabras": [
+            "Monkey",
+            "Snake",
+            "Parrot",
+            "Crocodile",
+            "Gorilla"
+          ]
+        },
+        {
+          "pista": "Farm",
+          "palabras": [
+            "Cow",
+            "Horse",
+            "Chicken",
+            "Pig",
+            "Sheep",
+            "Donkey",
+            "Goat",
+            "Duck"
+          ]
+        },
+        {
+          "pista": "Vet",
+          "palabras": [
+            "Dog",
+            "Cat",
+            "Hamster",
+            "Rabbit",
+            "Guinea pig"
+          ]
+        },
+        {
+          "pista": "Diver",
+          "palabras": [
+            "Shark",
+            "Dolphin",
+            "Octopus",
+            "Whale",
+            "Turtle",
+            "Jellyfish"
+          ]
+        },
+        {
+          "pista": "Halloween",
+          "palabras": [
+            "Bat",
+            "Owl",
+            "Spider"
+          ]
+        },
+        {
+          "pista": "Forest",
+          "palabras": [
+            "Wolf",
+            "Bear",
+            "Fox",
+            "Deer",
+            "Squirrel"
+          ]
+        },
+        {
+          "pista": "Garden",
+          "palabras": [
+            "Butterfly",
+            "Bee",
+            "Snail",
+            "Ant",
+            "Worm"
+          ]
+        },
+        {
+          "pista": "Iceberg",
+          "palabras": [
+            "Penguin",
+            "Polar bear",
+            "Seal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comida",
+      "nombre": "Food",
+      "emoji": "🍔",
+      "grupos": [
+        {
+          "pista": "Italy",
+          "palabras": [
+            "Pizza",
+            "Spaghetti",
+            "Ravioli"
+          ]
+        },
+        {
+          "pista": "Japan",
+          "palabras": [
+            "Sushi",
+            "Ramen"
+          ]
+        },
+        {
+          "pista": "Mexico",
+          "palabras": [
+            "Tacos",
+            "Burrito",
+            "Guacamole",
+            "Quesadilla"
+          ]
+        },
+        {
+          "pista": "Cinema",
+          "palabras": [
+            "Popcorn",
+            "Nachos"
+          ]
+        },
+        {
+          "pista": "Grandma",
+          "palabras": [
+            "Apple pie",
+            "Stew",
+            "Roast chicken"
+          ]
+        },
+        {
+          "pista": "Weekend",
+          "palabras": [
+            "Pancakes",
+            "Waffles",
+            "Bacon",
+            "Eggs"
+          ]
+        },
+        {
+          "pista": "Seaside",
+          "palabras": [
+            "Fish",
+            "Crab",
+            "Lobster"
+          ]
+        },
+        {
+          "pista": "Summer",
+          "palabras": [
+            "Ice cream",
+            "Lemonade"
+          ]
+        },
+        {
+          "pista": "Cow",
+          "palabras": [
+            "Cheese",
+            "Butter",
+            "Milk"
+          ]
+        },
+        {
+          "pista": "Baker",
+          "palabras": [
+            "Bread",
+            "Doughnut",
+            "Muffin",
+            "Bagel",
+            "Cake"
+          ]
+        },
+        {
+          "pista": "Paris",
+          "palabras": [
+            "Crêpes",
+            "Baguette",
+            "Croissant"
+          ]
+        },
+        {
+          "pista": "Sick day",
+          "palabras": [
+            "Chicken soup",
+            "Toast"
+          ]
+        },
+        {
+          "pista": "Dentist",
+          "palabras": [
+            "Chocolate",
+            "Chewing gum",
+            "Lollipop"
+          ]
+        },
+        {
+          "pista": "Lunchbox",
+          "palabras": [
+            "Sandwich",
+            "Wrap",
+            "Juice"
+          ]
+        },
+        {
+          "pista": "Barbecue",
+          "palabras": [
+            "Hamburger",
+            "Hot dog",
+            "Ribs",
+            "Steak"
+          ]
+        },
+        {
+          "pista": "China",
+          "palabras": [
+            "Dumplings",
+            "Fried rice",
+            "Spring rolls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frutas-verduras",
+      "nombre": "Fruits and veggies",
+      "emoji": "🍓",
+      "grupos": [
+        {
+          "pista": "Smoothie",
+          "palabras": [
+            "Banana",
+            "Strawberry",
+            "Mango",
+            "Blueberry"
+          ]
+        },
+        {
+          "pista": "Hawaii",
+          "palabras": [
+            "Pineapple",
+            "Coconut"
+          ]
+        },
+        {
+          "pista": "Jam",
+          "palabras": [
+            "Raspberry",
+            "Blackberry",
+            "Apricot"
+          ]
+        },
+        {
+          "pista": "Flu season",
+          "palabras": [
+            "Orange",
+            "Grapefruit",
+            "Lemon"
+          ]
+        },
+        {
+          "pista": "Fairy tale",
+          "palabras": [
+            "Apple",
+            "Pumpkin",
+            "Beans"
+          ]
+        },
+        {
+          "pista": "Hamster",
+          "palabras": [
+            "Lettuce",
+            "Carrot",
+            "Celery"
+          ]
+        },
+        {
+          "pista": "Salad",
+          "palabras": [
+            "Tomato",
+            "Cucumber",
+            "Spinach",
+            "Radish"
+          ]
+        },
+        {
+          "pista": "Soup",
+          "palabras": [
+            "Potato",
+            "Onion",
+            "Peas"
+          ]
+        },
+        {
+          "pista": "Pizza",
+          "palabras": [
+            "Mushroom",
+            "Olive"
+          ]
+        },
+        {
+          "pista": "Summer",
+          "palabras": [
+            "Watermelon",
+            "Peach"
+          ]
+        },
+        {
+          "pista": "Orchard",
+          "palabras": [
+            "Cherry",
+            "Plum",
+            "Pear"
+          ]
+        },
+        {
+          "pista": "Tantrum",
+          "palabras": [
+            "Broccoli",
+            "Cauliflower",
+            "Brussels sprouts"
+          ]
+        },
+        {
+          "pista": "Caribbean",
+          "palabras": [
+            "Papaya",
+            "Passion fruit",
+            "Guava"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "casa",
+      "nombre": "Things at home",
+      "emoji": "🏠",
+      "grupos": [
+        {
+          "pista": "Chef",
+          "palabras": [
+            "Frying pan",
+            "Pot",
+            "Blender",
+            "Knife",
+            "Oven"
+          ]
+        },
+        {
+          "pista": "Electrician",
+          "palabras": [
+            "Fridge",
+            "Microwave",
+            "Washing machine",
+            "Lamp",
+            "Fan",
+            "Iron"
+          ]
+        },
+        {
+          "pista": "Hotel",
+          "palabras": [
+            "Bed",
+            "Pillow",
+            "Blanket",
+            "Towel",
+            "Soap"
+          ]
+        },
+        {
+          "pista": "Leak",
+          "palabras": [
+            "Shower",
+            "Sink",
+            "Toilet",
+            "Pipe"
+          ]
+        },
+        {
+          "pista": "Morning",
+          "palabras": [
+            "Toothbrush",
+            "Comb",
+            "Mirror",
+            "Shampoo"
+          ]
+        },
+        {
+          "pista": "Guests",
+          "palabras": [
+            "Sofa",
+            "Armchair",
+            "Rug",
+            "Curtain"
+          ]
+        },
+        {
+          "pista": "Restaurant",
+          "palabras": [
+            "Plate",
+            "Glass",
+            "Spoon",
+            "Fork",
+            "Napkin",
+            "Table",
+            "Chair"
+          ]
+        },
+        {
+          "pista": "Cinderella",
+          "palabras": [
+            "Broom",
+            "Bucket",
+            "Mop"
+          ]
+        },
+        {
+          "pista": "Homework",
+          "palabras": [
+            "Desk",
+            "Computer",
+            "Printer"
+          ]
+        },
+        {
+          "pista": "Delivery",
+          "palabras": [
+            "Doorbell",
+            "Doormat"
+          ]
+        },
+        {
+          "pista": "Burglar",
+          "palabras": [
+            "Window",
+            "Key",
+            "Lock",
+            "Door"
+          ]
+        },
+        {
+          "pista": "Hammer",
+          "palabras": [
+            "Clock",
+            "Painting",
+            "Calendar",
+            "Shelf"
+          ]
+        },
+        {
+          "pista": "Gardener",
+          "palabras": [
+            "Watering can",
+            "Hose",
+            "Flowerpot"
+          ]
+        },
+        {
+          "pista": "Stork",
+          "palabras": [
+            "Baby bottle",
+            "Rattle",
+            "Bib"
+          ]
+        },
+        {
+          "pista": "Weekend",
+          "palabras": [
+            "TV",
+            "Remote control",
+            "Game console"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escuela",
+      "nombre": "School",
+      "emoji": "🎒",
+      "grupos": [
+        {
+          "pista": "Desk",
+          "palabras": [
+            "Notebook",
+            "Pencil",
+            "Pen",
+            "Eraser",
+            "Sharpener",
+            "Ruler",
+            "Scissors",
+            "Glue",
+            "Crayons"
+          ]
+        },
+        {
+          "pista": "Lunchtime",
+          "palabras": [
+            "Hopscotch",
+            "Swing",
+            "Slide"
+          ]
+        },
+        {
+          "pista": "First day",
+          "palabras": [
+            "Uniform",
+            "Backpack"
+          ]
+        },
+        {
+          "pista": "Gold star",
+          "palabras": [
+            "Exam",
+            "Homework"
+          ]
+        },
+        {
+          "pista": "Teacher",
+          "palabras": [
+            "Whiteboard",
+            "Chalk",
+            "Marker"
+          ]
+        },
+        {
+          "pista": "Library",
+          "palabras": [
+            "Bookmark",
+            "Dictionary",
+            "Atlas"
+          ]
+        },
+        {
+          "pista": "Laboratory",
+          "palabras": [
+            "Microscope",
+            "Goggles",
+            "Magnifying glass",
+            "Test tube"
+          ]
+        },
+        {
+          "pista": "Times tables",
+          "palabras": [
+            "Calculator",
+            "Abacus"
+          ]
+        },
+        {
+          "pista": "Talent show",
+          "palabras": [
+            "Stage",
+            "Spotlight",
+            "Microphone"
+          ]
+        },
+        {
+          "pista": "Coach",
+          "palabras": [
+            "Ball",
+            "Whistle",
+            "Cone",
+            "Gym"
+          ]
+        },
+        {
+          "pista": "Artist",
+          "palabras": [
+            "Paintbrush",
+            "Clay",
+            "Easel",
+            "Palette"
+          ]
+        },
+        {
+          "pista": "Internet",
+          "palabras": [
+            "Keyboard",
+            "Mouse",
+            "Tablet",
+            "Projector"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profesiones",
+      "nombre": "Jobs",
+      "emoji": "👩‍🚒",
+      "grupos": [
+        {
+          "pista": "Waiting room",
+          "palabras": [
+            "Doctor",
+            "Nurse",
+            "Vet"
+          ]
+        },
+        {
+          "pista": "Lab coat",
+          "palabras": [
+            "Scientist",
+            "Dentist",
+            "Pharmacist"
+          ]
+        },
+        {
+          "pista": "Siren",
+          "palabras": [
+            "Firefighter",
+            "Police officer",
+            "Paramedic"
+          ]
+        },
+        {
+          "pista": "Whistle",
+          "palabras": [
+            "Referee",
+            "Coach",
+            "Lifeguard"
+          ]
+        },
+        {
+          "pista": "Applause",
+          "palabras": [
+            "Singer",
+            "Actor",
+            "Dancer",
+            "Magician",
+            "Acrobat",
+            "Clown"
+          ]
+        },
+        {
+          "pista": "Crane",
+          "palabras": [
+            "Builder",
+            "Engineer",
+            "Architect"
+          ]
+        },
+        {
+          "pista": "Sky",
+          "palabras": [
+            "Pilot",
+            "Astronaut",
+            "Flight attendant"
+          ]
+        },
+        {
+          "pista": "Hunger",
+          "palabras": [
+            "Chef",
+            "Baker",
+            "Waiter",
+            "Butcher"
+          ]
+        },
+        {
+          "pista": "Sunrise",
+          "palabras": [
+            "Farmer",
+            "Fisherman",
+            "Gardener"
+          ]
+        },
+        {
+          "pista": "Classroom",
+          "palabras": [
+            "Teacher",
+            "Librarian"
+          ]
+        },
+        {
+          "pista": "Map",
+          "palabras": [
+            "Taxi driver",
+            "Delivery driver"
+          ]
+        },
+        {
+          "pista": "Wedding",
+          "palabras": [
+            "Photographer",
+            "DJ",
+            "Florist",
+            "Hairdresser"
+          ]
+        },
+        {
+          "pista": "TV studio",
+          "palabras": [
+            "Reporter",
+            "Presenter",
+            "Camera operator"
+          ]
+        },
+        {
+          "pista": "Laptop",
+          "palabras": [
+            "Programmer",
+            "Designer",
+            "YouTuber"
+          ]
+        },
+        {
+          "pista": "Anchor",
+          "palabras": [
+            "Sailor",
+            "Captain",
+            "Diver"
+          ]
+        },
+        {
+          "pista": "Stadium",
+          "palabras": [
+            "Goalkeeper",
+            "Athlete",
+            "Mascot"
+          ]
+        },
+        {
+          "pista": "Tie",
+          "palabras": [
+            "Lawyer",
+            "Judge",
+            "Banker"
+          ]
+        },
+        {
+          "pista": "Toolbox",
+          "palabras": [
+            "Plumber",
+            "Electrician",
+            "Locksmith",
+            "Mechanic"
+          ]
+        },
+        {
+          "pista": "Parade",
+          "palabras": [
+            "Soldier",
+            "Drummer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deportes",
+      "nombre": "Sports",
+      "emoji": "⚽",
+      "grupos": [
+        {
+          "pista": "Grass",
+          "palabras": [
+            "Soccer",
+            "Baseball",
+            "Rugby",
+            "Cricket"
+          ]
+        },
+        {
+          "pista": "Net",
+          "palabras": [
+            "Volleyball",
+            "Tennis",
+            "Table tennis",
+            "Badminton"
+          ]
+        },
+        {
+          "pista": "Chlorine",
+          "palabras": [
+            "Swimming",
+            "Water polo",
+            "Diving"
+          ]
+        },
+        {
+          "pista": "Belt",
+          "palabras": [
+            "Boxing",
+            "Wrestling",
+            "Karate",
+            "Judo",
+            "Taekwondo"
+          ]
+        },
+        {
+          "pista": "Mask",
+          "palabras": [
+            "Fencing",
+            "Ice hockey"
+          ]
+        },
+        {
+          "pista": "Mat",
+          "palabras": [
+            "Gymnastics",
+            "Yoga"
+          ]
+        },
+        {
+          "pista": "Hot chocolate",
+          "palabras": [
+            "Skiing",
+            "Snowboarding",
+            "Ice skating"
+          ]
+        },
+        {
+          "pista": "Helmet",
+          "palabras": [
+            "Cycling",
+            "Skateboarding",
+            "Roller skating",
+            "Motocross",
+            "BMX"
+          ]
+        },
+        {
+          "pista": "Stable",
+          "palabras": [
+            "Horse riding",
+            "Horse racing",
+            "Rodeo"
+          ]
+        },
+        {
+          "pista": "Aim",
+          "palabras": [
+            "Archery",
+            "Darts",
+            "Bowling"
+          ]
+        },
+        {
+          "pista": "Stopwatch",
+          "palabras": [
+            "Marathon",
+            "Relay race",
+            "Car racing"
+          ]
+        },
+        {
+          "pista": "Bounce",
+          "palabras": [
+            "Basketball",
+            "Trampoline"
+          ]
+        },
+        {
+          "pista": "Sunscreen",
+          "palabras": [
+            "Surfing",
+            "Sailing",
+            "Kayaking"
+          ]
+        },
+        {
+          "pista": "Quiet",
+          "palabras": [
+            "Chess",
+            "Golf"
+          ]
+        },
+        {
+          "pista": "Protein",
+          "palabras": [
+            "Weightlifting",
+            "Tug of war",
+            "Rowing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transporte",
+      "nombre": "Transport",
+      "emoji": "🚌",
+      "grupos": [
+        {
+          "pista": "Suitcase",
+          "palabras": [
+            "Plane",
+            "Bus",
+            "Train"
+          ]
+        },
+        {
+          "pista": "Traffic light",
+          "palabras": [
+            "Car",
+            "Motorcycle",
+            "Taxi",
+            "Van"
+          ]
+        },
+        {
+          "pista": "Park",
+          "palabras": [
+            "Bicycle",
+            "Scooter",
+            "Tricycle"
+          ]
+        },
+        {
+          "pista": "Titanic",
+          "palabras": [
+            "Ship",
+            "Submarine"
+          ]
+        },
+        {
+          "pista": "Pirate",
+          "palabras": [
+            "Sailboat",
+            "Raft"
+          ]
+        },
+        {
+          "pista": "Lake",
+          "palabras": [
+            "Canoe",
+            "Pedal boat"
+          ]
+        },
+        {
+          "pista": "Ticket",
+          "palabras": [
+            "Tram",
+            "Metro",
+            "Ferry"
+          ]
+        },
+        {
+          "pista": "Siren",
+          "palabras": [
+            "Ambulance",
+            "Police car",
+            "Fire engine"
+          ]
+        },
+        {
+          "pista": "Countdown",
+          "palabras": [
+            "Rocket",
+            "Spaceship"
+          ]
+        },
+        {
+          "pista": "Clouds",
+          "palabras": [
+            "Helicopter",
+            "Hot air balloon",
+            "Parachute",
+            "Glider"
+          ]
+        },
+        {
+          "pista": "Fairy tale",
+          "palabras": [
+            "Carriage",
+            "Magic carpet",
+            "Broomstick"
+          ]
+        },
+        {
+          "pista": "Farm",
+          "palabras": [
+            "Tractor",
+            "Wheelbarrow",
+            "Cart"
+          ]
+        },
+        {
+          "pista": "Mountain",
+          "palabras": [
+            "Cable car",
+            "Ski lift"
+          ]
+        },
+        {
+          "pista": "Winter",
+          "palabras": [
+            "Snowmobile",
+            "Sleigh"
+          ]
+        },
+        {
+          "pista": "Beach",
+          "palabras": [
+            "Paddleboard",
+            "Speedboat"
+          ]
+        },
+        {
+          "pista": "Finish line",
+          "palabras": [
+            "Go-kart",
+            "Race car"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lugares",
+      "nombre": "Places",
+      "emoji": "🗺️",
+      "grupos": [
+        {
+          "pista": "Ticket",
+          "palabras": [
+            "Circus",
+            "Stadium",
+            "Theme park"
+          ]
+        },
+        {
+          "pista": "Waiting",
+          "palabras": [
+            "Bank",
+            "Pharmacy",
+            "Post office",
+            "Hair salon"
+          ]
+        },
+        {
+          "pista": "Receipt",
+          "palabras": [
+            "Supermarket",
+            "Bakery"
+          ]
+        },
+        {
+          "pista": "Silence",
+          "palabras": [
+            "Library",
+            "Church",
+            "Hospital",
+            "Museum"
+          ]
+        },
+        {
+          "pista": "Towel",
+          "palabras": [
+            "Beach",
+            "Swimming pool"
+          ]
+        },
+        {
+          "pista": "Scouts",
+          "palabras": [
+            "Campsite",
+            "Cabin"
+          ]
+        },
+        {
+          "pista": "Dragon",
+          "palabras": [
+            "Castle",
+            "Palace",
+            "Dungeon"
+          ]
+        },
+        {
+          "pista": "Backpack",
+          "palabras": [
+            "School",
+            "University",
+            "Kindergarten"
+          ]
+        },
+        {
+          "pista": "Elephant",
+          "palabras": [
+            "Zoo",
+            "Safari park"
+          ]
+        },
+        {
+          "pista": "Rocket",
+          "palabras": [
+            "Mars",
+            "Space station"
+          ]
+        },
+        {
+          "pista": "Nemo",
+          "palabras": [
+            "Aquarium",
+            "Ocean",
+            "Coral reef"
+          ]
+        },
+        {
+          "pista": "Menu",
+          "palabras": [
+            "Restaurant",
+            "Café"
+          ]
+        },
+        {
+          "pista": "Stairs",
+          "palabras": [
+            "Skyscraper",
+            "Lighthouse"
+          ]
+        },
+        {
+          "pista": "Picnic",
+          "palabras": [
+            "Park",
+            "Garden"
+          ]
+        },
+        {
+          "pista": "Halloween",
+          "palabras": [
+            "Graveyard",
+            "Haunted house"
+          ]
+        },
+        {
+          "pista": "Tourist",
+          "palabras": [
+            "Pyramids",
+            "Eiffel Tower",
+            "Colosseum",
+            "Great Wall of China",
+            "Statue of Liberty",
+            "Big Ben"
+          ]
+        },
+        {
+          "pista": "Pigeon",
+          "palabras": [
+            "Town square",
+            "Fountain",
+            "Train station"
+          ]
+        },
+        {
+          "pista": "Boss",
+          "palabras": [
+            "Office",
+            "Factory",
+            "Warehouse"
+          ]
+        },
+        {
+          "pista": "Suitcase",
+          "palabras": [
+            "Hotel",
+            "Airport"
+          ]
+        },
+        {
+          "pista": "Cow",
+          "palabras": [
+            "Farm",
+            "Barn",
+            "Stable"
+          ]
+        },
+        {
+          "pista": "Explorer",
+          "palabras": [
+            "Cave",
+            "Jungle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "naturaleza",
+      "nombre": "Nature and weather",
+      "emoji": "🌦️",
+      "grupos": [
+        {
+          "pista": "Boots",
+          "palabras": [
+            "Rain",
+            "Storm",
+            "Hail",
+            "Mud",
+            "Puddle"
+          ]
+        },
+        {
+          "pista": "Scarf",
+          "palabras": [
+            "Snow",
+            "Ice",
+            "Winter",
+            "Frost"
+          ]
+        },
+        {
+          "pista": "Fan",
+          "palabras": [
+            "Sun",
+            "Heat",
+            "Summer",
+            "Drought"
+          ]
+        },
+        {
+          "pista": "Kite",
+          "palabras": [
+            "Wind",
+            "Tornado",
+            "Hurricane"
+          ]
+        },
+        {
+          "pista": "Scared",
+          "palabras": [
+            "Thunder",
+            "Lightning",
+            "Earthquake",
+            "Eruption"
+          ]
+        },
+        {
+          "pista": "Camera",
+          "palabras": [
+            "Rainbow",
+            "Sunset",
+            "Northern lights",
+            "Sunrise"
+          ]
+        },
+        {
+          "pista": "Telescope",
+          "palabras": [
+            "Moon",
+            "Star",
+            "Comet",
+            "Planet",
+            "Eclipse"
+          ]
+        },
+        {
+          "pista": "Squirrel",
+          "palabras": [
+            "Tree",
+            "Branch",
+            "Leaf",
+            "Acorn",
+            "Seed",
+            "Autumn",
+            "Pine cone"
+          ]
+        },
+        {
+          "pista": "Perfume",
+          "palabras": [
+            "Lavender",
+            "Spring",
+            "Sunflower",
+            "Rose"
+          ]
+        },
+        {
+          "pista": "Mermaid",
+          "palabras": [
+            "Sea",
+            "Wave",
+            "Island"
+          ]
+        },
+        {
+          "pista": "Frog",
+          "palabras": [
+            "River",
+            "Lake",
+            "Pond",
+            "Waterfall",
+            "Swamp",
+            "Stream"
+          ]
+        },
+        {
+          "pista": "Thirst",
+          "palabras": [
+            "Desert",
+            "Dune",
+            "Cactus",
+            "Oasis"
+          ]
+        },
+        {
+          "pista": "Cotton",
+          "palabras": [
+            "Cloud",
+            "Fog"
+          ]
+        },
+        {
+          "pista": "Climber",
+          "palabras": [
+            "Mountain",
+            "Hill",
+            "Volcano",
+            "Glacier"
+          ]
+        },
+        {
+          "pista": "Shoe",
+          "palabras": [
+            "Sand",
+            "Dust",
+            "Pebble"
+          ]
+        },
+        {
+          "pista": "Hose",
+          "palabras": [
+            "Fire",
+            "Smoke",
+            "Ash"
+          ]
+        },
+        {
+          "pista": "Echo",
+          "palabras": [
+            "Canyon",
+            "Valley",
+            "Cliff"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fiestas",
+      "nombre": "Celebrations",
+      "emoji": "🎉",
+      "grupos": [
+        {
+          "pista": "Chimney",
+          "palabras": [
+            "Christmas",
+            "Santa Claus",
+            "Reindeer",
+            "Presents"
+          ]
+        },
+        {
+          "pista": "December",
+          "palabras": [
+            "Tinsel",
+            "Carols",
+            "Advent calendar",
+            "Stocking",
+            "Hanukkah"
+          ]
+        },
+        {
+          "pista": "Staying up late",
+          "palabras": [
+            "New Year's Eve",
+            "Fireworks",
+            "Confetti"
+          ]
+        },
+        {
+          "pista": "Photographer",
+          "palabras": [
+            "Wedding",
+            "Graduation",
+            "Anniversary"
+          ]
+        },
+        {
+          "pista": "Invitation",
+          "palabras": [
+            "Birthday",
+            "Balloons",
+            "Party hat",
+            "Sleepover",
+            "Baby shower"
+          ]
+        },
+        {
+          "pista": "Basket",
+          "palabras": [
+            "Easter",
+            "Egg hunt"
+          ]
+        },
+        {
+          "pista": "October",
+          "palabras": [
+            "Halloween",
+            "Costume",
+            "Trick or treat"
+          ]
+        },
+        {
+          "pista": "Card",
+          "palabras": [
+            "Mother's Day",
+            "Father's Day",
+            "Valentine's Day"
+          ]
+        },
+        {
+          "pista": "Parade",
+          "palabras": [
+            "Carnival",
+            "Saint Patrick's Day"
+          ]
+        },
+        {
+          "pista": "Mexico",
+          "palabras": [
+            "Day of the Dead",
+            "Piñata"
+          ]
+        },
+        {
+          "pista": "Lanterns",
+          "palabras": [
+            "Chinese New Year",
+            "Diwali"
+          ]
+        },
+        {
+          "pista": "Bride",
+          "palabras": [
+            "Engagement",
+            "Honeymoon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "musica",
+      "nombre": "Instruments and music",
+      "emoji": "🎸",
+      "grupos": [
+        {
+          "pista": "Campfire",
+          "palabras": [
+            "Guitar",
+            "Ukulele",
+            "Harmonica"
+          ]
+        },
+        {
+          "pista": "Preschool",
+          "palabras": [
+            "Xylophone",
+            "Triangle",
+            "Tambourine",
+            "Maracas",
+            "Recorder",
+            "Bells"
+          ]
+        },
+        {
+          "pista": "Wedding",
+          "palabras": [
+            "Organ",
+            "Choir",
+            "Harp"
+          ]
+        },
+        {
+          "pista": "Beethoven",
+          "palabras": [
+            "Piano",
+            "Orchestra",
+            "Cello",
+            "Sheet music"
+          ]
+        },
+        {
+          "pista": "Parade",
+          "palabras": [
+            "Tuba",
+            "Trombone",
+            "Clarinet",
+            "Cymbals",
+            "Trumpet",
+            "Saxophone"
+          ]
+        },
+        {
+          "pista": "Earplugs",
+          "palabras": [
+            "Drum kit",
+            "Bass",
+            "Amplifier"
+          ]
+        },
+        {
+          "pista": "Street",
+          "palabras": [
+            "Accordion",
+            "Violin"
+          ]
+        },
+        {
+          "pista": "Radio",
+          "palabras": [
+            "Rock",
+            "Pop",
+            "Rap",
+            "Jazz"
+          ]
+        },
+        {
+          "pista": "Dance floor",
+          "palabras": [
+            "Salsa",
+            "Disco",
+            "Waltz",
+            "Tango",
+            "Samba"
+          ]
+        },
+        {
+          "pista": "Tropical",
+          "palabras": [
+            "Marimba",
+            "Bongos",
+            "Steel drum"
+          ]
+        },
+        {
+          "pista": "Spain",
+          "palabras": [
+            "Castanets",
+            "Flamenco"
+          ]
+        },
+        {
+          "pista": "Shower",
+          "palabras": [
+            "Karaoke",
+            "Song"
+          ]
+        },
+        {
+          "pista": "Smartphone",
+          "palabras": [
+            "Headphones",
+            "Speaker",
+            "Playlist"
+          ]
+        },
+        {
+          "pista": "Stage",
+          "palabras": [
+            "Opera",
+            "Ballet",
+            "Musical",
+            "Conductor"
+          ]
+        },
+        {
+          "pista": "Grandma",
+          "palabras": [
+            "Lullaby",
+            "Record player",
+            "Jukebox"
+          ]
+        },
+        {
+          "pista": "Flag",
+          "palabras": [
+            "National anthem",
+            "Marching band"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usa",
+      "nombre": "USA",
+      "emoji": "🇺🇸",
+      "regiones": [
+        "US"
+      ],
+      "grupos": [
+        {
+          "pista": "November",
+          "palabras": [
+            "Thanksgiving",
+            "Black Friday",
+            "Pumpkin pie",
+            "Veterans Day"
+          ]
+        },
+        {
+          "pista": "Day off",
+          "palabras": [
+            "Fourth of July",
+            "Memorial Day",
+            "Labor Day"
+          ]
+        },
+        {
+          "pista": "Stadium",
+          "palabras": [
+            "Super Bowl",
+            "Touchdown",
+            "Cheerleader",
+            "Home run"
+          ]
+        },
+        {
+          "pista": "Classroom",
+          "palabras": [
+            "Field trip",
+            "Spelling bee",
+            "Show and tell"
+          ]
+        },
+        {
+          "pista": "Diner",
+          "palabras": [
+            "Mac and cheese",
+            "Milkshake",
+            "Meatloaf",
+            "Corn dog"
+          ]
+        },
+        {
+          "pista": "New York",
+          "palabras": [
+            "Times Square",
+            "Central Park",
+            "Yellow cab",
+            "Broadway"
+          ]
+        },
+        {
+          "pista": "Autograph",
+          "palabras": [
+            "Walk of Fame",
+            "Oscars"
+          ]
+        },
+        {
+          "pista": "Road trip",
+          "palabras": [
+            "Grand Canyon",
+            "Route 66",
+            "Golden Gate Bridge",
+            "Yellowstone"
+          ]
+        },
+        {
+          "pista": "Piggy bank",
+          "palabras": [
+            "Quarter",
+            "Penny",
+            "Dime"
+          ]
+        },
+        {
+          "pista": "Mall",
+          "palabras": [
+            "Food court",
+            "Arcade"
+          ]
+        },
+        {
+          "pista": "Limo",
+          "palabras": [
+            "Prom",
+            "Sweet sixteen"
+          ]
+        }
+      ]
+    }
+  ],
+  "totalPalabras": 636
+}

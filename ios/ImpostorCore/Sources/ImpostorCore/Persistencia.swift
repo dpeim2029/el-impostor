@@ -35,8 +35,12 @@ public func guardarEstado(_ almacen: (any Almacen)?, _ estado: EstadoJuego) {
     almacen.escribir(texto, clave: claveAlmacen)
 }
 
-public func cargarEstado(_ almacen: (any Almacen)?, categorias: [Categoria]) -> EstadoJuego {
-    let inicial = EstadoJuego.inicial(categorias: categorias)
+public func cargarEstado(
+    _ almacen: (any Almacen)?,
+    categorias: [Categoria],
+    region: String? = nil
+) -> EstadoJuego {
+    let inicial = EstadoJuego.inicial(categorias: categorias, region: region)
     guard let almacen,
           let crudo = almacen.leer(claveAlmacen),
           let datos = crudo.data(using: .utf8),
@@ -47,10 +51,18 @@ public func cargarEstado(_ almacen: (any Almacen)?, categorias: [Categoria]) -> 
     let idsValidos = Set(categorias.map(\.id))
     let ajustesGuardados = guardado["ajustes"] as? [String: Any]
 
-    var activas = inicial.ajustes.categoriasActivas
+    var guardadas = inicial.ajustes.categoriasActivas
     if let lista = ajustesGuardados?["categoriasActivas"] as? [Any] {
-        activas = lista.compactMap { $0 as? String }.filter { idsValidos.contains($0) }
+        guardadas = lista.compactMap { $0 as? String }.filter { idsValidos.contains($0) }
     }
+    // Las categorías que no existían al guardar se suman si tocan por región (p. ej. "México"
+    // para quien jugaba la versión 1 en México); las que el jugador ya conocía se respetan.
+    let conocidas = (ajustesGuardados?["categoriasConocidas"] as? [Any])?.compactMap { $0 as? String }
+        ?? idsBancoV1
+    let nuevas = inicial.ajustes.categoriasActivas.filter {
+        !conocidas.contains($0) && !guardadas.contains($0)
+    }
+    let activas = guardadas.isEmpty ? inicial.ajustes.categoriasActivas : guardadas + nuevas
 
     var estado = inicial
     if let lista = guardado["jugadores"] as? [Any] {
@@ -65,7 +77,10 @@ public func cargarEstado(_ almacen: (any Almacen)?, categorias: [Categoria]) -> 
     estado.ajustes = Ajustes(
         numImpostores: (ajustesGuardados?["numImpostores"] as? Int) == 2 ? .dos : .uno,
         conPista: (ajustesGuardados?["conPista"] as? Bool) != false,
-        categoriasActivas: activas.isEmpty ? inicial.ajustes.categoriasActivas : activas
+        categoriasActivas: activas,
+        // Unión, no reemplazo: al cambiar de idioma (bancos con distinta categoría regional) no se
+        // olvida que el jugador ya conocía y quizá apagó la del otro banco.
+        categoriasConocidas: conocidas + (inicial.ajustes.categoriasConocidas ?? []).filter { !conocidas.contains($0) }
     )
     if let lista = guardado["palabrasUsadas"] as? [Any] {
         estado.palabrasUsadas = lista.compactMap { $0 as? String }

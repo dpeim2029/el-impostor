@@ -62,7 +62,7 @@ struct AjustesView: View {
         }
         .tint(.tinta)
         .onAppear {
-            elegirCategorias = ajustes.categoriasActivas.count != store.categorias.count
+            elegirCategorias = Set(ajustes.categoriasActivas) != Set(store.idsPorDefecto)
         }
     }
 
@@ -202,7 +202,7 @@ struct AjustesView: View {
                 .tint(.tinta)
                 .accessibilityIdentifier("elegirCategorias")
                 .onChange(of: elegirCategorias) { _, activo in
-                    if !activo { store.enviar(.setCategorias(ids: store.banco.idsDeCategorias)) }
+                    if !activo { store.enviar(.setCategorias(ids: store.idsPorDefecto)) }
                 }
                 .listRowBackground(FondoDeSeccion(marco: .amarillo, posicion: .primera))
             if elegirCategorias {

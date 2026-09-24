@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Captura cada pantalla de la app en el simulador sembrando el estado guardado (mismo JSON que la web).
-# Uso: ios/scripts/capturas.sh [dispositivo] [carpeta-de-salida]
+# Uso: ios/scripts/capturas.sh [dispositivo] [carpeta-de-salida] [idioma: es-MX | en]
 set -euo pipefail
 
 DISPOSITIVO="${1:-iPhone 17e}"
 SALIDA="${2:-ios/DerivedData/capturas}"
+IDIOMA="${3:-es-MX}"
 APP="ios/DerivedData/Build/Products/Debug-iphonesimulator/ElImpostor.app"
 BUNDLE="mx.elimpostor.app"
 CLAVE="el-impostor:v1"
@@ -23,9 +24,16 @@ xcrun simctl status_bar "$DISPOSITIVO" override --time 9:41 --batteryState disch
 CONTENEDOR="$(xcrun simctl get_app_container "$DISPOSITIVO" "$BUNDLE" data)"
 DOMINIO="$CONTENEDOR/Library/Preferences/$BUNDLE"
 
-JUGADORES='[{"id":"j1","nombre":"Ana"},{"id":"j2","nombre":"Luis"},{"id":"j3","nombre":"Sofi"},{"id":"j4","nombre":"Beto"},{"id":"j5","nombre":"Abuela Rosa"},{"id":"j6","nombre":"Tío Memo"}]'
-AJUSTES='{"numImpostores":1,"conPista":true,"categoriasActivas":["animales","comida","frutas-verduras","casa","escuela","profesiones","deportes","transporte","lugares","naturaleza","fiestas","musica"]}'
-PALABRA='{"texto":"Pizza","pista":"Italia","categoriaId":"comida","categoriaNombre":"Comida","categoriaEmoji":"🌮"}'
+if [[ "$IDIOMA" == en* ]]; then
+  JUGADORES='[{"id":"j1","nombre":"Emma"},{"id":"j2","nombre":"Jack"},{"id":"j3","nombre":"Lily"},{"id":"j4","nombre":"Noah"},{"id":"j5","nombre":"Grandma Rose"},{"id":"j6","nombre":"Uncle Mike"}]'
+  PALABRA='{"texto":"Pizza","pista":"Italy","categoriaId":"comida","categoriaNombre":"Food","categoriaEmoji":"🍔"}'
+else
+  JUGADORES='[{"id":"j1","nombre":"Ana"},{"id":"j2","nombre":"Luis"},{"id":"j3","nombre":"Sofi"},{"id":"j4","nombre":"Beto"},{"id":"j5","nombre":"Abuela Rosa"},{"id":"j6","nombre":"Tío Memo"}]'
+  PALABRA='{"texto":"Pizza","pista":"Italia","categoriaId":"comida","categoriaNombre":"Comida","categoriaEmoji":"🌮"}'
+fi
+# Las categorías por defecto de cada región (-AppleLocale): México con es_MX; ninguna regional con "en".
+REGIONAL=$([[ "$IDIOMA" == "es-MX" ]] && echo ',"mexico"' || true)
+AJUSTES='{"numImpostores":1,"conPista":true,"categoriasActivas":["animales","comida","frutas-verduras","casa","escuela","profesiones","deportes","transporte","lugares","naturaleza","fiestas","musica"'"$REGIONAL"']}'
 ROLES='{"j1":"civil","j2":"impostor","j3":"civil","j4":"civil","j5":"civil","j6":"civil"}'
 
 # estado <fase> <indiceReparto> <acusaciones-json>
@@ -47,7 +55,7 @@ capturar() {
   else
     xcrun simctl spawn "$DISPOSITIVO" defaults delete "$DOMINIO" "$CLAVE" 2>/dev/null || true
   fi
-  xcrun simctl launch "$DISPOSITIVO" "$BUNDLE" "$@" >/dev/null
+  xcrun simctl launch "$DISPOSITIVO" "$BUNDLE" "$@" -AppleLanguages "($IDIOMA)" -AppleLocale "${IDIOMA/-/_}" >/dev/null
   sleep 2.5
   xcrun simctl io "$DISPOSITIVO" screenshot "$SALIDA/$nombre.png" >/dev/null
   echo "✓ $nombre"

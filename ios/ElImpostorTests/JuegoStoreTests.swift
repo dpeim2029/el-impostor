@@ -32,9 +32,14 @@ struct JuegoStoreTests {
         #expect(store.enJuego == false)
     }
 
-    @Test("el banco del bundle tiene las 12 categorías")
-    func bancoBundle() {
-        #expect(banco.categorias.count == 12)
-        #expect(banco.totalPalabras == 701)
+    @Test("el bundle trae los bancos en español e inglés con sus categorías regionales")
+    func bancosDelBundle() throws {
+        #expect(banco.idioma == "es-MX")
+        #expect(banco.categorias.count == 13)
+        #expect(banco.idsDeCategorias.contains("mexico"))
+        let ingles = try BancoPalabras.cargar(idioma: "en", en: .main)
+        #expect(ingles.idioma == "en")
+        #expect(ingles.categorias.count == 13)
+        #expect(ingles.idsDeCategorias.contains("usa"))
     }
 }

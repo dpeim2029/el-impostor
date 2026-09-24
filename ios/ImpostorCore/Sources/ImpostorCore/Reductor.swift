@@ -56,17 +56,22 @@ public struct ContextoJuego<R: FuenteAleatoria>: Sendable {
 }
 
 extension Ajustes {
-    public static func iniciales(categorias: [Categoria]) -> Ajustes {
-        Ajustes(numImpostores: .uno, conPista: true, categoriasActivas: categorias.map(\.id))
+    public static func iniciales(categorias: [Categoria], region: String? = nil) -> Ajustes {
+        Ajustes(
+            numImpostores: .uno,
+            conPista: true,
+            categoriasActivas: categoriasPorDefecto(categorias, region: region),
+            categoriasConocidas: categorias.map(\.id)
+        )
     }
 }
 
 extension EstadoJuego {
-    public static func inicial(categorias: [Categoria]) -> EstadoJuego {
+    public static func inicial(categorias: [Categoria], region: String? = nil) -> EstadoJuego {
         EstadoJuego(
             fase: .inicio,
             jugadores: [],
-            ajustes: .iniciales(categorias: categorias),
+            ajustes: .iniciales(categorias: categorias, region: region),
             ronda: nil,
             indiceReparto: 0,
             palabrasUsadas: []

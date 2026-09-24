@@ -42,7 +42,7 @@ export function Ronda() {
       <div className="flex flex-col items-center gap-1 pt-2 text-center">
         <p className="text-sm text-muted-foreground">Empieza</p>
         <p className="font-heading text-4xl font-extrabold text-balance">{primero?.nombre}</p>
-        <p className="mt-1 text-sm text-muted-foreground">Una palabra cada quien, en este orden.</p>
+        <p className="mt-1 text-sm text-muted-foreground">Una palabra cada uno, en este orden.</p>
       </div>
 
       <ol className="flex flex-col gap-2">

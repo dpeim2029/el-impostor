@@ -64,7 +64,7 @@ function RepartoJugador({
       }
     >
       <div className="flex flex-col items-center gap-1 pt-2 text-center">
-        <p className="text-sm text-muted-foreground">Pásale el teléfono a</p>
+        <p className="text-sm text-muted-foreground">Pasa el teléfono a</p>
         <p className="font-heading text-4xl font-extrabold text-balance">{nombre}</p>
       </div>
 

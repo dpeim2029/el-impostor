@@ -22,11 +22,36 @@ private func raiz(_ texto: String) -> String {
 struct BancoPalabrasTests {
     let banco = BancoDelRepo.banco
 
-    @Test("tiene 12 categorías con ids únicos")
-    func doceCategorias() {
-        #expect(banco.categorias.count == 12)
+    @Test("tiene 13 categorías con ids únicos")
+    func treceCategorias() {
+        #expect(banco.categorias.count == 13)
         #expect(Set(banco.idsDeCategorias).count == banco.categorias.count)
         #expect(banco.idioma == "es-MX")
+    }
+
+    @Test("las categorías de la versión 1 siguen existiendo")
+    func categoriasV1() {
+        for id in idsBancoV1 {
+            #expect(banco.idsDeCategorias.contains(id), "\(id)")
+        }
+    }
+
+    @Test("la categoría México viene activa por defecto solo en México")
+    func categoriaRegional() {
+        #expect(categoriasPorDefecto(banco.categorias, region: "MX").contains("mexico"))
+        #expect(!categoriasPorDefecto(banco.categorias, region: "AR").contains("mexico"))
+        #expect(!categoriasPorDefecto(banco.categorias, region: nil).contains("mexico"))
+        #expect(categoriasPorDefecto(banco.categorias, region: "AR").contains("comida"))
+    }
+
+    @Test("el banco en inglés se carga con las mismas categorías y la regional de EE. UU.")
+    func bancoIngles() throws {
+        let url = BancoDelRepo.url.deletingLastPathComponent().appendingPathComponent("words.en.json")
+        let ingles = try BancoPalabras.cargar(desde: url)
+        #expect(ingles.idioma == "en")
+        #expect(Set(ingles.idsDeCategorias) == Set(banco.idsDeCategorias.filter { $0 != "mexico" } + ["usa"]))
+        #expect(categoriasPorDefecto(ingles.categorias, region: "US").contains("usa"))
+        #expect(!categoriasPorDefecto(ingles.categorias, region: "GB").contains("usa"))
     }
 
     @Test("cada categoría tiene al menos 25 palabras")

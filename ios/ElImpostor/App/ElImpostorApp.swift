@@ -11,7 +11,9 @@ struct ElImpostorApp: App {
         }
         let banco: BancoPalabras
         do {
-            banco = try BancoPalabras.cargar(en: .main)
+            // El banco sigue al idioma en que se muestra la app: inglés si iOS eligió "en", si no español.
+            let idioma = Bundle.main.preferredLocalizations.first?.hasPrefix("en") == true ? "en" : "es-MX"
+            banco = try BancoPalabras.cargar(idioma: idioma, en: .main)
         } catch {
             fatalError("El banco de palabras no está en el bundle: \(error)")
         }

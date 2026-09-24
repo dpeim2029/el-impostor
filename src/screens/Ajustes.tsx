@@ -5,13 +5,19 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { categorias } from '@/data/words'
+import { categorias, categoriasPorDefecto } from '@/data/words'
 import { maxImpostores, validarPartida } from '@/game/engine'
 import { useJuego } from '@/game/JuegoContext'
+import { regionDelNavegador } from '@/game/store'
 import { MAX_JUGADORES, MIN_JUGADORES_DOS_IMPOSTORES, type Jugador } from '@/game/types'
 import { cn } from '@/lib/utils'
 
-const todasLasCategorias = categorias.map((c) => c.id)
+// Sin elegir, juegan todas menos las regionales de otro país (México solo en MX).
+const categoriasSinElegir = categoriasPorDefecto(regionDelNavegador())
+
+function mismasCategorias(a: readonly string[], b: readonly string[]): boolean {
+  return a.length === b.length && a.every((id) => b.includes(id))
+}
 
 export function Ajustes() {
   const { estado, dispatch } = useJuego()
@@ -20,12 +26,12 @@ export function Ajustes() {
   const permiteDos = maxImpostores(jugadores.length) === 2
   const lleno = jugadores.length >= MAX_JUGADORES
   const [elegirCategorias, setElegirCategorias] = useState(
-    ajustes.categoriasActivas.length !== categorias.length,
+    !mismasCategorias(ajustes.categoriasActivas, categoriasSinElegir),
   )
 
   const cambiarElegir = (activo: boolean) => {
     setElegirCategorias(activo)
-    if (!activo) dispatch({ tipo: 'setCategorias', ids: todasLasCategorias })
+    if (!activo) dispatch({ tipo: 'setCategorias', ids: categoriasSinElegir })
   }
 
   return (

@@ -15,12 +15,15 @@ public struct Categoria: Codable, Sendable, Equatable, Hashable, Identifiable {
     public var id: String
     public var nombre: String
     public var emoji: String
+    /// Códigos de región (ISO 3166, p. ej. "MX") donde viene activa por defecto; `nil` = en todas partes.
+    public var regiones: [String]?
     public var grupos: [GrupoPista]
 
-    public init(id: String, nombre: String, emoji: String, grupos: [GrupoPista]) {
+    public init(id: String, nombre: String, emoji: String, regiones: [String]? = nil, grupos: [GrupoPista]) {
         self.id = id
         self.nombre = nombre
         self.emoji = emoji
+        self.regiones = regiones
         self.grupos = grupos
     }
 }
@@ -65,11 +68,20 @@ public struct Ajustes: Codable, Sendable, Equatable, Hashable {
     /// Si el impostor recibe la pista lejana o entra a ciegas.
     public var conPista: Bool
     public var categoriasActivas: [String]
+    /// Categorías que ya existían al guardar; las nuevas se activan al cargar si tocan por región.
+    /// Falta en datos de la versión 1 (ver `idsBancoV1`).
+    public var categoriasConocidas: [String]?
 
-    public init(numImpostores: NumImpostores, conPista: Bool, categoriasActivas: [String]) {
+    public init(
+        numImpostores: NumImpostores,
+        conPista: Bool,
+        categoriasActivas: [String],
+        categoriasConocidas: [String]? = nil
+    ) {
         self.numImpostores = numImpostores
         self.conPista = conPista
         self.categoriasActivas = categoriasActivas
+        self.categoriasConocidas = categoriasConocidas
     }
 }
 

@@ -9,37 +9,13 @@ export const animales: Categoria = {
       pista: 'Safari',
       palabras: ['León', 'Elefante', 'Jirafa', 'Cebra', 'Hipopótamo', 'Rinoceronte'],
     },
-    {
-      pista: 'Tarzán',
-      palabras: ['Mono', 'Serpiente', 'Tigre', 'Loro', 'Cocodrilo'],
-    },
-    {
-      pista: 'Rancho',
-      palabras: ['Vaca', 'Caballo', 'Gallina', 'Cerdo', 'Borrego', 'Burro'],
-    },
-    {
-      pista: 'Veterinario',
-      palabras: ['Perro', 'Gato', 'Hámster', 'Conejo'],
-    },
-    {
-      pista: 'Buzo',
-      palabras: ['Tiburón', 'Delfín', 'Pulpo', 'Ballena', 'Tortuga'],
-    },
-    {
-      pista: 'Halloween',
-      palabras: ['Murciélago', 'Búho', 'Araña'],
-    },
-    {
-      pista: 'Bosque',
-      palabras: ['Lobo', 'Oso', 'Zorro', 'Venado', 'Ardilla'],
-    },
-    {
-      pista: 'Jardín',
-      palabras: ['Mariposa', 'Abeja', 'Caracol', 'Hormiga'],
-    },
-    {
-      pista: 'Iglú',
-      palabras: ['Pingüino', 'Oso polar', 'Foca'],
-    },
+    { pista: 'Tarzán', palabras: ['Mono', 'Serpiente', 'Leopardo', 'Loro', 'Cocodrilo'] },
+    { pista: 'Granja', palabras: ['Vaca', 'Caballo', 'Gallina', 'Cerdo', 'Oveja', 'Burro'] },
+    { pista: 'Veterinario', palabras: ['Perro', 'Gato', 'Hámster', 'Conejo'] },
+    { pista: 'Submarino', palabras: ['Tiburón', 'Delfín', 'Pulpo', 'Ballena', 'Tortuga'] },
+    { pista: 'Halloween', palabras: ['Murciélago', 'Búho', 'Araña'] },
+    { pista: 'Bosque', palabras: ['Lobo', 'Oso', 'Zorro', 'Venado', 'Ardilla'] },
+    { pista: 'Jardín', palabras: ['Mariposa', 'Abeja', 'Caracol', 'Hormiga'] },
+    { pista: 'Iceberg', palabras: ['Pingüino', 'Oso polar', 'Foca'] },
   ],
 }

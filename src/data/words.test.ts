@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { categorias, palabrasDeCategoria } from './words'
+import type { Categoria } from '@/game/types'
+import { categorias, categoriasPorDefecto, IDS_BANCO_V1, palabrasDeCategoria } from './words'
+import { categoriasEn } from './words-en'
 
 function normalizar(texto: string): string {
   return texto
@@ -14,11 +16,50 @@ function raiz(texto: string): string {
   return normalizar(texto).replace(/(es|s)$/, '')
 }
 
-describe('banco de palabras', () => {
-  it('tiene 12 categorías con ids únicos', () => {
-    expect(categorias).toHaveLength(12)
+const bancos: [string, Categoria[]][] = [
+  ['español', categorias],
+  ['inglés', categoriasEn],
+]
+
+describe('categorías regionales', () => {
+  it('México solo en MX y USA solo en US', () => {
+    expect(categoriasPorDefecto('MX')).toContain('mexico')
+    expect(categoriasPorDefecto('ES')).not.toContain('mexico')
+    expect(categoriasPorDefecto('US', categoriasEn)).toContain('usa')
+    expect(categoriasPorDefecto('GB', categoriasEn)).not.toContain('usa')
+  })
+})
+
+describe.each(bancos)('banco en %s', (_idioma, categorias) => {
+  it('tiene 13 categorías con ids únicos', () => {
+    expect(categorias).toHaveLength(13)
     const ids = categorias.map((c) => c.id)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('las categorías de la versión 1 siguen existiendo', () => {
+    const ids = categorias.map((c) => c.id)
+    for (const id of IDS_BANCO_V1) expect(ids, id).toContain(id)
+  })
+
+  it('las categorías regionales usan códigos de región de dos letras', () => {
+    for (const { nombre, regiones } of categorias) {
+      for (const region of regiones ?? []) expect(region, nombre).toMatch(/^[A-Z]{2}$/)
+    }
+  })
+
+  it('ninguna palabra se repite entre categorías (salvo en las regionales)', () => {
+    // El juego lleva las usadas como "categoriaId:texto": una repetida saldría dos veces por ciclo.
+    const vistas = new Map<string, string>()
+    for (const categoria of categorias.filter((c) => !c.regiones)) {
+      for (const { texto } of palabrasDeCategoria(categoria)) {
+        const clave = normalizar(texto)
+        expect(vistas.get(clave), `"${texto}" está en ${vistas.get(clave)} y ${categoria.nombre}`).toBe(
+          undefined,
+        )
+        vistas.set(clave, categoria.nombre)
+      }
+    }
   })
 
   it('cada categoría tiene al menos 25 palabras', () => {

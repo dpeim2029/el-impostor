@@ -1,0 +1,29 @@
+import type { Categoria } from '@/game/types'
+
+export const nature: Categoria = {
+  id: 'naturaleza',
+  nombre: 'Nature and weather',
+  emoji: '🌦️',
+  grupos: [
+    { pista: 'Boots', palabras: ['Rain', 'Storm', 'Hail', 'Mud', 'Puddle'] },
+    { pista: 'Scarf', palabras: ['Snow', 'Ice', 'Winter', 'Frost'] },
+    { pista: 'Fan', palabras: ['Sun', 'Heat', 'Summer', 'Drought'] },
+    { pista: 'Kite', palabras: ['Wind', 'Tornado', 'Hurricane'] },
+    { pista: 'Scared', palabras: ['Thunder', 'Lightning', 'Earthquake', 'Eruption'] },
+    { pista: 'Camera', palabras: ['Rainbow', 'Sunset', 'Northern lights', 'Sunrise'] },
+    { pista: 'Telescope', palabras: ['Moon', 'Star', 'Comet', 'Planet', 'Eclipse'] },
+    {
+      pista: 'Squirrel',
+      palabras: ['Tree', 'Branch', 'Leaf', 'Acorn', 'Seed', 'Autumn', 'Pine cone'],
+    },
+    { pista: 'Perfume', palabras: ['Lavender', 'Spring', 'Sunflower', 'Rose'] },
+    { pista: 'Mermaid', palabras: ['Sea', 'Wave', 'Island'] },
+    { pista: 'Frog', palabras: ['River', 'Lake', 'Pond', 'Waterfall', 'Swamp', 'Stream'] },
+    { pista: 'Thirst', palabras: ['Desert', 'Dune', 'Cactus', 'Oasis'] },
+    { pista: 'Cotton', palabras: ['Cloud', 'Fog'] },
+    { pista: 'Climber', palabras: ['Mountain', 'Hill', 'Volcano', 'Glacier'] },
+    { pista: 'Shoe', palabras: ['Sand', 'Dust', 'Pebble'] },
+    { pista: 'Hose', palabras: ['Fire', 'Smoke', 'Ash'] },
+    { pista: 'Echo', palabras: ['Canyon', 'Valley', 'Cliff'] },
+  ],
+}

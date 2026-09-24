@@ -7,6 +7,7 @@ import { escuela } from './escuela'
 import { fiestas } from './fiestas'
 import { frutasVerduras } from './frutas-verduras'
 import { lugares } from './lugares'
+import { mexico } from './mexico'
 import { musica } from './musica'
 import { naturaleza } from './naturaleza'
 import { profesiones } from './profesiones'
@@ -25,7 +26,31 @@ export const categorias: Categoria[] = [
   naturaleza,
   fiestas,
   musica,
+  mexico,
 ]
+
+/** Categorías del banco original (versión 1), para saber cuáles son nuevas en datos guardados. */
+export const IDS_BANCO_V1 = [
+  'animales',
+  'comida',
+  'frutas-verduras',
+  'casa',
+  'escuela',
+  'profesiones',
+  'deportes',
+  'transporte',
+  'lugares',
+  'naturaleza',
+  'fiestas',
+  'musica',
+]
+
+/** Categorías activas por defecto: todas, menos las regionales fuera de su región. */
+export function categoriasPorDefecto(region: string | undefined, lista = categorias): string[] {
+  return lista
+    .filter((c) => !c.regiones || (region !== undefined && c.regiones.includes(region)))
+    .map((c) => c.id)
+}
 
 export function palabrasDeCategoria(categoria: Categoria): Palabra[] {
   return categoria.grupos.flatMap((grupo) =>

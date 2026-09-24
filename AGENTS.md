@@ -18,9 +18,13 @@ es tan directa que basta repetirla. Este juego es **gratis, sin anuncios** y la 
 - **Web app (React + Vite + Tailwind v4 + shadcn/ui), PWA, modo "pasar el teléfono".**
   Publicada en https://dpeim2029.github.io/el-impostor/ vía `.github/workflows/pages.yml`
   (cada push a `main` despliega). Repo: https://github.com/dpeim2029/el-impostor.
-- 98 tests en verde (`pnpm test`). Lint con oxlint. Sin backend, sin cuentas.
-- **Banco de palabras**: `src/data/words/*.ts` (fuente) y `data/words.es-MX.json` (export para
-  otros clientes; regenerar con `pnpm words:export` tras editar la fuente).
+- 181 tests en verde (`pnpm test`). Lint con oxlint. Sin backend, sin cuentas.
+- **Bancos de palabras**: español en `src/data/words/*.ts` (neutro para todos los países
+  hispanohablantes + categoría regional "México") e inglés internacional en `src/data/words-en/*.ts`
+  (+ categoría regional "USA"). Exports para otros clientes: `data/words.es-MX.json` y
+  `data/words.en.json` (regenerar con `pnpm words:export`). Una categoría con `regiones` viene
+  activa por defecto solo en esas regiones; `categoriasConocidas` en los ajustes guardados permite
+  activar categorías nuevas a quien ya jugaba (ver `IDS_BANCO_V1`).
 - **App iOS nativa (SwiftUI) en `ios/`**, en beta pública de TestFlight desde el 23-sep-2026; ver
   las secciones "Cliente iOS" y "Publicación" abajo.
 - Páginas públicas que pide App Store Connect: `public/privacidad.html` y `public/soporte.html`
@@ -38,7 +42,8 @@ es tan directa que basta repetirla. Este juego es **gratis, sin anuncios** y la 
 - **Con pistas / Sin pistas** se elige en la pantalla de inicio (segmented control) y se
   recuerda. Con pistas: el impostor ve la pista lejana. Sin pistas: solo "Eres el impostor".
 - El impostor **nunca ve la categoría ni la palabra**. Los civiles ven palabra + categoría.
-- Categorías: **todas activas por defecto**; un switch abre la selección individual. Sin switch
+- Categorías: **todas activas por defecto**, salvo las regionales, que solo vienen activas en su
+  país ("México" en MX, "USA" en EE. UU.); un switch abre la selección individual. Sin switch
   visible de pista en ajustes.
 - La ronda empieza con un jugador al azar y sigue el orden de asientos. "Otra vuelta" repite la
   ronda de palabras antes de votar.
@@ -65,7 +70,10 @@ Cada palabra pertenece a un **grupo** con una pista compartida. Reglas, verifica
    simples y acentos normalizados), y no es otra palabra de la misma categoría.
 
 Al crear un banco en otro idioma **no se traduce, se recrea**: las pistas son culturales
-(Posadas → *Vela*, Día de Muertos → *Coco*). Mantener las mismas reglas y tests.
+(Día de Muertos → *Coco*). Mantener las mismas reglas y tests (`words.test.ts` corre las reglas
+sobre todos los bancos). Cada banco evita palabras que cambian de significado o de nombre entre
+países del mismo idioma (torta, tuna, alberca; football, chips, cookie) y deja la cultura de un
+solo país en una categoría regional.
 
 Formato JSON (`data/words.es-MX.json`):
 
@@ -94,7 +102,7 @@ implementado en la app iOS (la web todavía tiene el diseño anterior):
   sombrero rojo, "ERES EL IMPOSTOR" y la pastilla "Pista: {pista}" (impostor). Sin frases extra:
   Daniel prefirió claridad inmediata para personas mayores por encima de la discreción de reojo
   (se evaluaron variantes neutras; quedan como posible ajuste futuro "cartas discretas").
-- Reparto: "Pásale el teléfono a {NOMBRE}", carta, zona de 84 pt "Mantén el dedo aquí" abajo;
+- Reparto: "Pasa el teléfono a {NOMBRE}", carta, zona de 84 pt "Mantén el dedo aquí" abajo;
   **el texto siempre queda arriba del dedo**; "Pasar el teléfono" se habilita tras ver la carta.
 - Color por rol solo en momentos públicos: verde `#1F9E6E` (civil, atrapado) y rojo `#E5484D`
   (impostor, se escapó).
@@ -129,9 +137,11 @@ su perfil de X. Eso cambió los puntos 1, 6 y 8. Decisiones:
    Referencia de la lógica: `src/game/engine.ts` y sus tests. Es código puro, fácil de portar.
 4. **La web sigue viva** como landing e invitación para quien no tiene la app, y como base para
    Android (Capacitor) después.
-5. **Idiomas**: es-MX (hecho) → en → es-ES → pt-BR → fr/de/it. Interfaz con String Catalogs;
-   banco de palabras por idioma con revisión de hablante nativo. Metadatos de App Store
-   localizados por país.
+5. **Idiomas**: español neutro para todos los países hispanohablantes + inglés internacional
+   (ambos en la 1.1) → pt-BR → fr/de/it. Interfaz con String Catalogs; banco de palabras por
+   idioma con revisión de hablante nativo. Metadatos de App Store localizados por país. Un iPhone
+   sin español ni inglés en su lista de idiomas ve la app en español (región de desarrollo es-MX):
+   revisarlo antes de abrir países de otros idiomas.
 6. **Sin monetización**: gratis, **sin anuncios ni compras dentro de la app**. Se descartó el IAP
    de íconos alternos.
 7. **Dominio**: pendiente de compra. Libres al 17-sep-2026: `elimpostor.mx`, `impostor.mx`,
@@ -151,7 +161,7 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   reutilizarlo en el servidor). Espejo 1:1 de `src/game/*.ts` con identificadores en español:
   `Tipos`, `Aleatorio` (RNG inyectable; `LCG` usa la fórmula de los tests web), `BancoPalabras`,
   `Motor`, `Reductor` (enum `Accion` + `reducir(_:_:contexto:)`), `Persistencia` (clave
-  `el-impostor:v1`, **mismo JSON que la web**, lectura tolerante). 50 tests con Swift Testing que
+  `el-impostor:v1`, **mismo JSON que la web**, lectura tolerante). 56 tests con Swift Testing que
   copian los nombres de los tests TS. `swift test --package-path ios/ImpostorCore` corre en segundos.
 - **`ios/ElImpostor/`**: app. `JuegoStore` (`@Observable`, MainActor) envuelve el reductor y guarda
   en UserDefaults tras cada acción. `RaizView` hace `switch fase` (sin NavigationStack).
@@ -160,18 +170,27 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   `TarjetaModal` + `ModalSobreFondo` para acusación y resultado; `AjustesView` usa `List` nativa.
   `CartaJugadorView` implementa el gesto de mantener con `DragGesture(minimumDistance: 0)` y se
   oculta al perder foco. Tipografía SF Pro escalada con Dynamic Type (tope accessibility2).
-  Textos como `LocalizedStringKey` literales en español; catálogo `Localizable.xcstrings` base es-MX.
+  Textos como `LocalizedStringKey` literales en español; catálogos `Localizable.xcstrings` e
+  `InfoPlist.xcstrings` con base es-MX y traducción `en` (nombre en el iPhone: "The Impostor").
+  El banco sigue al idioma en que iOS muestra la app (`Bundle.main.preferredLocalizations`): "en"
+  carga `words.en.json`, cualquier otro `words.es-MX.json`. `JuegoStore.idsPorDefecto` = categorías
+  sin elegir para la región (el interruptor "Elegir categorías" se compara contra eso).
+  Para traducir: `xcodebuild -exportLocalizations ... -exportLanguage en`, llenar el XLIFF y
+  `-importLocalizations`.
 - **Ícono**: `Resources/AppIcon.icon` (Icon Composer) = relleno azul noche en `icon.json` + una capa
   `Assets/cartas.png` (cartas con sombra horneada, fondo transparente; sin vidrio). Al ir en capas,
   iOS 26 genera bien las variantes oscura y con tinte. `ios/scripts/icono.py` compone desde esa capa
   el PNG 1024 opaco de `AppIcon.appiconset` y los íconos de `public/` (favicon, apple-touch, PWA).
-- **Banco de palabras**: la app referencia `../data/words.es-MX.json` como recurso; no se copia.
+- **Bancos de palabras**: la app referencia `../data/words.es-MX.json` y `../data/words.en.json` como
+  recursos; no se copian.
 - **Verificación solo por CLI** (Xcode 27 ya no trae Simulator.app; el panel de simulador de
   Claude Code Desktop no lo soporta): `xcodebuild test` (unit + UI) y `ios/scripts/capturas.sh`,
-  que siembra estados en UserDefaults del contenedor y captura las 10 pantallas. Argumentos de
+  que siembra estados en UserDefaults del contenedor y captura las 10 pantallas (tercer argumento:
+  `es-MX` o `en`, con jugadores y palabra de ejemplo en ese idioma). Argumentos de
   depuración (solo Debug): `--reiniciar`, `--fase <inicio|como-jugar|ajustes>`, `--mostrar-carta`.
 - **UI tests** (`ElImpostorUITests/FlujoUITests`): partida completa con el gesto, cancelar ronda,
   persistencia al relanzar. Los identificadores de accesibilidad son la API de los tests.
+  Se lanzan con `-AppleLanguages (es-MX)` porque buscan textos en español y el simulador está en inglés.
 - **Gotchas**: el vidrio (`glassEffect`) ignora `.opacity` del ancestro. Un
   `accessibilityIdentifier` en una tarjeta se hereda a su único botón salvo que la tarjeta sea
   `accessibilityElement(children: .contain)`. `UserDefaults` no es `Sendable` en el SDK 27
@@ -189,7 +208,8 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
 - `ios/scripts/asc.py`: cliente mínimo de la API (llave en `~/.appstoreconnect/private_keys/`,
   IDs en `ios/.asc.env`, no versionado). `ios/scripts/publicar.sh` archiva y sube; el número de
   build lo asigna Xcode al exportar (`manageAppVersionAndBuildNumber` en `ExportOptions.plist`), no
-  hace falta tocar `CURRENT_PROJECT_VERSION`.
+  hace falta tocar `CURRENT_PROJECT_VERSION`. La versión sí se sube a mano en `MARKETING_VERSION`
+  (el `Info.plist` la toma de ahí); cada versión nueva de la tienda necesita su número.
 - TestFlight: grupo interno "Equipo" (Daniel) y externo "Familia y amigos" con link público
   https://testflight.apple.com/join/ZnsnKG1C (límite 200). Solo un build por versión puede estar
   en revisión beta a la vez; los siguientes de la misma versión se aprueban casi al instante.
@@ -197,8 +217,15 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   categoría Juegos › Palabras + Familia, gratis, 19 países hispanohablantes + EE. UU., edad 4+,
   privacidad "No se recopilan datos", copyright "2026 Daniel Peimbert", URL de marketing = perfil
   de X. **Nunca "Gratis" en nombre, subtítulo ni capturas** (regla 2.3.7).
-- Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max" ios/DerivedData/capturas-tienda`
-  y luego `ios/scripts/capturas_tienda.py` (títulos por idioma en el script) → `ios/tienda/es-MX/`.
+- Ficha por idioma en `ios/tienda/<ficha>/` (`es-MX`, `en-US`): `ficha.json` (nombre, subtítulo,
+  textos, palabras clave, novedades y los `locales` de App Store Connect a los que se copia; la
+  inglesa va a en-US, en-GB, en-AU y en-CA porque cada tienda solo muestra sus idiomas) y las 6
+  capturas. `ios/scripts/ficha.py <versión> [--crear] [--simular]` valida y sube todo.
+- Capturas 6.9" (1320×2868): `ios/scripts/capturas.sh "iPhone 18 Pro Max"
+  ios/DerivedData/capturas-tienda/<ficha> <es-MX|en>` y luego `ios/scripts/capturas_tienda.py <ficha>`
+  (títulos por idioma en el script) → `ios/tienda/<ficha>/`.
+- Nombre en inglés: "The Impostor: Pass the Phone" (decidido el 23-sep-2026; "Word Game" se descartó
+  por parecerse a "Imposter Who? - Word Game"), subtítulo "Party game for families".
 - Versión 1.0 (build 4) enviada a revisión de la App Store el 23-sep-2026, con publicación manual:
   al aprobarse queda en "Pendiente de liberación del desarrollador" hasta que Daniel la libere.
 
@@ -207,5 +234,5 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
 ```bash
 pnpm install && pnpm dev     # http://127.0.0.1:4517
 pnpm test && pnpm lint && pnpm build
-pnpm words:export            # regenera data/words.es-MX.json
+pnpm words:export            # regenera data/words.es-MX.json y data/words.en.json
 ```
