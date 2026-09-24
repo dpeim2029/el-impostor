@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
+import type { Categoria } from '@/game/types'
 import { categorias, categoriasPorDefecto, IDS_BANCO_V1, palabrasDeCategoria } from './words'
+import { categoriasEn } from './words-en'
 
 function normalizar(texto: string): string {
   return texto
@@ -14,7 +16,21 @@ function raiz(texto: string): string {
   return normalizar(texto).replace(/(es|s)$/, '')
 }
 
-describe('banco de palabras', () => {
+const bancos: [string, Categoria[]][] = [
+  ['español', categorias],
+  ['inglés', categoriasEn],
+]
+
+describe('categorías regionales', () => {
+  it('México solo en MX y USA solo en US', () => {
+    expect(categoriasPorDefecto('MX')).toContain('mexico')
+    expect(categoriasPorDefecto('ES')).not.toContain('mexico')
+    expect(categoriasPorDefecto('US', categoriasEn)).toContain('usa')
+    expect(categoriasPorDefecto('GB', categoriasEn)).not.toContain('usa')
+  })
+})
+
+describe.each(bancos)('banco en %s', (_idioma, categorias) => {
   it('tiene 13 categorías con ids únicos', () => {
     expect(categorias).toHaveLength(13)
     const ids = categorias.map((c) => c.id)
@@ -30,8 +46,6 @@ describe('banco de palabras', () => {
     for (const { nombre, regiones } of categorias) {
       for (const region of regiones ?? []) expect(region, nombre).toMatch(/^[A-Z]{2}$/)
     }
-    expect(categoriasPorDefecto('MX')).toContain('mexico')
-    expect(categoriasPorDefecto('ES')).not.toContain('mexico')
   })
 
   it('cada categoría tiene al menos 25 palabras', () => {

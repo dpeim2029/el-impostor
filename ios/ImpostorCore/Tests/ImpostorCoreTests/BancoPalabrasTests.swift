@@ -44,6 +44,16 @@ struct BancoPalabrasTests {
         #expect(categoriasPorDefecto(banco.categorias, region: "AR").contains("comida"))
     }
 
+    @Test("el banco en inglés se carga con las mismas categorías y la regional de EE. UU.")
+    func bancoIngles() throws {
+        let url = BancoDelRepo.url.deletingLastPathComponent().appendingPathComponent("words.en.json")
+        let ingles = try BancoPalabras.cargar(desde: url)
+        #expect(ingles.idioma == "en")
+        #expect(Set(ingles.idsDeCategorias) == Set(banco.idsDeCategorias.filter { $0 != "mexico" } + ["usa"]))
+        #expect(categoriasPorDefecto(ingles.categorias, region: "US").contains("usa"))
+        #expect(!categoriasPorDefecto(ingles.categorias, region: "GB").contains("usa"))
+    }
+
     @Test("cada categoría tiene al menos 25 palabras")
     func minimoPalabras() {
         for categoria in banco.categorias {

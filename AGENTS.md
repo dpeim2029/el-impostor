@@ -19,8 +19,12 @@ es tan directa que basta repetirla. Este juego es **gratis, sin anuncios** y la 
   Publicada en https://dpeim2029.github.io/el-impostor/ vía `.github/workflows/pages.yml`
   (cada push a `main` despliega). Repo: https://github.com/dpeim2029/el-impostor.
 - 98 tests en verde (`pnpm test`). Lint con oxlint. Sin backend, sin cuentas.
-- **Banco de palabras**: `src/data/words/*.ts` (fuente) y `data/words.es-MX.json` (export para
-  otros clientes; regenerar con `pnpm words:export` tras editar la fuente).
+- **Bancos de palabras**: español en `src/data/words/*.ts` (neutro para todos los países
+  hispanohablantes + categoría regional "México") e inglés internacional en `src/data/words-en/*.ts`
+  (+ categoría regional "USA"). Exports para otros clientes: `data/words.es-MX.json` y
+  `data/words.en.json` (regenerar con `pnpm words:export`). Una categoría con `regiones` viene
+  activa por defecto solo en esas regiones; `categoriasConocidas` en los ajustes guardados permite
+  activar categorías nuevas a quien ya jugaba (ver `IDS_BANCO_V1`).
 - **App iOS nativa (SwiftUI) en `ios/`**, en beta pública de TestFlight desde el 23-sep-2026; ver
   las secciones "Cliente iOS" y "Publicación" abajo.
 - Páginas públicas que pide App Store Connect: `public/privacidad.html` y `public/soporte.html`
@@ -65,7 +69,10 @@ Cada palabra pertenece a un **grupo** con una pista compartida. Reglas, verifica
    simples y acentos normalizados), y no es otra palabra de la misma categoría.
 
 Al crear un banco en otro idioma **no se traduce, se recrea**: las pistas son culturales
-(Posadas → *Vela*, Día de Muertos → *Coco*). Mantener las mismas reglas y tests.
+(Día de Muertos → *Coco*). Mantener las mismas reglas y tests (`words.test.ts` corre las reglas
+sobre todos los bancos). Cada banco evita palabras que cambian de significado o de nombre entre
+países del mismo idioma (torta, tuna, alberca; football, chips, cookie) y deja la cultura de un
+solo país en una categoría regional.
 
 Formato JSON (`data/words.es-MX.json`):
 

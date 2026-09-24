@@ -1,0 +1,41 @@
+import type { Categoria } from '@/game/types'
+
+export const places: Categoria = {
+  id: 'lugares',
+  nombre: 'Places',
+  emoji: '🗺️',
+  grupos: [
+    { pista: 'Ticket', palabras: ['Circus', 'Stadium', 'Amusement park'] },
+    { pista: 'Waiting', palabras: ['Bank', 'Pharmacy', 'Post office'] },
+    { pista: 'Receipt', palabras: ['Supermarket', 'Bakery'] },
+    { pista: 'Silence', palabras: ['Library', 'Church', 'Hospital', 'Museum'] },
+    { pista: 'Towel', palabras: ['Beach', 'Swimming pool', 'Gym'] },
+    { pista: 'Campfire', palabras: ['Forest', 'Mountain', 'Campsite'] },
+    { pista: 'Thirst', palabras: ['Desert', 'Oasis'] },
+    { pista: 'Dragon', palabras: ['Castle', 'Palace', 'Tower'] },
+    { pista: 'Backpack', palabras: ['School', 'University', 'Kindergarten'] },
+    { pista: 'Elephant', palabras: ['Zoo', 'Jungle'] },
+    { pista: 'Rocket', palabras: ['Moon', 'Mars', 'Space station'] },
+    { pista: 'Nemo', palabras: ['Aquarium', 'Ocean', 'Coral reef'] },
+    { pista: 'Tip', palabras: ['Restaurant', 'Café', 'Hair salon'] },
+    { pista: 'Stairs', palabras: ['Skyscraper', 'Lighthouse'] },
+    { pista: 'Picnic', palabras: ['Park', 'Garden'] },
+    { pista: 'Halloween', palabras: ['Graveyard', 'Haunted house'] },
+    {
+      pista: 'Tourist',
+      palabras: [
+        'Pyramids',
+        'Eiffel Tower',
+        'Colosseum',
+        'Great Wall of China',
+        'Statue of Liberty',
+        'Big Ben',
+      ],
+    },
+    { pista: 'Pigeon', palabras: ['Cathedral', 'Fountain', 'Train station'] },
+    { pista: 'Boss', palabras: ['Office', 'Factory', 'Warehouse'] },
+    { pista: 'Suitcase', palabras: ['Hotel', 'Airport', 'Cabin'] },
+    { pista: 'Cow', palabras: ['Farm', 'Barn', 'Stable'] },
+    { pista: 'Explorer', palabras: ['Volcano', 'Cave', 'Island', 'Waterfall'] },
+  ],
+}
