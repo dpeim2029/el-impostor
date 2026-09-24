@@ -78,7 +78,9 @@ public func cargarEstado(
         numImpostores: (ajustesGuardados?["numImpostores"] as? Int) == 2 ? .dos : .uno,
         conPista: (ajustesGuardados?["conPista"] as? Bool) != false,
         categoriasActivas: activas,
-        categoriasConocidas: inicial.ajustes.categoriasConocidas
+        // Unión, no reemplazo: al cambiar de idioma (bancos con distinta categoría regional) no se
+        // olvida que el jugador ya conocía y quizá apagó la del otro banco.
+        categoriasConocidas: conocidas + (inicial.ajustes.categoriasConocidas ?? []).filter { !conocidas.contains($0) }
     )
     if let lista = guardado["palabrasUsadas"] as? [Any] {
         estado.palabrasUsadas = lista.compactMap { $0 as? String }

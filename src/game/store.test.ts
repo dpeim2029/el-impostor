@@ -1,9 +1,10 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   CLAVE_ALMACEN,
   ajustesIniciales,
   cargarEstado,
   crearAjustesIniciales,
+  regionDelNavegador,
   estadoInicial,
   guardarEstado,
   reducer,
@@ -209,6 +210,24 @@ describe('categorías por región', () => {
     expect(cargarEstado(almacen, 'CL').ajustes.categoriasActivas).toEqual(['comida'])
   })
 
+  it('conserva categorías conocidas de otro banco (cambio de idioma en iOS)', () => {
+    const almacen = new AlmacenFalso()
+    const guardado = {
+      ajustes: {
+        numImpostores: 1,
+        conPista: true,
+        categoriasActivas: ['comida'],
+        // Venía del banco en inglés: conoce todas las del español más "usa".
+        categoriasConocidas: [...(crearAjustesIniciales('MX').categoriasConocidas ?? []), 'usa'],
+      },
+    }
+    almacen.setItem(CLAVE_ALMACEN, JSON.stringify(guardado))
+    const recuperado = cargarEstado(almacen, 'MX')
+    expect(recuperado.ajustes.categoriasActivas).toEqual(['comida'])
+    expect(recuperado.ajustes.categoriasConocidas).toContain('usa')
+    expect(recuperado.ajustes.categoriasConocidas).toContain('mexico')
+  })
+
   it('respeta que el jugador haya apagado una categoría que ya conocía', () => {
     const almacen = new AlmacenFalso()
     const estado = aplicar(
@@ -219,5 +238,34 @@ describe('categorías por región', () => {
     const recuperado = cargarEstado(almacen, 'MX')
     expect(recuperado.ajustes.categoriasActivas).not.toContain('mexico')
     expect(recuperado.ajustes.categoriasConocidas).toContain('mexico')
+  })
+})
+
+describe('región del navegador', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  function simular(languages: string[], zona: string) {
+    vi.stubGlobal('navigator', { languages, language: languages[0] })
+    const original = Intl.DateTimeFormat.prototype.resolvedOptions
+    vi.spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions').mockImplementation(function (
+      this: Intl.DateTimeFormat,
+    ) {
+      return { ...original.call(this), timeZone: zona }
+    })
+  }
+
+  it('usa el primer idioma que trae país y salta regiones como 419', () => {
+    simular(['es-419', 'es-AR'], 'America/Mexico_City')
+    expect(regionDelNavegador()).toBe('AR')
+  })
+
+  it('sin país en el idioma, reconoce México por la zona horaria', () => {
+    simular(['es-419', 'es'], 'America/Monterrey')
+    expect(regionDelNavegador()).toBe('MX')
+    simular(['es-419'], 'America/Bogota')
+    expect(regionDelNavegador()).toBeUndefined()
   })
 })

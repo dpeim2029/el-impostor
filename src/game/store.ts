@@ -11,16 +11,40 @@ import {
 
 export const CLAVE_ALMACEN = 'el-impostor:v1'
 
-/** Región del navegador ("MX" de "es-MX"), para activar las categorías regionales. */
+/** Zonas horarias de México. En Latinoamérica el navegador suele decir "es-419", sin país. */
+const ZONAS_DE_MEXICO = new Set([
+  'America/Mexico_City',
+  'America/Monterrey',
+  'America/Merida',
+  'America/Cancun',
+  'America/Chihuahua',
+  'America/Ciudad_Juarez',
+  'America/Hermosillo',
+  'America/Mazatlan',
+  'America/Tijuana',
+  'America/Matamoros',
+  'America/Ojinaga',
+  'America/Bahia_Banderas',
+])
+
+/** Región del navegador ("MX" de "es-MX"), para activar las categorías regionales. Si ningún
+ *  idioma trae país, se reconoce México por la zona horaria (la única regional de la web). */
 export function regionDelNavegador(): string | undefined {
-  if (typeof navigator === 'undefined') return undefined
-  for (const idioma of navigator.languages ?? [navigator.language]) {
-    try {
-      const region = new Intl.Locale(idioma).region
-      if (region) return region
-    } catch {
-      // Etiqueta de idioma inválida: se prueba la siguiente.
+  if (typeof navigator !== 'undefined') {
+    for (const idioma of navigator.languages ?? [navigator.language]) {
+      try {
+        const region = new Intl.Locale(idioma).region
+        // "419" y otras regiones numéricas son continentes, no países.
+        if (region && /^[A-Z]{2}$/.test(region)) return region
+      } catch {
+        // Etiqueta de idioma inválida: se prueba la siguiente.
+      }
     }
+  }
+  try {
+    if (ZONAS_DE_MEXICO.has(Intl.DateTimeFormat().resolvedOptions().timeZone)) return 'MX'
+  } catch {
+    // Sin zona horaria disponible: sin región.
   }
   return undefined
 }
@@ -218,7 +242,9 @@ export function cargarEstado(
         numImpostores: guardado.ajustes?.numImpostores === 2 ? 2 : 1,
         conPista: guardado.ajustes?.conPista !== false,
         categoriasActivas: activas,
-        categoriasConocidas: iniciales.categoriasConocidas,
+        // Unión, no reemplazo: al cambiar de idioma (bancos con distinta categoría regional) no se
+        // olvida que el jugador ya conocía y quizá apagó la del otro banco.
+        categoriasConocidas: [...new Set([...conocidas, ...(iniciales.categoriasConocidas ?? [])])],
       },
       palabrasUsadas: Array.isArray(guardado.palabrasUsadas)
         ? guardado.palabrasUsadas.filter((p) => typeof p === 'string')

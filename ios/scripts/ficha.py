@@ -9,7 +9,7 @@ Cada ios/tienda/<ficha>/ficha.json trae los textos y la lista de `locales` de Ap
 los que se copian (en-US, en-GB, en-AU, en-CA comparten la ficha en inglés); las capturas son los
 PNG de esa misma carpeta, en orden de nombre. Sin fichas en la línea de comandos, sube todas.
 """
-import hashlib, json, pathlib, sys, urllib.request
+import hashlib, json, pathlib, sys, time, urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 from asc import llamar  # noqa: E402
@@ -35,8 +35,15 @@ def comprobar(estado: int, respuesta: dict, que: str):
         raise SystemExit(f"{que}: {estado} {json.dumps(respuesta.get('errors'), ensure_ascii=False)[:800]}")
 
 
+def obtener(ruta: str) -> dict:
+    """GET que se detiene con un mensaje claro si la API responde con error (llave, permisos...)."""
+    estado, respuesta = llamar("GET", ruta)
+    comprobar(estado, respuesta, f"GET {ruta}")
+    return respuesta
+
+
 def version(texto: str, crear: bool) -> str | None:
-    _, r = llamar("GET", f"/v1/apps/{APP}/appStoreVersions?filter[versionString]={texto}&filter[platform]=IOS")
+    r = obtener(f"/v1/apps/{APP}/appStoreVersions?filter[versionString]={texto}&filter[platform]=IOS")
     if r["data"]:
         return r["data"][0]["id"]
     if not crear:
@@ -49,16 +56,16 @@ def version(texto: str, crear: bool) -> str | None:
 
 
 def info_editable() -> str:
-    _, r = llamar("GET", f"/v1/apps/{APP}/appInfos")
+    r = obtener(f"/v1/apps/{APP}/appInfos")
     for info in r["data"]:
-        if info["attributes"].get("state") in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED"):
+        if info["attributes"].get("state") in ("PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW", "DEVELOPER_REJECTED", "REJECTED"):
             return info["id"]
     raise SystemExit("No hay información de la app editable (¿la versión sigue en revisión?)")
 
 
 def upsert(ruta_lista: str, tipo: str, locale: str, atributos: dict, relacion: tuple[str, str, str]):
     """Crea o actualiza la localización `locale` de un recurso (appInfo o appStoreVersion)."""
-    _, r = llamar("GET", ruta_lista)
+    r = obtener(ruta_lista)
     existente = next((d for d in r["data"] if d["attributes"]["locale"] == locale), None)
     if existente:
         estado, r = llamar("PATCH", f"/v1/{tipo}/{existente['id']}",
@@ -74,11 +81,14 @@ def upsert(ruta_lista: str, tipo: str, locale: str, atributos: dict, relacion: t
 
 
 def subir_capturas(localizacion: str, pngs: list[pathlib.Path]):
-    _, r = llamar("GET", f"/v1/appStoreVersionLocalizations/{localizacion}/appScreenshotSets?include=appScreenshots")
+    r = obtener(f"/v1/appStoreVersionLocalizations/{localizacion}/appScreenshotSets?include=appScreenshots")
     juego = next((d for d in r["data"] if d["attributes"]["screenshotDisplayType"] == PANTALLA), None)
     if juego:
+        # Se borran antes de subir porque un juego admite 10 capturas; si algo falla después,
+        # volver a correr el script deja la ficha completa.
         for anterior in (juego["relationships"]["appScreenshots"].get("data") or []):
-            llamar("DELETE", f"/v1/appScreenshots/{anterior['id']}")
+            estado, respuesta = llamar("DELETE", f"/v1/appScreenshots/{anterior['id']}")
+            comprobar(estado, respuesta, f"borrar captura {anterior['id']}")
         id_juego = juego["id"]
     else:
         estado, r = llamar("POST", "/v1/appScreenshotSets", {"data": {
@@ -106,6 +116,24 @@ def subir_capturas(localizacion: str, pngs: list[pathlib.Path]):
     estado, r = llamar("PATCH", f"/v1/appScreenshotSets/{id_juego}/relationships/appScreenshots",
                        {"data": [{"type": "appScreenshots", "id": i} for i in ids]})
     comprobar(estado, r, "ordenar capturas")
+    esperar_procesadas(ids)
+
+
+def esperar_procesadas(ids: list[str], limite: float = 180):
+    """Apple procesa cada captura después de subirla; falla aquí si alguna queda rechazada."""
+    fin = time.time() + limite
+    pendientes = set(ids)
+    while pendientes and time.time() < fin:
+        for captura in sorted(pendientes):
+            entrega = obtener(f"/v1/appScreenshots/{captura}")["data"]["attributes"]["assetDeliveryState"]
+            if entrega["state"] == "COMPLETE":
+                pendientes.discard(captura)
+            elif entrega["state"] == "FAILED":
+                raise SystemExit(f"Apple rechazó la captura {captura}: {entrega.get('errors')}")
+        if pendientes:
+            time.sleep(5)
+    if pendientes:
+        raise SystemExit(f"{len(pendientes)} capturas siguen procesándose; revisa App Store Connect")
 
 
 def main():
