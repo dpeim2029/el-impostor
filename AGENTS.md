@@ -226,15 +226,12 @@ Todo vive en `ios/`. El `.xcodeproj` **no se versiona**: se genera con XcodeGen 
   (títulos por idioma en el script) → `ios/tienda/<ficha>/`.
 - Nombre en inglés: "The Impostor: Pass the Phone" (decidido el 23-sep-2026; "Word Game" se descartó
   por parecerse a "Imposter Who? - Word Game"), subtítulo "Party game for families".
-- Versión 1.0 (build 4) enviada a revisión de la App Store el 23-sep-2026, con publicación manual:
-  al aprobarse queda en "Pendiente de liberación del desarrollador" hasta que Daniel la libere.
-- 1.1 (build 3, desde `main` tras el PR #1) subida a TestFlight el 23-sep-2026 y en los grupos
-  "Equipo" y "Familia y amigos". Plan acordado: publicar la 1.0 (solo MX y US) y entonces:
-  1. `ios/scripts/ficha.py 1.1 --crear` (crea la versión y sube fichas es-MX y en-*);
-  2. asignar el build 1.1 a la versión y revisar el contacto de revisión (appStoreReviewDetail);
-  3. enviar a revisión con el visto bueno de Daniel;
-  4. al publicarla, abrir los 17 países hispanohablantes restantes + GB, CA, AU, NZ, IE
-     (no antes, para que nadie reciba la 1.0 con el banco mexicano).
+- **1.0 publicada** el 25-sep-2026 en México y EE. UU. (https://apps.apple.com/app/id6814065408).
+- **1.1 (build 3) enviada a revisión** el 25-sep-2026, publicación manual: fichas es-MX y en-US/GB/AU/CA
+  subidas con `ios/scripts/ficha.py 1.1 --crear`, notas para el revisor en inglés. También aprobada
+  en TestFlight para "Familia y amigos". Pendiente al aprobarse: que Daniel la libere y entonces
+  abrir los 17 países hispanohablantes restantes + GB, CA, AU, NZ, IE (no antes, para que nadie
+  reciba la 1.0 con el banco mexicano).
 
 ## Comandos web
 
